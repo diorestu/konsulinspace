@@ -38,7 +38,7 @@
     $dateClasses = '';
     if ($type === 'date') {
         if ($useWhiteDateIcon) {
-            $dateClasses = 'date-white-icon [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-90 hover:[&::-webkit-calendar-picker-indicator]:opacity-100 pr-3';
+            $dateClasses = 'date-white-icon [&::-webkit-calendar-picker-indicator]:[filter:brightness(0)_invert(1)!important] [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-95 hover:[&::-webkit-calendar-picker-indicator]:opacity-100 pr-3';
         } else {
             $dateClasses = 'cursor-pointer pr-3';
         }
@@ -66,6 +66,7 @@
             type="{{ $type }}"
             name="{{ $name }}"
             id="{{ $id }}"
+            data-theme="{{ $theme }}"
             value="{{ $value ?? old($name) }}"
             @if($placeholder) placeholder="{{ $placeholder }}" @endif
             @if($required) required @endif

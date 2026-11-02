@@ -44,7 +44,20 @@ class KonsulinSpaceTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('KonsulinSpace');
         $response->assertSee('Hot Desk Test');
-        // Verify reusable select with chevron padding & white date icon
+        // Product card has rating star and detail CTA
+        $response->assertSee('4.9');
+        $response->assertSee('Detail');
+        // FAQ accordion
+        $response->assertSee('faqAccordion');
+        $response->assertSee('<details', false);
+    }
+
+    public function test_contact_page_loads_with_reservation_form()
+    {
+        $response = $this->get('/kontak');
+        $response->assertStatus(200);
+        $response->assertSee('Kontak & Reservasi Ruangan');
+        $response->assertSee('Formulir Reservasi');
         $response->assertSee('date-white-icon');
         $response->assertSee('pr-10');
         $response->assertSee('pr-3.5');
@@ -61,7 +74,7 @@ class KonsulinSpaceTest extends TestCase
         $renderedDateInput = (string) $this->blade('<x-input type="date" name="test_date" theme="dark" white-date-icon="true" />');
         $this->assertStringContainsString('type="date"', $renderedDateInput);
         $this->assertStringContainsString('date-white-icon', $renderedDateInput);
-        $this->assertStringContainsString('[color-scheme:dark]', $renderedDateInput);
+        $this->assertStringContainsString('brightness(0)_invert(1)', $renderedDateInput);
     }
 
     public function test_room_detail_page_loads_with_media()

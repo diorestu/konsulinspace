@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/kontak', [HomeController::class, 'contact'])->name('contact');
 Route::get('/rooms/{slug}', [HomeController::class, 'roomDetail'])->name('rooms.show');
 Route::post('/inquiry', [HomeController::class, 'storeInquiry'])->name('inquiry.store');
 

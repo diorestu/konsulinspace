@@ -95,15 +95,17 @@
 
 /* Custom white calendar icon for date inputs */
 input[type="date"].date-white-icon::-webkit-calendar-picker-indicator,
-.date-white-icon input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+.date-white-icon input[type="date"]::-webkit-calendar-picker-indicator,
+input[data-theme="dark"][type="date"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0) invert(1) !important;
     cursor: pointer;
-    opacity: 0.9;
+    opacity: 0.95;
     padding-right: 0.25rem;
 }
 
 input[type="date"].date-white-icon::-webkit-calendar-picker-indicator:hover,
-.date-white-icon input[type="date"]::-webkit-calendar-picker-indicator:hover {
+.date-white-icon input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[data-theme="dark"][type="date"]::-webkit-calendar-picker-indicator:hover {
     opacity: 1;
 }
 

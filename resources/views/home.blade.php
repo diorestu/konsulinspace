@@ -189,9 +189,17 @@
                                 {{ $room->name }}
                             </a>
                         </h3>
-                        <p class="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">
-                            {{ $room->short_description ?: 'Ruangan berfasilitas lengkap di gedung komersial Sudirman.' }}
-                        </p>
+                        
+                        <!-- Rating Star -->
+                        <div class="flex items-center gap-1.5 mt-2.5">
+                            <div class="flex items-center text-amber-400">
+                                @for($i = 0; $i < 5; $i++)
+                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                @endfor
+                            </div>
+                            <span class="text-xs font-semibold text-slate-700">4.9</span>
+                            <span class="text-[11px] text-slate-400">(48)</span>
+                        </div>
                     </div>
 
                     <!-- Pricing & Button -->
@@ -199,8 +207,11 @@
                         <div>
                             <span class="text-sm font-bold text-slate-900">{{ $room->formatted_price }}</span>
                         </div>
-                        <a href="{{ route('rooms.show', $room->slug) }}" class="px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-[#0353a4] text-white text-xs font-semibold transition">
-                            Detail
+                        <a href="{{ route('rooms.show', $room->slug) }}" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-[#0353a4] text-white text-xs font-semibold transition group/btn">
+                            <span>Detail</span>
+                            <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -253,7 +264,7 @@
                 </div>
 
                 <div class="pt-6">
-                    <a href="#reservasi" class="w-full block py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-xs text-center hover:bg-slate-50 transition">
+                    <a href="{{ route('contact') }}" class="w-full block py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-xs text-center hover:bg-slate-50 transition">
                         Pilih Silver
                     </a>
                 </div>
@@ -289,7 +300,7 @@
                 </div>
 
                 <div class="pt-6">
-                    <a href="#reservasi" class="w-full block py-2.5 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs text-center transition">
+                    <a href="{{ route('contact') }}" class="w-full block py-2.5 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs text-center transition">
                         Pilih Gold
                     </a>
                 </div>
@@ -325,7 +336,7 @@
                 </div>
 
                 <div class="pt-6">
-                    <a href="#reservasi" class="w-full block py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-xs text-center hover:bg-slate-50 transition">
+                    <a href="{{ route('contact') }}" class="w-full block py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-xs text-center hover:bg-slate-50 transition">
                         Pilih Platinum
                     </a>
                 </div>
@@ -387,89 +398,71 @@
     </div>
 </section>
 
-<!-- Formulir Reservasi -->
-<section id="reservasi" class="py-16 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-[#001845] rounded-2xl p-6 sm:p-10 text-white border border-[#023e7d]">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold tracking-tight">Reservasi Ruangan</h2>
-                <p class="text-xs text-slate-300 mt-1">Isi formulir dan tim kami akan segera menghubungi Anda.</p>
-            </div>
-
-            <form action="{{ route('inquiry.store') }}" method="POST" class="space-y-4">
-                @csrf
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <x-input name="name" id="inq_name" label="Nama Lengkap" theme="dark" required placeholder="Nama Anda" />
-                    <x-input type="email" name="email" id="inq_email" label="Email" theme="dark" required placeholder="email@perusahaan.com" />
-                    <x-input type="tel" name="phone" id="inq_phone" label="No. WhatsApp" theme="dark" required placeholder="0812-xxxx-xxxx" />
-                    <x-input name="company_name" id="inq_company" label="Perusahaan (Opsional)" theme="dark" placeholder="Nama PT / CV" />
-
-                    <x-select name="room_id" id="inq_room" label="Ruangan Tertentu" theme="dark" placeholder="-- Pilih Ruangan (Opsional) --">
-                        @foreach($rooms as $r)
-                        <option value="{{ $r->id }}" {{ old('room_id') == $r->id ? 'selected' : '' }}>
-                            {{ $r->name }}
-                        </option>
-                        @endforeach
-                    </x-select>
-
-                    <x-select name="service_type" id="inq_service" label="Layanan" theme="dark">
-                        <option value="coworking" {{ old('service_type') == 'coworking' ? 'selected' : '' }}>Co-Working Space</option>
-                        <option value="virtual_office" {{ old('service_type') == 'virtual_office' ? 'selected' : '' }}>Virtual Office</option>
-                        <option value="meeting_room" {{ old('service_type') == 'meeting_room' ? 'selected' : '' }}>Meeting Room</option>
-                        <option value="private_office" {{ old('service_type') == 'private_office' ? 'selected' : '' }}>Private Office</option>
-                        <option value="event_space" {{ old('service_type') == 'event_space' ? 'selected' : '' }}>Event Hall</option>
-                    </x-select>
-
-                    <x-input type="date" name="start_date" id="inq_start_date" label="Tanggal Mulai" theme="dark" white-date-icon="true" />
-                    <x-input name="duration" id="inq_duration" label="Perkiraan Durasi" theme="dark" placeholder="Contoh: 1 Hari, 1 Bulan" />
-                </div>
-
-                <x-textarea name="notes" id="inq_notes" label="Catatan Tambahan" theme="dark" :rows="2" placeholder="Jumlah pax atau kebutuhan khusus..." />
-
-                <div class="pt-2 text-center">
-                    <x-button type="submit" variant="secondary" size="lg">
-                        Kirim Reservasi
-                    </x-button>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ -->
+<!-- FAQ (Accordion) -->
 <section id="faq" class="py-16 bg-slate-50 border-t border-slate-200">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-8">
-            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Pertanyaan Umum</h2>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Pertanyaan Umum</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-2">Jawaban seputar layanan sewa ruangan dan virtual office kami.</p>
         </div>
 
-        <div class="space-y-3">
-            <div class="p-5 bg-white rounded-xl border border-slate-200">
-                <h4 class="font-bold text-slate-900 text-sm">Apakah alamat Virtual Office bisa untuk PKP?</h4>
-                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Bisa. Gedung kami berada pada zonasi komersial resmi perkantoran Jakarta yang memenuhi syarat domisili PKP.
-                </p>
-            </div>
+        <div class="space-y-3" id="faqAccordion">
+            <!-- Item 1 -->
+            <details class="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs transition-all duration-200" open>
+                <summary class="flex items-center justify-between p-5 cursor-pointer list-none select-none hover:bg-slate-50/60 transition font-bold text-slate-900 text-sm">
+                    <span>Apakah alamat Virtual Office bisa digunakan untuk PKP dan izin resmi?</span>
+                    <span class="w-7 h-7 rounded-lg bg-[#edf4fc] text-[#0353a4] flex items-center justify-center shrink-0 ml-3 transition-transform duration-200 group-open:rotate-180">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </span>
+                </summary>
+                <div class="px-5 pb-5 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-100">
+                    Bisa. Gedung kami berlokasi di zonasi komersial perkantoran Sudirman yang memenuhi seluruh persyaratan domisili hukum untuk pendirian PT, CV, serta pengukuhan PKP (Pengusaha Kena Pajak). Kami juga menyediakan dokumen kelengkapan gedung seperti Surat Keterangan Domisili Gedung dan IMB.
+                </div>
+            </details>
 
-            <div class="p-5 bg-white rounded-xl border border-slate-200">
-                <h4 class="font-bold text-slate-900 text-sm">Apakah bisa sewa harian (Day Pass)?</h4>
-                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Bisa. Anda dapat langsung datang ke resepsionis untuk sewa harian tanpa komitmen bulanan.
-                </p>
-            </div>
+            <!-- Item 2 -->
+            <details class="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs transition-all duration-200">
+                <summary class="flex items-center justify-between p-5 cursor-pointer list-none select-none hover:bg-slate-50/60 transition font-bold text-slate-900 text-sm">
+                    <span>Apakah bisa menyewa harian (Day Pass) tanpa komitmen bulanan?</span>
+                    <span class="w-7 h-7 rounded-lg bg-[#edf4fc] text-[#0353a4] flex items-center justify-center shrink-0 ml-3 transition-transform duration-200 group-open:rotate-180">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </span>
+                </summary>
+                <div class="px-5 pb-5 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-100">
+                    Bisa. Layanan Co-Working Hot Desk dapat disewa dengan sistem Day Pass harian langsung di front desk. Anda mendapatkan akses internet kecepatan tinggi 300 Mbps, free flow teh/kopi, dan area kerja ergonomis.
+                </div>
+            </details>
 
-            <div class="p-5 bg-white rounded-xl border border-slate-200">
-                <h4 class="font-bold text-slate-900 text-sm">Bagaimana penerimaan surat Virtual Office?</h4>
-                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Resepsionis akan mencatat dan menotifikasikan setiap surat masuk melalui WhatsApp.
-                </p>
-            </div>
+            <!-- Item 3 -->
+            <details class="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs transition-all duration-200">
+                <summary class="flex items-center justify-between p-5 cursor-pointer list-none select-none hover:bg-slate-50/60 transition font-bold text-slate-900 text-sm">
+                    <span>Bagaimana penanganan surat dan paket untuk pelanggan Virtual Office?</span>
+                    <span class="w-7 h-7 rounded-lg bg-[#edf4fc] text-[#0353a4] flex items-center justify-center shrink-0 ml-3 transition-transform duration-200 group-open:rotate-180">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </span>
+                </summary>
+                <div class="px-5 pb-5 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-100">
+                    Setiap surat atau paket yang tiba di alamat kantor Anda akan dicatat oleh resepsionis kami. Anda akan menerima notifikasi real-time via WhatsApp beserta foto resi, dan dapat meminta opsi scan dokumen atau pengambilan fisik.
+                </div>
+            </details>
+
+            <!-- Item 4 -->
+            <details class="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs transition-all duration-200">
+                <summary class="flex items-center justify-between p-5 cursor-pointer list-none select-none hover:bg-slate-50/60 transition font-bold text-slate-900 text-sm">
+                    <span>Bagaimana cara melakukan pemesanan ruangan dan jadwal survei lokasi?</span>
+                    <span class="w-7 h-7 rounded-lg bg-[#edf4fc] text-[#0353a4] flex items-center justify-center shrink-0 ml-3 transition-transform duration-200 group-open:rotate-180">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </span>
+                </summary>
+                <div class="px-5 pb-5 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-100">
+                    Anda dapat mengisi formulir reservasi di <a href="{{ route('contact') }}" class="text-[#0353a4] font-semibold hover:underline">halaman kontak kami</a> atau menghubungi WhatsApp resmi KonsulinSpace. Tim kami siap mengatur jadwal survei fisik gedung pada jam operasional kerja.
+                </div>
+            </details>
         </div>
     </div>
 </section>
 
-<!-- Kontak & Lokasi -->
+<!-- Kontak & Lokasi Teaser -->
 <section id="kontak" class="py-16 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -481,9 +474,14 @@
                     <p><strong>Email:</strong> hello@konsulinspace.com</p>
                     <p><strong>Jam Operasional:</strong> Senin - Jumat 08:00 - 20:00 WIB (Akses 24/7 bagi member tetap)</p>
                 </div>
+                <div class="pt-2">
+                    <a href="{{ route('contact') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs transition shadow-xs">
+                        Kunjungi Halaman Kontak & Reservasi
+                    </a>
+                </div>
             </div>
 
-            <div class="rounded-xl overflow-hidden border border-slate-200 aspect-[16/9] bg-slate-100">
+            <div class="rounded-2xl overflow-hidden border border-slate-200 aspect-[16/9] bg-slate-100">
                 <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80" alt="Sudirman Hub" class="w-full h-full object-cover">
             </div>
         </div>

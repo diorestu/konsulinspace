@@ -50,6 +50,15 @@ class HomeController extends Controller
         return view('rooms.show', compact('room', 'relatedRooms'));
     }
 
+    public function contact()
+    {
+        $rooms = Room::where('status', 'available')
+            ->orderBy('order_position', 'asc')
+            ->get();
+
+        return view('contact', compact('rooms'));
+    }
+
     public function storeInquiry(Request $request)
     {
         $validated = $request->validate([
