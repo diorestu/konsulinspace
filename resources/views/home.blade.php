@@ -81,7 +81,7 @@
                         Hot desk harian dan dedicated desk bulanan dengan kursi ergonomis dan free flow kopi.
                     </p>
                 </div>
-                <a href="#ruangan" class="inline-block text-xs font-semibold text-[#0353a4] mt-4">Pilih Meja &rarr;</a>
+                <a href="#ruangan" class="inline-block text-xs font-semibold text-[#0353a4] hover:text-[#023e7d] mt-4">Pilih Meja</a>
             </div>
 
             <!-- 2. Virtual Office -->
@@ -95,7 +95,7 @@
                         Alamat komersial resmi untuk legalitas PT, CV, dan PKP lengkap dengan surat domisili.
                     </p>
                 </div>
-                <a href="#virtual-office" class="inline-block text-xs font-semibold text-[#0353a4] mt-4">Pilih Paket &rarr;</a>
+                <a href="#virtual-office" class="inline-block text-xs font-semibold text-[#0353a4] hover:text-[#023e7d] mt-4">Pilih Paket</a>
             </div>
 
             <!-- 3. Meeting Rooms -->
@@ -109,7 +109,7 @@
                         Ruang rapat kedap suara dengan display presentasi 4K dan fasilitas video conference.
                     </p>
                 </div>
-                <a href="#ruangan" class="inline-block text-xs font-semibold text-[#0353a4] mt-4">Sewa Ruangan &rarr;</a>
+                <a href="#ruangan" class="inline-block text-xs font-semibold text-[#0353a4] hover:text-[#023e7d] mt-4">Sewa Ruangan</a>
             </div>
 
             <!-- 4. Private Office -->
@@ -123,7 +123,7 @@
                         Ruang kantor privat siap pakai untuk tim 2 hingga 20 orang dengan kunci RFID mandiri.
                     </p>
                 </div>
-                <a href="#ruangan" class="inline-block text-xs font-semibold text-[#0353a4] mt-4">Lihat Unit &rarr;</a>
+                <a href="#ruangan" class="inline-block text-xs font-semibold text-[#0353a4] hover:text-[#023e7d] mt-4">Lihat Unit</a>
             </div>
         </div>
     </div>
@@ -271,7 +271,7 @@
                     <ul class="space-y-2.5 text-xs text-slate-700 border-t border-[#b0d0f4] pt-5">
                         <li class="flex items-center gap-2">
                             <span class="text-[#0353a4]">&bull;</span>
-                            <span><strong>Surat Keterangan Domisili Gedung</strong></span>
+                            <span>Surat Keterangan Domisili Gedung</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <span class="text-[#0353a4]">&bull;</span>
@@ -307,7 +307,7 @@
                     <ul class="space-y-2.5 text-xs text-slate-600 border-t border-slate-100 pt-5">
                         <li class="flex items-center gap-2">
                             <span class="text-[#0353a4]">&bull;</span>
-                            <span><strong>Izin Zonasi PKP & Pendampingan</strong></span>
+                            <span>Izin Zonasi PKP & Pendampingan</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <span class="text-[#0353a4]">&bull;</span>

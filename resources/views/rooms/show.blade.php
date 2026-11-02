@@ -94,7 +94,7 @@
             <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
                 <h3 class="text-lg font-bold text-slate-900">Tentang Ruangan Ini</h3>
                 <div class="text-sm text-slate-600 leading-relaxed space-y-3">
-                    <p>{{ $room->description ?: $room->short_description ?: 'Ruangan berstandar tinggi yang didesain untuk kenyamanan, produktivitas, dan kolaborasi profesional Anda.' }}</p>
+                    <p>{{ $room->description ?: $room->short_description ?: 'Ruangan siap pakai dengan fasilitas pendukung lengkap di KonsulinSpace Sudirman.' }}</p>
                 </div>
             </div>
 
@@ -207,7 +207,7 @@
                     <p class="text-xs text-slate-500 mt-1">{{ $rel->capacity ?: '-' }}</p>
                     <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                         <span class="text-xs font-bold text-slate-900">{{ $rel->formatted_price }}</span>
-                        <a href="{{ route('rooms.show', $rel->slug) }}" class="text-xs font-semibold text-[#0353a4] hover:text-[#023e7d]">Detail &rarr;</a>
+                        <a href="{{ route('rooms.show', $rel->slug) }}" class="text-xs font-semibold text-[#0353a4] hover:text-[#023e7d]">Lihat Detail</a>
                     </div>
                 </div>
             </div>

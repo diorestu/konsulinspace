@@ -120,12 +120,12 @@
                         </div>
                         <span class="text-xl font-bold tracking-tight text-white">Konsulin<span class="text-[#75afee]">Space</span></span>
                     </div>
-                    <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
-                        Solusi ruang kerja fleksibel berstandar enterprise dan legalitas alamat virtual office prestisius di pusat perekonomian Jakarta. Membantu bisnis berkembang tanpa batas.
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        Penyedia co-working space, private office, meeting room, dan legalitas alamat virtual office di Sudirman, Jakarta Pusat.
                     </p>
-                    <div class="pt-2 flex items-center gap-3 text-slate-400">
-                        <span class="w-2.5 h-2.5 rounded-full bg-[#0466c8] animate-pulse"></span>
-                        <span class="text-xs font-medium text-slate-300">Buka Hari Ini: 08:00 - 22:00 WIB</span>
+                    <div class="pt-2 flex items-center gap-2.5 text-slate-400">
+                        <span class="w-2 h-2 rounded-full bg-[#0466c8]"></span>
+                        <span class="text-xs text-slate-300">Jam Operasional: 08:00 - 20:00 WIB</span>
                     </div>
                 </div>
 
@@ -174,9 +174,9 @@
             <div class="pt-8 border-t border-[#002855] text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p>&copy; {{ date('Y') }} KonsulinSpace. Hak Cipta Dilindungi Undang-Undang.</p>
                 <div class="flex items-center gap-6">
-                    <a href="{{ route('home') }}#faq" class="hover:text-slate-400 transition">Kebijakan Privasi</a>
-                    <a href="{{ route('home') }}#faq" class="hover:text-slate-400 transition">Syarat & Ketentuan</a>
-                    <a href="{{ route('admin.login') }}" class="text-slate-400 hover:text-[#75afee] transition font-medium">Login Admin</a>
+                    <a href="{{ route('home') }}#faq" class="hover:text-slate-400 transition">FAQ</a>
+                    <a href="{{ route('home') }}#kontak" class="hover:text-slate-400 transition">Kontak</a>
+                    <a href="{{ route('admin.login') }}" class="text-slate-400 hover:text-[#75afee] transition font-medium">Portal Admin</a>
                 </div>
             </div>
         </div>

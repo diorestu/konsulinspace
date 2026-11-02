@@ -114,7 +114,7 @@
                     <h3 class="text-base font-bold text-slate-900">Reservasi & Permintaan Terbaru</h3>
                     <p class="text-xs text-slate-500">Pesan dari prospek pelanggan website</p>
                 </div>
-                <a href="{{ route('admin.inquiries.index') }}" class="text-xs font-semibold text-[#0353a4] hover:text-[#023e7d]">Lihat Semua &rarr;</a>
+                <a href="{{ route('admin.inquiries.index') }}" class="text-xs font-semibold text-[#0353a4] hover:text-[#023e7d]">Lihat Semua</a>
             </div>
 
             <div class="divide-y divide-slate-100 flex-1 overflow-x-auto">
@@ -169,7 +169,7 @@
                     <h3 class="text-base font-bold text-slate-900">Daftar Ruangan Terdaftar</h3>
                     <p class="text-xs text-slate-500">Koleksi ruang kerja KonsulinSpace</p>
                 </div>
-                <a href="{{ route('admin.rooms.index') }}" class="text-xs font-semibold text-[#0353a4] hover:text-[#023e7d]">Kelola Semua &rarr;</a>
+                <a href="{{ route('admin.rooms.index') }}" class="text-xs font-semibold text-[#0353a4] hover:text-[#023e7d]">Kelola Semua</a>
             </div>
 
             <div class="divide-y divide-slate-100 flex-1">

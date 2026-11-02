@@ -24,22 +24,26 @@
 
             <div class="w-full sm:w-auto flex flex-wrap items-center gap-3">
                 <!-- Category Filter -->
-                <select name="category" onchange="this.form.submit()" class="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 bg-white focus:ring-2 focus:ring-[#0353a4] outline-none">
-                    <option value="all">Semua Kategori</option>
-                    <option value="coworking" {{ request('category') === 'coworking' ? 'selected' : '' }}>Co-Working Space</option>
-                    <option value="virtual_office" {{ request('category') === 'virtual_office' ? 'selected' : '' }}>Virtual Office</option>
-                    <option value="meeting_room" {{ request('category') === 'meeting_room' ? 'selected' : '' }}>Meeting Room</option>
-                    <option value="private_office" {{ request('category') === 'private_office' ? 'selected' : '' }}>Private Office</option>
-                    <option value="event_space" {{ request('category') === 'event_space' ? 'selected' : '' }}>Event & Training Space</option>
-                </select>
+                <div class="w-44">
+                    <x-select name="category" onchange="this.form.submit()">
+                        <option value="all">Semua Kategori</option>
+                        <option value="coworking" {{ request('category') === 'coworking' ? 'selected' : '' }}>Co-Working Space</option>
+                        <option value="virtual_office" {{ request('category') === 'virtual_office' ? 'selected' : '' }}>Virtual Office</option>
+                        <option value="meeting_room" {{ request('category') === 'meeting_room' ? 'selected' : '' }}>Meeting Room</option>
+                        <option value="private_office" {{ request('category') === 'private_office' ? 'selected' : '' }}>Private Office</option>
+                        <option value="event_space" {{ request('category') === 'event_space' ? 'selected' : '' }}>Event & Training Space</option>
+                    </x-select>
+                </div>
 
                 <!-- Status Filter -->
-                <select name="status" onchange="this.form.submit()" class="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 bg-white focus:ring-2 focus:ring-[#0353a4] outline-none">
-                    <option value="all">Semua Status</option>
-                    <option value="available" {{ request('status') === 'available' ? 'selected' : '' }}>Tersedia</option>
-                    <option value="booked" {{ request('status') === 'booked' ? 'selected' : '' }}>Booked / Terisi</option>
-                    <option value="maintenance" {{ request('status') === 'maintenance' ? 'selected' : '' }}>Pemeliharaan</option>
-                </select>
+                <div class="w-36">
+                    <x-select name="status" onchange="this.form.submit()">
+                        <option value="all">Semua Status</option>
+                        <option value="available" {{ request('status') === 'available' ? 'selected' : '' }}>Tersedia</option>
+                        <option value="booked" {{ request('status') === 'booked' ? 'selected' : '' }}>Booked / Terisi</option>
+                        <option value="maintenance" {{ request('status') === 'maintenance' ? 'selected' : '' }}>Pemeliharaan</option>
+                    </x-select>
+                </div>
 
                 @if(request('search') || request('category') || request('status'))
                 <a href="{{ route('admin.rooms.index') }}" class="px-3 py-2 rounded-xl text-xs font-medium text-slate-500 hover:text-slate-800 transition">
