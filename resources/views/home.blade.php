@@ -400,59 +400,37 @@
                 @csrf
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label for="inq_name" class="block text-xs text-slate-300 mb-1">Nama Lengkap</label>
-                        <input type="text" name="name" id="inq_name" required value="{{ old('name') }}" placeholder="Nama Anda" class="w-full px-3.5 py-2 rounded-xl bg-[#002855] border border-[#023e7d] text-white placeholder-slate-400 focus:ring-1 focus:ring-[#0466c8] outline-none text-xs">
-                    </div>
+                    <x-input name="name" id="inq_name" label="Nama Lengkap" theme="dark" required placeholder="Nama Anda" />
+                    <x-input type="email" name="email" id="inq_email" label="Email" theme="dark" required placeholder="email@perusahaan.com" />
+                    <x-input type="tel" name="phone" id="inq_phone" label="No. WhatsApp" theme="dark" required placeholder="0812-xxxx-xxxx" />
+                    <x-input name="company_name" id="inq_company" label="Perusahaan (Opsional)" theme="dark" placeholder="Nama PT / CV" />
 
-                    <div>
-                        <label for="inq_email" class="block text-xs text-slate-300 mb-1">Email</label>
-                        <input type="email" name="email" id="inq_email" required value="{{ old('email') }}" placeholder="email@perusahaan.com" class="w-full px-3.5 py-2 rounded-xl bg-[#002855] border border-[#023e7d] text-white placeholder-slate-400 focus:ring-1 focus:ring-[#0466c8] outline-none text-xs">
-                    </div>
+                    <x-select name="room_id" id="inq_room" label="Ruangan Tertentu" theme="dark" placeholder="-- Pilih Ruangan (Opsional) --">
+                        @foreach($rooms as $r)
+                        <option value="{{ $r->id }}" {{ old('room_id') == $r->id ? 'selected' : '' }}>
+                            {{ $r->name }}
+                        </option>
+                        @endforeach
+                    </x-select>
 
-                    <div>
-                        <label for="inq_phone" class="block text-xs text-slate-300 mb-1">No. WhatsApp</label>
-                        <input type="tel" name="phone" id="inq_phone" required value="{{ old('phone') }}" placeholder="0812-xxxx-xxxx" class="w-full px-3.5 py-2 rounded-xl bg-[#002855] border border-[#023e7d] text-white placeholder-slate-400 focus:ring-1 focus:ring-[#0466c8] outline-none text-xs">
-                    </div>
+                    <x-select name="service_type" id="inq_service" label="Layanan" theme="dark">
+                        <option value="coworking" {{ old('service_type') == 'coworking' ? 'selected' : '' }}>Co-Working Space</option>
+                        <option value="virtual_office" {{ old('service_type') == 'virtual_office' ? 'selected' : '' }}>Virtual Office</option>
+                        <option value="meeting_room" {{ old('service_type') == 'meeting_room' ? 'selected' : '' }}>Meeting Room</option>
+                        <option value="private_office" {{ old('service_type') == 'private_office' ? 'selected' : '' }}>Private Office</option>
+                        <option value="event_space" {{ old('service_type') == 'event_space' ? 'selected' : '' }}>Event Hall</option>
+                    </x-select>
 
-                    <div>
-                        <label for="inq_company" class="block text-xs text-slate-300 mb-1">Perusahaan (Opsional)</label>
-                        <input type="text" name="company_name" id="inq_company" value="{{ old('company_name') }}" placeholder="Nama PT / CV" class="w-full px-3.5 py-2 rounded-xl bg-[#002855] border border-[#023e7d] text-white placeholder-slate-400 focus:ring-1 focus:ring-[#0466c8] outline-none text-xs">
-                    </div>
-
-                    <div>
-                        <label for="inq_room" class="block text-xs text-slate-300 mb-1">Ruangan Tertentu</label>
-                        <select name="room_id" id="inq_room" class="w-full px-3.5 py-2 rounded-xl bg-[#002855] border border-[#023e7d] text-white focus:ring-1 focus:ring-[#0466c8] outline-none text-xs">
-                            <option value="">-- Pilih Ruangan (Opsional) --</option>
-                            @foreach($rooms as $r)
-                            <option value="{{ $r->id }}" {{ old('room_id') == $r->id ? 'selected' : '' }}>
-                                {{ $r->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="inq_service" class="block text-xs text-slate-300 mb-1">Layanan</label>
-                        <select name="service_type" id="inq_service" class="w-full px-3.5 py-2 rounded-xl bg-[#002855] border border-[#023e7d] text-white focus:ring-1 focus:ring-[#0466c8] outline-none text-xs">
-                            <option value="coworking">Co-Working Space</option>
-                            <option value="virtual_office">Virtual Office</option>
-                            <option value="meeting_room">Meeting Room</option>
-                            <option value="private_office">Private Office</option>
-                            <option value="event_space">Event Hall</option>
-                        </select>
-                    </div>
+                    <x-input type="date" name="start_date" id="inq_start_date" label="Tanggal Mulai" theme="dark" white-date-icon="true" />
+                    <x-input name="duration" id="inq_duration" label="Perkiraan Durasi" theme="dark" placeholder="Contoh: 1 Hari, 1 Bulan" />
                 </div>
 
-                <div>
-                    <label for="inq_notes" class="block text-xs text-slate-300 mb-1">Catatan</label>
-                    <textarea name="notes" id="inq_notes" rows="2" placeholder="Durasi sewa atau kebutuhan khusus..." class="w-full px-3.5 py-2 rounded-xl bg-[#002855] border border-[#023e7d] text-white placeholder-slate-400 focus:ring-1 focus:ring-[#0466c8] outline-none text-xs">{{ old('notes') }}</textarea>
-                </div>
+                <x-textarea name="notes" id="inq_notes" label="Catatan Tambahan" theme="dark" :rows="2" placeholder="Jumlah pax atau kebutuhan khusus..." />
 
                 <div class="pt-2 text-center">
-                    <button type="submit" class="w-full sm:w-auto px-8 py-2.5 rounded-xl bg-[#0353a4] hover:bg-[#0466c8] text-white font-semibold text-xs transition">
+                    <x-button type="submit" variant="secondary" size="lg">
                         Kirim Reservasi
-                    </button>
+                    </x-button>
                 </div>
             </form>
         </div>

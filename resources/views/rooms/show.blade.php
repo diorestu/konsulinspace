@@ -159,40 +159,20 @@
                         <input type="hidden" name="room_id" value="{{ $room->id }}">
                         <input type="hidden" name="service_type" value="{{ $room->category }}">
 
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap *</label>
-                            <input type="text" name="name" required placeholder="Nama Anda" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-[#0353a4] outline-none">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Nomor WhatsApp *</label>
-                            <input type="tel" name="phone" required placeholder="0812-xxxx-xxxx" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-[#0353a4] outline-none">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Email *</label>
-                            <input type="email" name="email" required placeholder="email@perusahaan.com" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-[#0353a4] outline-none">
-                        </div>
+                        <x-input name="name" label="Nama Lengkap" required placeholder="Nama Anda" />
+                        <x-input type="tel" name="phone" label="Nomor WhatsApp" required placeholder="0812-xxxx-xxxx" />
+                        <x-input type="email" name="email" label="Email" required placeholder="email@perusahaan.com" />
 
                         <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Tgl Mulai</label>
-                                <input type="date" name="start_date" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-[#0353a4] outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 mb-1">Durasi</label>
-                                <input type="text" name="duration" placeholder="Contoh: 1 Bulan" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-[#0353a4] outline-none">
-                            </div>
+                            <x-input type="date" name="start_date" label="Tgl Mulai" />
+                            <x-input name="duration" label="Durasi" placeholder="Contoh: 1 Bulan" />
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Catatan Tambahan</label>
-                            <textarea name="notes" rows="2" placeholder="Jumlah pax, kebutuhan screen, dll." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-[#0353a4] outline-none"></textarea>
-                        </div>
+                        <x-textarea name="notes" label="Catatan Tambahan" :rows="2" placeholder="Jumlah pax, kebutuhan screen, dll." />
 
-                        <button type="submit" class="w-full py-3 px-4 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] active:scale-95 text-white font-bold text-xs shadow-md shadow-[#0353a4]/30 transition">
+                        <x-button type="submit" variant="primary" class="w-full">
                             Pesan Ruangan Ini
-                        </button>
+                        </x-button>
                     </form>
 
                     <!-- WhatsApp Direct Link -->

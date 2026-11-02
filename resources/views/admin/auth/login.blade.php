@@ -59,15 +59,9 @@
             <form action="{{ route('admin.login.submit') }}" method="POST" class="space-y-4">
                 @csrf
 
-                <div>
-                    <label for="email" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Email Administrator</label>
-                    <input type="email" name="email" id="email" required autofocus value="{{ old('email', 'admin@konsulinspace.com') }}" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none transition" placeholder="admin@konsulinspace.com">
-                </div>
+                <x-input type="email" name="email" label="Email Administrator" required autofocus value="admin@konsulinspace.com" placeholder="admin@konsulinspace.com" />
 
-                <div>
-                    <label for="password" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Password</label>
-                    <input type="password" name="password" id="password" required value="password" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none transition" placeholder="••••••••">
-                </div>
+                <x-input type="password" name="password" label="Password" required value="password" placeholder="••••••••" />
 
                 <div class="flex items-center justify-between text-xs pt-1">
                     <label class="flex items-center gap-2 text-slate-600 cursor-pointer">
@@ -78,9 +72,9 @@
                 </div>
 
                 <div class="pt-2">
-                    <button type="submit" class="w-full py-3 px-4 rounded-xl bg-[#0353a4] text-white font-semibold text-sm hover:bg-[#023e7d] active:scale-98 transition shadow-md shadow-[#0353a4]/30">
+                    <x-button type="submit" variant="primary" class="w-full py-3">
                         Masuk ke Admin Panel
-                    </button>
+                    </x-button>
                 </div>
             </form>
         </div>

@@ -39,14 +39,16 @@
                 <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
 
-            <select name="status" onchange="this.form.submit()" class="px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 bg-white outline-none">
-                <option value="all">Semua Status</option>
-                <option value="new" {{ request('status') === 'new' ? 'selected' : '' }}>Baru</option>
-                <option value="contacted" {{ request('status') === 'contacted' ? 'selected' : '' }}>Sudah Dihubungi</option>
-                <option value="dealing" {{ request('status') === 'dealing' ? 'selected' : '' }}>Proses Diskusi</option>
-                <option value="completed" {{ request('status') === 'completed' ? 'selected' : '' }}>Deal / Selesai</option>
-                <option value="cancelled" {{ request('status') === 'cancelled' ? 'selected' : '' }}>Batal</option>
-            </select>
+            <div class="w-full sm:w-48">
+                <x-select name="status" onchange="this.form.submit()">
+                    <option value="all">Semua Status</option>
+                    <option value="new" {{ request('status') === 'new' ? 'selected' : '' }}>Baru</option>
+                    <option value="contacted" {{ request('status') === 'contacted' ? 'selected' : '' }}>Sudah Dihubungi</option>
+                    <option value="dealing" {{ request('status') === 'dealing' ? 'selected' : '' }}>Proses Diskusi</option>
+                    <option value="completed" {{ request('status') === 'completed' ? 'selected' : '' }}>Deal / Selesai</option>
+                    <option value="cancelled" {{ request('status') === 'cancelled' ? 'selected' : '' }}>Batal</option>
+                </x-select>
+            </div>
 
             @if(request('search') || (request('status') && request('status') !== 'all'))
             <a href="{{ route('admin.inquiries.index') }}" class="text-xs font-medium text-slate-500 hover:text-slate-800">Reset</a>
@@ -120,23 +122,17 @@
                         </td>
 
                         <!-- Status Select -->
-                        <td class="py-4 px-4">
+                        <td class="py-4 px-4 w-44">
                             <form action="{{ route('admin.inquiries.update_status', $inq->id) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <select name="status" onchange="this.form.submit()" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold outline-none border transition
-                                    {{ $inq->status === 'new' ? 'bg-amber-50 text-amber-800 border-amber-200' : '' }}
-                                    {{ $inq->status === 'contacted' ? 'bg-sky-50 text-sky-800 border-sky-200' : '' }}
-                                    {{ $inq->status === 'dealing' ? 'bg-purple-50 text-purple-800 border-purple-200' : '' }}
-                                    {{ $inq->status === 'completed' ? 'bg-[#edf4fc] text-[#023e7d] border-[#b0d0f4]' : '' }}
-                                    {{ $inq->status === 'cancelled' ? 'bg-slate-100 text-slate-700 border-slate-300' : '' }}
-                                ">
+                                <x-select name="status" size="sm" onchange="this.form.submit()">
                                     <option value="new" {{ $inq->status === 'new' ? 'selected' : '' }}>Baru</option>
                                     <option value="contacted" {{ $inq->status === 'contacted' ? 'selected' : '' }}>Dihubungi</option>
                                     <option value="dealing" {{ $inq->status === 'dealing' ? 'selected' : '' }}>Proses Diskusi</option>
                                     <option value="completed" {{ $inq->status === 'completed' ? 'selected' : '' }}>Deal / Selesai</option>
                                     <option value="cancelled" {{ $inq->status === 'cancelled' ? 'selected' : '' }}>Batal</option>
-                                </select>
+                                </x-select>
                             </form>
                         </td>
 

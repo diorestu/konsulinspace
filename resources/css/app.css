@@ -92,3 +92,18 @@
     background: #fecaca;
     color: #b91c1c;
 }
+
+/* Custom white calendar icon for date inputs */
+input[type="date"].date-white-icon::-webkit-calendar-picker-indicator,
+.date-white-icon input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+    opacity: 0.9;
+    padding-right: 0.25rem;
+}
+
+input[type="date"].date-white-icon::-webkit-calendar-picker-indicator:hover,
+.date-white-icon input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+

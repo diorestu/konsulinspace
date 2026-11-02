@@ -44,6 +44,24 @@ class KonsulinSpaceTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('KonsulinSpace');
         $response->assertSee('Hot Desk Test');
+        // Verify reusable select with chevron padding & white date icon
+        $response->assertSee('date-white-icon');
+        $response->assertSee('pr-10');
+        $response->assertSee('pr-3.5');
+    }
+
+    public function test_reusable_components_render_properly()
+    {
+        $renderedSelect = (string) $this->blade('<x-select name="test_select" theme="dark" label="Pilihan"><option value="1">Satu</option></x-select>');
+        $this->assertStringContainsString('appearance-none', $renderedSelect);
+        $this->assertStringContainsString('pr-10', $renderedSelect);
+        $this->assertStringContainsString('pr-3.5', $renderedSelect);
+        $this->assertStringContainsString('<svg', $renderedSelect);
+
+        $renderedDateInput = (string) $this->blade('<x-input type="date" name="test_date" theme="dark" white-date-icon="true" />');
+        $this->assertStringContainsString('type="date"', $renderedDateInput);
+        $this->assertStringContainsString('date-white-icon', $renderedDateInput);
+        $this->assertStringContainsString('[color-scheme:dark]', $renderedDateInput);
     }
 
     public function test_room_detail_page_loads_with_media()
