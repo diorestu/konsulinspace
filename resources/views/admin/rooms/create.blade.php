@@ -271,7 +271,7 @@
             acceptedFiles: "image/*,video/*",
             addRemoveLinks: true,
             dictRemoveFile: "× Hapus",
-            dictFileTooBig: "File terlalu besar ({{filesize}}MB). Maksimal: {{maxFilesize}}MB.",
+            dictFileTooBig: "File terlalu besar (@{{filesize}}MB). Maksimal: @{{maxFilesize}}MB.",
             dictInvalidFileType: "Tipe file tidak didukung. Harap pilih gambar atau video.",
             
             init: function() {

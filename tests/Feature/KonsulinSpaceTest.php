@@ -129,6 +129,19 @@ class KonsulinSpaceTest extends TestCase
         $roomsResponse = $this->actingAs($this->admin)->get('/admin/rooms');
         $roomsResponse->assertStatus(200);
         $roomsResponse->assertSee('Kelola Ruangan');
+
+        $createResponse = $this->actingAs($this->admin)->get('/admin/rooms/create');
+        $createResponse->assertStatus(200);
+        $createResponse->assertSee('Tambah Ruangan');
+
+        $room = Room::create([
+            'name' => 'Sample Room',
+            'category' => 'coworking',
+            'status' => 'available',
+        ]);
+        $editResponse = $this->actingAs($this->admin)->get('/admin/rooms/' . $room->id . '/edit');
+        $editResponse->assertStatus(200);
+        $editResponse->assertSee('Edit Ruangan');
     }
 
     public function test_dropzone_temp_media_upload_endpoint_for_image_and_video()
