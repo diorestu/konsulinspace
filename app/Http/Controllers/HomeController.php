@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Inquiry;
+use App\Models\Room;
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+    public function index(Request $request)
+    {
+        $selectedCategory = $request->query('category', 'all');
+
+        $roomsQuery = Room::with('media')
+            ->where('status', 'available')
+            ->orderBy('order_position', 'asc');
+
+        if ($selectedCategory !== 'all') {
+            $roomsQuery->where('category', $selectedCategory);
+        }
+
+        $rooms = $roomsQuery->get();
+        $featuredRooms = Room::with('media')
+            ->where('is_featured', true)
+            ->where('status', 'available')
+            ->take(6)
+            ->get();
+
+        $stats = [
+            'locations' => '3 Lokasi Strategis',
+            'rooms_count' => Room::count(),
+            'active_members' => '1.500+ Member',
+            'uptime' => '99.9% Internet Uptime',
+        ];
+
+        return view('home', compact('rooms', 'featuredRooms', 'selectedCategory', 'stats'));
+    }
+
+    public function roomDetail(string $slug)
+    {
+        $room = Room::with('media')->where('slug', $slug)->firstOrFail();
+        
+        $relatedRooms = Room::with('media')
+            ->where('id', '!=', $room->id)
+            ->where('status', 'available')
+            ->take(3)
+            ->get();
+
+        return view('rooms.show', compact('room', 'relatedRooms'));
+    }
+
+    public function storeInquiry(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:150',
+            'email' => 'required|email|max:150',
+            'phone' => 'required|string|max:30',
+            'company_name' => 'nullable|string|max:150',
+            'service_type' => 'nullable|string|max:50',
+            'room_id' => 'nullable|exists:rooms,id',
+            'start_date' => 'nullable|date',
+            'duration' => 'nullable|string|max:100',
+            'notes' => 'nullable|string|max:1000',
+        ]);
+
+        $inquiry = Inquiry::create($validated);
+
+        // Prepare WhatsApp link if user wants to follow up directly
+        $phoneTarget = '6281298765432';
+        $serviceText = $inquiry->room ? $inquiry->room->name : ($inquiry->service_type ?? 'Layanan Umum');
+        $waMessage = rawurlencode(
+            "Halo Tim KonsulinSpace, saya telah mengisi formulir reservasi di website.\n\n" .
+            "Nama: {$inquiry->name}\n" .
+            "Email: {$inquiry->email}\n" .
+            "No. HP: {$inquiry->phone}\n" .
+            "Layanan/Ruangan: {$serviceText}\n" .
+            "Catatan: " . ($inquiry->notes ?: '-') . "\n\n" .
+            "Mohon konfirmasi dan info ketersediaan. Terima kasih!"
+        );
+        $waUrl = "https://wa.me/{$phoneTarget}?text={$waMessage}";
+
+        return back()
+            ->with('success', 'Terima kasih! Permintaan reservasi Anda telah kami terima. Tim KonsulinSpace akan segera menghubungi Anda.')
+            ->with('wa_url', $waUrl);
+    }
+}
