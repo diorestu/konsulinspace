@@ -22,7 +22,7 @@
                     <label for="name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Nama Ruangan / Paket <span class="text-rose-500">*</span>
                     </label>
-                    <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Contoh: Dedicated Desk Creative Hive, Boardroom Alpha, Virtual Office Gold" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none">
+                    <input type="text" name="name" id="name" required value="{{ old('name') }}" placeholder="Contoh: Dedicated Desk Creative Hive, Boardroom Alpha, Virtual Office Gold" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none">
                 </div>
 
                 <!-- Kategori -->
@@ -30,7 +30,7 @@
                     <label for="category" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Kategori Layanan <span class="text-rose-500">*</span>
                     </label>
-                    <select name="category" id="category" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none bg-white">
+                    <select name="category" id="category" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none bg-white">
                         <option value="">-- Pilih Kategori --</option>
                         @foreach($categories as $key => $label)
                         <option value="{{ $key }}" {{ old('category') === $key ? 'selected' : '' }}>{{ $label }}</option>
@@ -43,7 +43,7 @@
                     <label for="capacity" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Kapasitas Orang
                     </label>
-                    <input type="text" name="capacity" id="capacity" value="{{ old('capacity') }}" placeholder="Contoh: 1 Orang, 4-6 Orang, 50-80 Pax" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none">
+                    <input type="text" name="capacity" id="capacity" value="{{ old('capacity') }}" placeholder="Contoh: 1 Orang, 4-6 Orang, 50-80 Pax" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none">
                 </div>
 
                 <!-- Luas Area -->
@@ -51,7 +51,7 @@
                     <label for="area_sqm" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Luas Area / Dimensi
                     </label>
-                    <input type="text" name="area_sqm" id="area_sqm" value="{{ old('area_sqm') }}" placeholder="Contoh: 28 m², 120 m² (Shared)" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none">
+                    <input type="text" name="area_sqm" id="area_sqm" value="{{ old('area_sqm') }}" placeholder="Contoh: 28 m², 120 m² (Shared)" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none">
                 </div>
 
                 <!-- Lokasi Lantai -->
@@ -59,7 +59,7 @@
                     <label for="location_floor" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Lokasi / Posisi Lantai
                     </label>
-                    <input type="text" name="location_floor" id="location_floor" value="{{ old('location_floor') }}" placeholder="Contoh: Lantai 3 - Sudirman Hub West" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none">
+                    <input type="text" name="location_floor" id="location_floor" value="{{ old('location_floor') }}" placeholder="Contoh: Lantai 3 - Sudirman Hub West" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none">
                 </div>
 
                 <!-- Status Ketersediaan -->
@@ -67,7 +67,7 @@
                     <label for="status" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Status Ketersediaan <span class="text-rose-500">*</span>
                     </label>
-                    <select name="status" id="status" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm outline-none bg-white">
+                    <select name="status" id="status" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none bg-white">
                         <option value="available" {{ old('status', 'available') === 'available' ? 'selected' : '' }}>Tersedia (Bisa Dipesan)</option>
                         <option value="booked" {{ old('status') === 'booked' ? 'selected' : '' }}>Terisi / Booked</option>
                         <option value="maintenance" {{ old('status') === 'maintenance' ? 'selected' : '' }}>Dalam Pemeliharaan</option>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="pt-4">
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" name="is_featured" value="1" {{ old('is_featured') ? 'checked' : '' }} class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300">
+                            <input type="checkbox" name="is_featured" value="1" {{ old('is_featured') ? 'checked' : '' }} class="w-4 h-4 rounded text-[#0353a4] focus:ring-[#0353a4] border-slate-300">
                             <span class="text-xs font-bold text-slate-800">Tampilkan di Beranda (Featured)</span>
                         </label>
                     </div>
@@ -106,7 +106,7 @@
                     </label>
                     <div class="relative">
                         <span class="absolute left-3.5 top-2.5 text-xs font-bold text-slate-400">Rp</span>
-                        <input type="number" name="price_hourly" id="price_hourly" value="{{ old('price_hourly') }}" placeholder="Contoh: 50000" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm outline-none">
+                        <input type="number" name="price_hourly" id="price_hourly" value="{{ old('price_hourly') }}" placeholder="Contoh: 50000" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] text-sm outline-none">
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
                     </label>
                     <div class="relative">
                         <span class="absolute left-3.5 top-2.5 text-xs font-bold text-slate-400">Rp</span>
-                        <input type="number" name="price_daily" id="price_daily" value="{{ old('price_daily') }}" placeholder="Contoh: 200000" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm outline-none">
+                        <input type="number" name="price_daily" id="price_daily" value="{{ old('price_daily') }}" placeholder="Contoh: 200000" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] text-sm outline-none">
                     </div>
                 </div>
 
@@ -126,7 +126,7 @@
                     </label>
                     <div class="relative">
                         <span class="absolute left-3.5 top-2.5 text-xs font-bold text-slate-400">Rp</span>
-                        <input type="number" name="price_monthly" id="price_monthly" value="{{ old('price_monthly') }}" placeholder="Contoh: 2500000" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm outline-none">
+                        <input type="number" name="price_monthly" id="price_monthly" value="{{ old('price_monthly') }}" placeholder="Contoh: 2500000" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] text-sm outline-none">
                     </div>
                 </div>
             </div>
@@ -138,12 +138,12 @@
                 <div>
                     <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
                         <span>Upload Media Galeri (Dropzone)</span>
-                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Gambar & Video</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#edf4fc] text-[#023e7d] uppercase">Gambar & Video</span>
                     </h3>
                     <p class="text-xs text-slate-500 mt-0.5">Unggah foto dan video promosi/virtual tour ruangan menggunakan Drag and Drop</p>
                 </div>
                 <div class="flex items-center gap-2 text-xs text-slate-500">
-                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Gambar (JPG, PNG, WEBP)</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#0353a4]"></span> Gambar (JPG, PNG, WEBP)</span>
                     <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-500"></span> Video (MP4, WEBM, MOV)</span>
                 </div>
             </div>
@@ -152,14 +152,14 @@
             <div>
                 <div id="roomDropzone" class="dropzone custom-dropzone">
                     <div class="dz-message flex flex-col items-center justify-center p-6 cursor-pointer">
-                        <div class="w-16 h-16 mb-4 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 shadow-xs">
+                        <div class="w-16 h-16 mb-4 rounded-2xl bg-[#edf4fc] text-[#0353a4] flex items-center justify-center border border-[#b0d0f4] shadow-xs">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
                         </div>
                         <h4 class="text-base font-bold text-slate-800">Tarik & Lepas File Gambar atau Video di Sini</h4>
                         <p class="text-xs text-slate-500 mt-1 max-w-sm text-center">
                             Mendukung file gambar (<strong class="text-slate-700">JPG, PNG, WEBP</strong>) dan video (<strong class="text-slate-700">MP4, WEBM, MOV</strong>) hingga 50MB per file.
                         </p>
-                        <button type="button" class="mt-4 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-sm transition">
+                        <button type="button" class="mt-4 px-4 py-2 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs shadow-sm transition">
                             Pilih File dari Perangkat
                         </button>
                     </div>
@@ -170,7 +170,7 @@
                 </p>
             </div>
 
-            <!-- Fallback Input (for accessibility/graceful fallback) -->
+            <!-- Fallback Input -->
             <details class="text-xs text-slate-500 pt-2 border-t border-slate-100">
                 <summary class="cursor-pointer font-medium hover:text-slate-700">Opsi input file manual (tanpa Dropzone)</summary>
                 <div class="mt-3">
@@ -192,18 +192,18 @@
                     <label for="amenities_input" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Daftar Fasilitas Ruangan
                     </label>
-                    <textarea name="amenities_input" id="amenities_input" rows="4" placeholder="Tuliskan tiap fasilitas per baris atau pisahkan dengan koma:&#10;WiFi High-Speed 300 Mbps&#10;Smart TV 4K 65 inch&#10;Free Flow Coffee & Tea&#10;Acoustic Soundproofing" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm outline-none">{{ old('amenities_input') }}</textarea>
+                    <textarea name="amenities_input" id="amenities_input" rows="4" placeholder="Tuliskan tiap fasilitas per baris atau pisahkan dengan koma:&#10;WiFi High-Speed 300 Mbps&#10;Smart TV 4K 65 inch&#10;Free Flow Coffee & Tea&#10;Acoustic Soundproofing" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] text-sm outline-none">{{ old('amenities_input') }}</textarea>
                     
                     <!-- Quick Preset Badges -->
                     <div class="mt-2.5 flex items-center gap-1.5 flex-wrap">
                         <span class="text-[11px] text-slate-400 font-semibold mr-1">Klik untuk tambah cepat:</span>
-                        <button type="button" onclick="addAmenity('WiFi 300 Mbps Dedicated')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-medium transition">+ WiFi 300 Mbps</button>
-                        <button type="button" onclick="addAmenity('Free Flow Artisanal Coffee & Tea')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-medium transition">+ Free Coffee & Tea</button>
-                        <button type="button" onclick="addAmenity('4K UHD Smart TV Presentation Screen')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-medium transition">+ Smart TV 4K</button>
-                        <button type="button" onclick="addAmenity('Ergonomic Herman Miller Style Chair')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-medium transition">+ Kursi Ergonomis</button>
-                        <button type="button" onclick="addAmenity('Magnetic Whiteboard & Markers')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-medium transition">+ Whiteboard</button>
-                        <button type="button" onclick="addAmenity('Acoustic Soundproofing Wall')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-medium transition">+ Kedap Suara</button>
-                        <button type="button" onclick="addAmenity('Smart Digital RFID Lock')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-[11px] font-medium transition">+ Smart Lock</button>
+                        <button type="button" onclick="addAmenity('WiFi 300 Mbps Dedicated')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-[#edf4fc] hover:text-[#0353a4] text-slate-700 text-[11px] font-medium transition">+ WiFi 300 Mbps</button>
+                        <button type="button" onclick="addAmenity('Free Flow Artisanal Coffee & Tea')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-[#edf4fc] hover:text-[#0353a4] text-slate-700 text-[11px] font-medium transition">+ Free Coffee & Tea</button>
+                        <button type="button" onclick="addAmenity('4K UHD Smart TV Presentation Screen')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-[#edf4fc] hover:text-[#0353a4] text-slate-700 text-[11px] font-medium transition">+ Smart TV 4K</button>
+                        <button type="button" onclick="addAmenity('Ergonomic Herman Miller Style Chair')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-[#edf4fc] hover:text-[#0353a4] text-slate-700 text-[11px] font-medium transition">+ Kursi Ergonomis</button>
+                        <button type="button" onclick="addAmenity('Magnetic Whiteboard & Markers')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-[#edf4fc] hover:text-[#0353a4] text-slate-700 text-[11px] font-medium transition">+ Whiteboard</button>
+                        <button type="button" onclick="addAmenity('Acoustic Soundproofing Wall')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-[#edf4fc] hover:text-[#0353a4] text-slate-700 text-[11px] font-medium transition">+ Kedap Suara</button>
+                        <button type="button" onclick="addAmenity('Smart Digital RFID Lock')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-[#edf4fc] hover:text-[#0353a4] text-slate-700 text-[11px] font-medium transition">+ Smart Lock</button>
                     </div>
                 </div>
 
@@ -212,7 +212,7 @@
                     <label for="short_description" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Deskripsi Singkat (Ringkasan Cuplikan)
                     </label>
-                    <input type="text" name="short_description" id="short_description" value="{{ old('short_description') }}" placeholder="Ruang kerja kolaboratif berdaya tampung fleksibel dengan suasana produktif." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm outline-none">
+                    <input type="text" name="short_description" id="short_description" value="{{ old('short_description') }}" placeholder="Ruang kerja kolaboratif berdaya tampung fleksibel dengan suasana produktif." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] text-sm outline-none">
                 </div>
 
                 <!-- Deskripsi Lengkap -->
@@ -220,7 +220,7 @@
                     <label for="description" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Deskripsi Lengkap
                     </label>
-                    <textarea name="description" id="description" rows="5" placeholder="Jelaskan spesifikasi mendalam, peruntukan ruangan, atmosfer kerja, dan fasilitas pendukung lainnya..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm outline-none">{{ old('description') }}</textarea>
+                    <textarea name="description" id="description" rows="5" placeholder="Jelaskan spesifikasi mendalam, peruntukan ruangan, atmosfer kerja, dan fasilitas pendukung lainnya..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] text-sm outline-none">{{ old('description') }}</textarea>
                 </div>
             </div>
         </div>
@@ -230,7 +230,7 @@
             <a href="{{ route('admin.rooms.index') }}" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold text-sm hover:bg-slate-100 transition">
                 Batal
             </a>
-            <button type="submit" class="px-7 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-700 active:scale-95 transition shadow-md shadow-emerald-600/30">
+            <button type="submit" class="px-7 py-2.5 rounded-xl bg-[#0353a4] text-white font-bold text-sm hover:bg-[#023e7d] active:scale-95 transition shadow-md shadow-[#0353a4]/30">
                 Simpan Ruangan Baru
             </button>
         </div>
@@ -255,7 +255,6 @@
         const dropzoneEl = document.querySelector("#roomDropzone");
         if (!dropzoneEl) return;
 
-        // Ensure Dropzone is available
         const DropzoneClass = window.Dropzone || Dropzone;
         if (!DropzoneClass) {
             console.error('Dropzone is not loaded.');
@@ -279,7 +278,6 @@
                 this.on("success", function(file, response) {
                     file.uploadData = response;
                     
-                    // Create hidden input with JSON data
                     const input = document.createElement('input');
                     input.type = 'hidden';
                     input.name = 'uploaded_media[]';
@@ -287,13 +285,12 @@
                     input.id = 'media_token_' + (file.upload ? file.upload.uuid : Math.random().toString(36).substring(7));
                     document.getElementById('roomForm').appendChild(input);
 
-                    // Add badge indicator in preview
                     const badgeContainer = document.createElement('div');
                     badgeContainer.className = 'mt-1 text-center';
                     if (response.file_type === 'video') {
                         badgeContainer.innerHTML = '<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500 text-white uppercase tracking-wider">Video</span>';
                     } else {
-                        badgeContainer.innerHTML = '<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-600 text-white uppercase tracking-wider">Foto</span>';
+                        badgeContainer.innerHTML = '<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-[#0353a4] text-white uppercase tracking-wider">Foto</span>';
                     }
                     if (file.previewElement) {
                         file.previewElement.appendChild(badgeContainer);

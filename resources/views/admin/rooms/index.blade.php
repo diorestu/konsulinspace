@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Atur seluruh data ruangan, harga, kapasitas, dan galeri media video & foto')
 
 @section('topbar_actions')
-<a href="{{ route('admin.rooms.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition shadow-sm shadow-emerald-600/30">
+<a href="{{ route('admin.rooms.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0353a4] text-white text-xs font-semibold hover:bg-[#023e7d] transition shadow-sm shadow-[#0353a4]/30">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
     <span>Tambah Ruangan Baru</span>
 </a>
@@ -18,13 +18,13 @@
     <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-xs">
         <form method="GET" action="{{ route('admin.rooms.index') }}" class="flex flex-col sm:flex-row gap-3 items-center justify-between">
             <div class="w-full sm:w-80 relative">
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama atau lantai..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama atau lantai..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] outline-none">
                 <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
 
             <div class="w-full sm:w-auto flex flex-wrap items-center gap-3">
                 <!-- Category Filter -->
-                <select name="category" onchange="this.form.submit()" class="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 bg-white focus:ring-2 focus:ring-emerald-500 outline-none">
+                <select name="category" onchange="this.form.submit()" class="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 bg-white focus:ring-2 focus:ring-[#0353a4] outline-none">
                     <option value="all">Semua Kategori</option>
                     <option value="coworking" {{ request('category') === 'coworking' ? 'selected' : '' }}>Co-Working Space</option>
                     <option value="virtual_office" {{ request('category') === 'virtual_office' ? 'selected' : '' }}>Virtual Office</option>
@@ -34,7 +34,7 @@
                 </select>
 
                 <!-- Status Filter -->
-                <select name="status" onchange="this.form.submit()" class="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 bg-white focus:ring-2 focus:ring-emerald-500 outline-none">
+                <select name="status" onchange="this.form.submit()" class="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-700 bg-white focus:ring-2 focus:ring-[#0353a4] outline-none">
                     <option value="all">Semua Status</option>
                     <option value="available" {{ request('status') === 'available' ? 'selected' : '' }}>Tersedia</option>
                     <option value="booked" {{ request('status') === 'booked' ? 'selected' : '' }}>Booked / Terisi</option>
@@ -78,13 +78,13 @@
                                 <div class="relative shrink-0">
                                     <img src="{{ $room->thumbnail_url }}" alt="{{ $room->name }}" class="w-14 h-14 rounded-xl object-cover bg-slate-100 border border-slate-200 shadow-xs">
                                     @if($room->is_featured)
-                                    <span class="absolute -top-1.5 -right-1.5 bg-amber-500 text-white p-0.5 rounded-full shadow-xs" title="Featured Room">
+                                    <span class="absolute -top-1.5 -right-1.5 bg-[#0466c8] text-white p-0.5 rounded-full shadow-xs" title="Featured Room">
                                         <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                                     </span>
                                     @endif
                                 </div>
                                 <div class="min-w-0">
-                                    <a href="{{ route('admin.rooms.edit', $room->id) }}" class="font-bold text-slate-900 hover:text-emerald-600 transition block truncate">
+                                    <a href="{{ route('admin.rooms.edit', $room->id) }}" class="font-bold text-slate-900 hover:text-[#0353a4] transition block truncate">
                                         {{ $room->name }}
                                     </a>
                                     <p class="text-xs text-slate-400 truncate max-w-xs">{{ $room->location_floor ?: 'Lokasi belum diset' }}</p>
@@ -118,7 +118,7 @@
                         <!-- Media Badges -->
                         <td class="py-4 px-4">
                             <div class="flex items-center gap-1.5 flex-wrap">
-                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold bg-[#edf4fc] text-[#023e7d] border border-[#b0d0f4]">
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                     {{ $imageCount }} Foto
                                 </span>
@@ -134,8 +134,8 @@
                         <!-- Status -->
                         <td class="py-4 px-4">
                             @if($room->status === 'available')
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#edf4fc] text-[#023e7d] border border-[#b0d0f4]">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#0466c8]"></span>
                                 Tersedia
                             </span>
                             @elseif($room->status === 'booked')
@@ -157,7 +157,7 @@
                                 <a href="{{ route('rooms.show', $room->slug) }}" target="_blank" title="Lihat di Website" class="p-2 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                 </a>
-                                <a href="{{ route('admin.rooms.edit', $room->id) }}" title="Edit Ruangan" class="p-2 rounded-lg text-emerald-600 hover:bg-emerald-50 transition">
+                                <a href="{{ route('admin.rooms.edit', $room->id) }}" title="Edit Ruangan" class="p-2 rounded-lg text-[#0353a4] hover:bg-[#edf4fc] transition">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                 </a>
                                 <form action="{{ route('admin.rooms.destroy', $room->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus ruangan {{ $room->name }} beserta seluruh medianya?')">

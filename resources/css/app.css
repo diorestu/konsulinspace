@@ -6,21 +6,28 @@
 
 @theme {
     --font-sans: 'Instrument Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --color-brand-50: #f0fdf4;
-    --color-brand-100: #dcfce7;
-    --color-brand-200: #bbf7d0;
-    --color-brand-500: #10b981;
-    --color-brand-600: #059669;
-    --color-brand-700: #047857;
-    --color-brand-800: #065f46;
-    --color-brand-900: #064e3b;
-    --color-accent-500: #f59e0b;
-    --color-accent-600: #d97706;
+    
+    /* Primary Color Palette (#0353a4 and combinations #0466c8, #023e7d, #002855) */
+    --color-primary-50: #edf4fc;
+    --color-primary-100: #d6e6f9;
+    --color-primary-200: #b0d0f4;
+    --color-primary-300: #75afee;
+    --color-primary-400: #388de6;
+    --color-primary-500: #0466c8;
+    --color-primary-600: #0353a4;
+    --color-primary-700: #023e7d;
+    --color-primary-800: #002855;
+    --color-primary-900: #001845;
+    --color-primary-950: #001233;
+
+    --color-accent-blue: #0466c8;
+    --color-deep-blue: #023e7d;
+    --color-navy-blue: #002855;
 }
 
 /* Custom Dropzone Styling */
 .dropzone.custom-dropzone {
-    border: 2px dashed #cbd5e1;
+    border: 2px dashed #93c5fd;
     border-radius: 1rem;
     background: #f8fafc;
     padding: 2.5rem 1.5rem;
@@ -36,8 +43,8 @@
 
 .dropzone.custom-dropzone:hover,
 .dropzone.custom-dropzone.dz-drag-hover {
-    border-color: #10b981;
-    background: #f0fdf4;
+    border-color: #0353a4;
+    background: #edf4fc;
 }
 
 .dropzone .dz-preview {
@@ -51,7 +58,7 @@
 }
 
 .dropzone .dz-preview.dz-video-preview .dz-image {
-    background: #0f172a;
+    background: #002855;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,7 +69,7 @@
     font-size: 11px;
     font-weight: 700;
     color: #ffffff;
-    background: rgba(239, 68, 68, 0.9);
+    background: rgba(225, 29, 72, 0.9);
     padding: 3px 8px;
     border-radius: 4px;
     letter-spacing: 0.05em;

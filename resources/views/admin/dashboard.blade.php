@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Ringkasan operasional ruangan dan prospek klien KonsulinSpace')
 
 @section('topbar_actions')
-<a href="{{ route('admin.rooms.create') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition shadow-sm shadow-emerald-600/30">
+<a href="{{ route('admin.rooms.create') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0353a4] text-white text-xs font-semibold hover:bg-[#023e7d] transition shadow-sm shadow-[#0353a4]/30">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
     <span>Tambah Ruangan</span>
 </a>
@@ -21,12 +21,12 @@
             <div>
                 <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Ruangan</p>
                 <h3 class="text-2xl font-bold text-slate-900 mt-1">{{ $totalRooms }}</h3>
-                <p class="text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <p class="text-xs text-[#0353a4] font-medium mt-1 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0466c8]"></span>
                     {{ $availableRooms }} ruangan aktif tersedia
                 </p>
             </div>
-            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+            <div class="w-12 h-12 rounded-xl bg-[#edf4fc] text-[#0353a4] flex items-center justify-center shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
             </div>
         </div>
@@ -37,11 +37,11 @@
                 <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Media Ruangan</p>
                 <h3 class="text-2xl font-bold text-slate-900 mt-1">{{ $totalImages + $totalVideos }}</h3>
                 <p class="text-xs text-slate-500 mt-1 flex items-center gap-1.5">
-                    <span class="text-emerald-600 font-semibold">{{ $totalImages }} Foto</span> &bull;
+                    <span class="text-[#0353a4] font-semibold">{{ $totalImages }} Foto</span> &bull;
                     <span class="text-rose-600 font-semibold">{{ $totalVideos }} Video</span>
                 </p>
             </div>
-            <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
+            <div class="w-12 h-12 rounded-xl bg-sky-50 text-[#0466c8] flex items-center justify-center shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             </div>
         </div>
@@ -71,7 +71,7 @@
                     {{ $categoryStats['coworking'] }} Coworking &bull; {{ $categoryStats['virtual_office'] }} Virtual Office
                 </p>
             </div>
-            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+            <div class="w-12 h-12 rounded-xl bg-[#edf4fc] text-[#023e7d] flex items-center justify-center shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
             </div>
         </div>
@@ -114,7 +114,7 @@
                     <h3 class="text-base font-bold text-slate-900">Reservasi & Permintaan Terbaru</h3>
                     <p class="text-xs text-slate-500">Pesan dari prospek pelanggan website</p>
                 </div>
-                <a href="{{ route('admin.inquiries.index') }}" class="text-xs font-semibold text-emerald-600 hover:text-emerald-700">Lihat Semua &rarr;</a>
+                <a href="{{ route('admin.inquiries.index') }}" class="text-xs font-semibold text-[#0353a4] hover:text-[#023e7d]">Lihat Semua &rarr;</a>
             </div>
 
             <div class="divide-y divide-slate-100 flex-1 overflow-x-auto">
@@ -143,12 +143,12 @@
                         @elseif($inq->status === 'dealing')
                         <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-800">Diskusi</span>
                         @elseif($inq->status === 'completed')
-                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Deal</span>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#edf4fc] text-[#023e7d]">Deal</span>
                         @else
                         <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-800">Batal</span>
                         @endif
 
-                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $inq->phone) }}" target="_blank" class="text-xs text-emerald-600 hover:text-emerald-700 font-semibold flex items-center gap-1">
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $inq->phone) }}" target="_blank" class="text-xs text-[#0353a4] hover:text-[#023e7d] font-semibold flex items-center gap-1">
                             <span>Hubungi WA</span>
                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                         </a>
@@ -169,7 +169,7 @@
                     <h3 class="text-base font-bold text-slate-900">Daftar Ruangan Terdaftar</h3>
                     <p class="text-xs text-slate-500">Koleksi ruang kerja KonsulinSpace</p>
                 </div>
-                <a href="{{ route('admin.rooms.index') }}" class="text-xs font-semibold text-emerald-600 hover:text-emerald-700">Kelola Semua &rarr;</a>
+                <a href="{{ route('admin.rooms.index') }}" class="text-xs font-semibold text-[#0353a4] hover:text-[#023e7d]">Kelola Semua &rarr;</a>
             </div>
 
             <div class="divide-y divide-slate-100 flex-1">
@@ -180,7 +180,7 @@
                         <div class="min-w-0">
                             <h4 class="text-sm font-semibold text-slate-900 truncate">{{ $room->name }}</h4>
                             <p class="text-xs text-slate-500 truncate">
-                                <span class="text-emerald-600 font-medium">{{ $room->category_label }}</span>
+                                <span class="text-[#0353a4] font-medium">{{ $room->category_label }}</span>
                                 &bull; {{ $room->capacity ?: '-' }}
                             </p>
                             <p class="text-xs font-semibold text-slate-700 mt-0.5">{{ $room->formatted_price }}</p>
@@ -191,7 +191,7 @@
                         <a href="{{ route('rooms.show', $room->slug) }}" target="_blank" title="Lihat di Web" class="p-2 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                         </a>
-                        <a href="{{ route('admin.rooms.edit', $room->id) }}" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 text-xs font-medium transition">
+                        <a href="{{ route('admin.rooms.edit', $room->id) }}" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-[#edf4fc] hover:text-[#0353a4] text-xs font-medium transition">
                             Edit
                         </a>
                     </div>
