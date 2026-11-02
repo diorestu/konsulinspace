@@ -44,7 +44,9 @@ class KonsulinSpaceTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('KonsulinSpace');
         $response->assertSee('Hot Desk Test');
-        // Product card has rating star and detail CTA
+        // Product card has 4-column layout, shadow hover, rating star, and detail CTA
+        $response->assertSee('lg:grid-cols-4');
+        $response->assertSee('hover:shadow-lg');
         $response->assertSee('4.9');
         $response->assertSee('Detail');
         // FAQ accordion
@@ -52,12 +54,13 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('<details', false);
     }
 
-    public function test_contact_page_loads_with_reservation_form()
+    public function test_contact_page_loads_with_reservation_form_and_location()
     {
         $response = $this->get('/kontak');
         $response->assertStatus(200);
         $response->assertSee('Kontak & Reservasi Ruangan');
         $response->assertSee('Formulir Reservasi');
+        $response->assertSee('Gedung Artha Sudirman Suites');
         $response->assertSee('date-white-icon');
         $response->assertSee('pr-10');
         $response->assertSee('pr-3.5');

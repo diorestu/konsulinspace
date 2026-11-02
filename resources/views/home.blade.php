@@ -161,12 +161,12 @@
         </div>
 
         <!-- Rooms Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @forelse($rooms as $room)
             @php
                 $videoMedia = $room->media->firstWhere('file_type', 'video');
             @endphp
-            <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:border-[#0353a4] transition duration-200 flex flex-col group">
+            <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-lg transition-shadow duration-200 flex flex-col group">
                 <!-- Thumbnail -->
                 <div class="relative aspect-[16/10] overflow-hidden bg-slate-900">
                     <img src="{{ $room->thumbnail_url }}" alt="{{ $room->name }}" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
@@ -458,32 +458,6 @@
                     Anda dapat mengisi formulir reservasi di <a href="{{ route('contact') }}" class="text-[#0353a4] font-semibold hover:underline">halaman kontak kami</a> atau menghubungi WhatsApp resmi KonsulinSpace. Tim kami siap mengatur jadwal survei fisik gedung pada jam operasional kerja.
                 </div>
             </details>
-        </div>
-    </div>
-</section>
-
-<!-- Kontak & Lokasi Teaser -->
-<section id="kontak" class="py-16 bg-white border-t border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div class="space-y-4">
-                <h2 class="text-2xl font-bold text-slate-900">Lokasi & Kontak</h2>
-                <div class="text-xs text-slate-600 space-y-2">
-                    <p><strong>Alamat:</strong> Gedung Artha Sudirman Suites, Lt. 2-5, Jl. Jendral Sudirman Kav. 28, Jakarta Pusat</p>
-                    <p><strong>WhatsApp:</strong> 0812-9876-5432</p>
-                    <p><strong>Email:</strong> hello@konsulinspace.com</p>
-                    <p><strong>Jam Operasional:</strong> Senin - Jumat 08:00 - 20:00 WIB (Akses 24/7 bagi member tetap)</p>
-                </div>
-                <div class="pt-2">
-                    <a href="{{ route('contact') }}" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs transition shadow-xs">
-                        Kunjungi Halaman Kontak & Reservasi
-                    </a>
-                </div>
-            </div>
-
-            <div class="rounded-2xl overflow-hidden border border-slate-200 aspect-[16/9] bg-slate-100">
-                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80" alt="Sudirman Hub" class="w-full h-full object-cover">
-            </div>
         </div>
     </div>
 </section>
