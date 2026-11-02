@@ -52,6 +52,10 @@ class KonsulinSpaceTest extends TestCase
         // FAQ accordion
         $response->assertSee('faqAccordion');
         $response->assertSee('<details', false);
+        // Landing page does not contain reservation form or location sections
+        $response->assertDontSee('id="reservasi"', false);
+        $response->assertDontSee('id="kontak"', false);
+        $response->assertDontSee('Formulir Reservasi');
     }
 
     public function test_contact_page_loads_with_reservation_form_and_location()

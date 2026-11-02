@@ -32,8 +32,8 @@
                 <!-- Minimal Info Numbers -->
                 <div class="pt-8 grid grid-cols-3 gap-6 border-t border-slate-800 text-left max-w-lg">
                     <div>
-                        <p class="text-2xl font-bold text-white">3</p>
-                        <p class="text-xs text-slate-400 mt-0.5">Lokasi Sudirman</p>
+                        <p class="text-2xl font-bold text-white">4</p>
+                        <p class="text-xs text-slate-400 mt-0.5">Lantai Fasilitas</p>
                     </div>
                     <div>
                         <p class="text-2xl font-bold text-white">300 Mbps</p>
@@ -52,8 +52,8 @@
                     <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="KonsulinSpace Lounge" class="w-full h-80 sm:h-96 object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#001845]/90 via-transparent to-transparent"></div>
                     <div class="absolute bottom-5 left-5 right-5 text-white">
-                        <h4 class="text-base font-bold">Artha Sudirman Suites</h4>
-                        <p class="text-xs text-slate-300 mt-0.5">Jl. Jendral Sudirman Kav. 28, Jakarta Pusat</p>
+                        <h4 class="text-base font-bold">Modern Workspace Hub</h4>
+                        <p class="text-xs text-slate-300 mt-0.5">Dirancang untuk kenyamanan & produktivitas kerja</p>
                     </div>
                 </div>
             </div>
