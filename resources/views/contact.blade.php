@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Kontak & Reservasi Ruangan - KonsulinSpace')
-@section('meta_description', 'Hubungi tim KonsulinSpace untuk konsultasi sewa co-working space, meeting room, private office, dan pendaftaran alamat virtual office di Sudirman, Jakarta.')
+@section('meta_description', 'Hubungi tim KonsulinSpace untuk konsultasi sewa co-working space, meeting room, private office, dan pendaftaran alamat virtual office di BSD, Tangerang.')
 
 @section('content')
 
@@ -108,9 +108,9 @@
 
                 <div class="text-xs text-slate-600 space-y-2.5">
                     <div>
-                        <p class="font-bold text-slate-800">Gedung Artha Sudirman Suites</p>
+                        <p class="font-bold text-slate-800">Gedung Konsulin BSD Green Office</p>
                         <p class="text-slate-500 mt-0.5 leading-relaxed">
-                            Lantai 2 - 5, Jl. Jendral Sudirman Kav. 28, Karet Semanggi, Jakarta Pusat 10220
+                            Lantai 2 - 5, BSD Green Office Park, Jl. BSD Grand Boulevard, BSD City, Tangerang 15345
                         </p>
                     </div>
 
@@ -122,7 +122,7 @@
                 </div>
 
                 <div class="rounded-2xl overflow-hidden border border-slate-200 aspect-[16/9] bg-slate-100 relative group">
-                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80" alt="Sudirman Hub" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80" alt="KonsulinSpace BSD Hub" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
                 </div>
             </div>
 

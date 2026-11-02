@@ -123,7 +123,7 @@
                         <span class="text-xl font-bold tracking-tight text-white">Konsulin<span class="text-[#75afee]">Space</span></span>
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
-                        Penyedia co-working space, private office, meeting room, dan legalitas alamat virtual office di Sudirman, Jakarta Pusat.
+                        Penyedia co-working space, private office, meeting room, dan legalitas alamat virtual office di BSD, Tangerang.
                     </p>
                     <div class="pt-2 flex items-center gap-2.5 text-slate-400">
                         <span class="w-2 h-2 rounded-full bg-[#0466c8]"></span>
@@ -159,8 +159,8 @@
                     <h4 class="text-white text-sm font-semibold tracking-wider uppercase mb-4">Hubungi Kami</h4>
                     <p class="text-sm text-slate-300 mb-2"><strong>KonsulinSpace Hub:</strong></p>
                     <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Gedung Artha Sudirman Suites, Lt. 2-5<br>
-                        Jl. Jendral Sudirman Kav. 28, Jakarta Pusat 10220
+                        Gedung Konsulin BSD Green Office, Lt. 2-5<br>
+                        Jl. BSD Grand Boulevard, BSD City, Tangerang 15345
                     </p>
                     <div class="space-y-1.5 text-xs">
                         <p class="flex items-center gap-2 text-slate-300">

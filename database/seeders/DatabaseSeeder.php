@@ -227,9 +227,9 @@ class DatabaseSeeder extends Seeder
                 'price_hourly' => null,
                 'price_daily' => null,
                 'price_monthly' => 650000,
-                'location_floor' => 'Tower Sudirman Central Business District',
-                'short_description' => 'Alamat bisnis bergengsi untuk PKP, izin domisili resmi, penerimaan surat, dan kuota ruang rapat.',
-                'description' => 'Solusi legalitas terbaik untuk startup, konsultan, dan PT/CV yang membutuhkan alamat zonasi perkantoran komersial bergengsi di Jakarta Pusat/Selatan. Termasuk nomor telepon khusus dengan sambungan profesional, notifikasi surat instan via WhatsApp, dan fasilitas ruang rapat.',
+                'location_floor' => 'Tower BSD Green Office Park',
+                'short_description' => 'Alamat bisnis untuk PKP, izin domisili resmi, penerimaan surat, dan kuota ruang rapat.',
+                'description' => 'Solusi legalitas terbaik untuk startup, konsultan, dan PT/CV yang membutuhkan alamat zonasi perkantoran komersial resmi di BSD, Tangerang. Termasuk nomor telepon khusus dengan sambungan profesional, notifikasi surat instan via WhatsApp, dan fasilitas ruang rapat.',
                 'amenities' => [
                     'Alamat Bisnis Prestisius di Gedung Grade-A Komersial',
                     'Surat Keterangan Domisili Gedung (Bisa untuk PT / CV / PKP)',

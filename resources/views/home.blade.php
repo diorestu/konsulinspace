@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'KonsulinSpace - Co-Working Space & Virtual Office Jakarta')
-@section('meta_description', 'KonsulinSpace menyediakan co-working space, private office, meeting room, dan virtual office resmi di Sudirman, Jakarta.')
+@section('title', 'KonsulinSpace - Co-Working Space & Virtual Office BSD, Tangerang')
+@section('meta_description', 'KonsulinSpace menyediakan co-working space, private office, meeting room, dan virtual office resmi di BSD, Tangerang.')
 
 @section('content')
 
@@ -13,7 +13,7 @@
             <!-- Left Headline -->
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                 <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                    Ruang Kerja & <span class="text-[#75afee]">Virtual Office</span> di Sudirman, Jakarta
+                    Ruang Kerja & <span class="text-[#75afee]">Virtual Office</span> di BSD, Tangerang
                 </h1>
 
                 <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
@@ -246,7 +246,7 @@
                     <ul class="space-y-2.5 text-xs text-slate-600 border-t border-slate-100 pt-5">
                         <li class="flex items-center gap-2">
                             <span class="text-[#0353a4]">&bull;</span>
-                            <span>Alamat Bisnis Komersial Sudirman</span>
+                            <span>Alamat Bisnis Komersial BSD</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <span class="text-[#0353a4]">&bull;</span>
@@ -416,7 +416,7 @@
                     </span>
                 </summary>
                 <div class="px-5 pb-5 pt-1 text-xs text-slate-600 leading-relaxed border-t border-slate-100">
-                    Bisa. Gedung kami berlokasi di zonasi komersial perkantoran Sudirman yang memenuhi seluruh persyaratan domisili hukum untuk pendirian PT, CV, serta pengukuhan PKP (Pengusaha Kena Pajak). Kami juga menyediakan dokumen kelengkapan gedung seperti Surat Keterangan Domisili Gedung dan IMB.
+                    Bisa. Gedung kami berlokasi di zonasi komersial perkantoran BSD, Tangerang yang memenuhi seluruh persyaratan domisili hukum untuk pendirian PT, CV, serta pengukuhan PKP (Pengusaha Kena Pajak). Kami juga menyediakan dokumen kelengkapan gedung seperti Surat Keterangan Domisili Gedung dan IMB.
                 </div>
             </details>
 

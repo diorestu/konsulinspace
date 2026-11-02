@@ -55,7 +55,7 @@
                     <label for="location_floor" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Lokasi / Posisi Lantai
                     </label>
-                    <input type="text" name="location_floor" id="location_floor" value="{{ old('location_floor') }}" placeholder="Contoh: Lantai 3 - Sudirman Hub West" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none">
+                    <input type="text" name="location_floor" id="location_floor" value="{{ old('location_floor') }}" placeholder="Contoh: Lantai 3 - BSD Hub West" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] text-sm outline-none">
                 </div>
 
                 <!-- Status Ketersediaan -->

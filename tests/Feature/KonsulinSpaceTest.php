@@ -52,6 +52,10 @@ class KonsulinSpaceTest extends TestCase
         // FAQ accordion
         $response->assertSee('faqAccordion');
         $response->assertSee('<details', false);
+        // Landing page location copywriting BSD, Tangerang
+        $response->assertSee('BSD, Tangerang');
+        $response->assertDontSee('Sudirman');
+        $response->assertDontSee('Jakarta');
         // Landing page does not contain reservation form or location sections
         $response->assertDontSee('id="reservasi"', false);
         $response->assertDontSee('id="kontak"', false);
@@ -64,7 +68,10 @@ class KonsulinSpaceTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Kontak & Reservasi Ruangan');
         $response->assertSee('Formulir Reservasi');
-        $response->assertSee('Gedung Artha Sudirman Suites');
+        $response->assertSee('Gedung Konsulin BSD Green Office');
+        $response->assertSee('BSD, Tangerang');
+        $response->assertDontSee('Sudirman');
+        $response->assertDontSee('Jakarta');
         $response->assertSee('date-white-icon');
         $response->assertSee('pr-10');
         $response->assertSee('pr-3.5');

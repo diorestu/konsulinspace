@@ -28,7 +28,7 @@
                 <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">{{ $room->name }}</h1>
                 <p class="text-xs sm:text-sm text-slate-500 mt-1 flex items-center gap-1.5">
                     <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                    <span>{{ $room->location_floor ?: 'Gedung Konsulin Sudirman' }}</span>
+                    <span>{{ $room->location_floor ?: 'Gedung Konsulin BSD, Tangerang' }}</span>
                 </p>
             </div>
 
@@ -82,7 +82,7 @@
                 </div>
                 <div>
                     <span class="text-slate-400 block font-medium">Lantai / Posisi</span>
-                    <span class="font-bold text-slate-900 text-sm mt-0.5 block truncate">{{ $room->location_floor ?: 'Hub Sudirman' }}</span>
+                    <span class="font-bold text-slate-900 text-sm mt-0.5 block truncate">{{ $room->location_floor ?: 'Hub BSD, Tangerang' }}</span>
                 </div>
                 <div>
                     <span class="text-slate-400 block font-medium">Kategori</span>
@@ -94,7 +94,7 @@
             <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
                 <h3 class="text-lg font-bold text-slate-900">Tentang Ruangan Ini</h3>
                 <div class="text-sm text-slate-600 leading-relaxed space-y-3">
-                    <p>{{ $room->description ?: $room->short_description ?: 'Ruangan siap pakai dengan fasilitas pendukung lengkap di KonsulinSpace Sudirman.' }}</p>
+                    <p>{{ $room->description ?: $room->short_description ?: 'Ruangan siap pakai dengan fasilitas pendukung lengkap di KonsulinSpace BSD, Tangerang.' }}</p>
                 </div>
             </div>
 
