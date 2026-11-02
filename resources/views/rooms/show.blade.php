@@ -22,27 +22,12 @@
         <!-- Left 8 Columns: Media Gallery & Room Details -->
         <div class="lg:col-span-8 space-y-8">
 
-            <!-- Title & Quick Badges -->
+            <!-- Title & Room Info -->
             <div>
-                <div class="flex items-center gap-2.5 mb-2.5">
-                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#edf4fc] text-[#023e7d] border border-[#b0d0f4]">
-                        {{ $room->category_label }}
-                    </span>
-                    @if($room->status === 'available')
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#edf4fc] text-[#023e7d] border border-[#b0d0f4]">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#0466c8]"></span>
-                        Tersedia untuk Dipesan
-                    </span>
-                    @else
-                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
-                        {{ $room->status_label }}
-                    </span>
-                    @endif
-                </div>
-
+                <p class="text-xs font-semibold uppercase tracking-wider text-[#0353a4] mb-1.5">{{ $room->category_label }}</p>
                 <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">{{ $room->name }}</h1>
                 <p class="text-xs sm:text-sm text-slate-500 mt-1 flex items-center gap-1.5">
-                    <svg class="w-4 h-4 text-[#0353a4] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     <span>{{ $room->location_floor ?: 'Gedung Konsulin Sudirman' }}</span>
                 </p>
             </div>

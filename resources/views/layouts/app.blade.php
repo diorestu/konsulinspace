@@ -22,34 +22,13 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
 
-    <!-- Top Notice / Announcement Bar -->
-    <div class="bg-[#002855] text-slate-300 text-xs sm:text-sm py-2 px-4 border-b border-[#023e7d]/60">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-            <div class="flex items-center gap-2">
-                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-[#0353a4]/40 text-[#b0d0f4] border border-[#0466c8]/40">Promo Spesial</span>
-                <span>Dapatkan diskon 20% untuk sewa bulanan Private Office & Virtual Office Paket Bisnis!</span>
-            </div>
-            <div class="flex items-center gap-4 text-xs">
-                <a href="tel:+6281298765432" class="hover:text-[#75afee] flex items-center gap-1 transition">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                    0812-9876-5432
-                </a>
-                <span class="text-slate-600">|</span>
-                <a href="{{ route('admin.login') }}" class="hover:text-[#75afee] font-medium transition flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-                    Portal Admin
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- Navigation Header -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all shadow-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Brand Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#002855] via-[#0353a4] to-[#0466c8] flex items-center justify-center text-white font-black text-xl shadow-md shadow-[#0353a4]/25 group-hover:scale-105 transition-transform">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#002855] via-[#0353a4] to-[#0466c8] flex items-center justify-center text-white font-black text-xl shadow-md shadow-[#0353a4]/20 group-hover:scale-105 transition-transform">
                         K
                     </div>
                     <div>
@@ -59,18 +38,20 @@
                 </a>
 
                 <!-- Desktop Nav Items -->
-                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-                    <a href="{{ route('home') }}#ruangan" class="hover:text-[#0353a4] transition">Daftar Ruangan</a>
+                <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+                    <a href="{{ route('home') }}#ruangan" class="hover:text-[#0353a4] transition">Ruangan</a>
                     <a href="{{ route('home') }}#layanan" class="hover:text-[#0353a4] transition">Layanan</a>
                     <a href="{{ route('home') }}#virtual-office" class="hover:text-[#0353a4] transition">Virtual Office</a>
                     <a href="{{ route('home') }}#fasilitas" class="hover:text-[#0353a4] transition">Fasilitas</a>
-                    <a href="{{ route('home') }}#faq" class="hover:text-[#0353a4] transition">FAQ</a>
-                    <a href="{{ route('home') }}#kontak" class="hover:text-[#0353a4] transition">Kontak & Lokasi</a>
+                    <a href="{{ route('home') }}#kontak" class="hover:text-[#0353a4] transition">Kontak</a>
                 </nav>
 
                 <!-- Action Button -->
-                <div class="hidden md:flex items-center gap-3">
-                    <a href="{{ route('home') }}#reservasi" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-[#0353a4] text-white font-semibold text-sm hover:bg-[#023e7d] active:scale-95 transition shadow-sm shadow-[#0353a4]/30">
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="{{ route('admin.login') }}" class="text-xs font-semibold text-slate-500 hover:text-[#0353a4] transition">
+                        Portal Admin
+                    </a>
+                    <a href="{{ route('home') }}#reservasi" class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-[#0353a4] text-white font-semibold text-sm hover:bg-[#023e7d] active:scale-95 transition shadow-xs">
                         Pesan Ruangan
                     </a>
                 </div>
@@ -86,15 +67,14 @@
 
             <!-- Mobile Dropdown -->
             <div id="mobileMenu" class="hidden md:hidden pb-6 pt-2 border-t border-slate-100 flex flex-col gap-3 text-sm font-medium text-slate-700">
-                <a href="{{ route('home') }}#ruangan" class="py-2 hover:text-[#0353a4]">Daftar Ruangan</a>
+                <a href="{{ route('home') }}#ruangan" class="py-2 hover:text-[#0353a4]">Ruangan</a>
                 <a href="{{ route('home') }}#layanan" class="py-2 hover:text-[#0353a4]">Layanan</a>
                 <a href="{{ route('home') }}#virtual-office" class="py-2 hover:text-[#0353a4]">Virtual Office</a>
                 <a href="{{ route('home') }}#fasilitas" class="py-2 hover:text-[#0353a4]">Fasilitas</a>
-                <a href="{{ route('home') }}#faq" class="py-2 hover:text-[#0353a4]">FAQ</a>
                 <a href="{{ route('home') }}#kontak" class="py-2 hover:text-[#0353a4]">Kontak</a>
                 <div class="pt-2 flex flex-col gap-2">
                     <a href="{{ route('home') }}#reservasi" class="w-full text-center py-2.5 px-4 rounded-xl bg-[#0353a4] text-white font-semibold">Pesan Ruangan</a>
-                    <a href="{{ route('admin.login') }}" class="w-full text-center py-2.5 px-4 rounded-xl border border-slate-300 text-slate-700 font-semibold">Login Admin</a>
+                    <a href="{{ route('admin.login') }}" class="w-full text-center py-2.5 px-4 rounded-xl border border-slate-300 text-slate-700 font-semibold">Portal Admin</a>
                 </div>
             </div>
         </div>
