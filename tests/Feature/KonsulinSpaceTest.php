@@ -72,6 +72,8 @@ class KonsulinSpaceTest extends TestCase
         $response->assertDontSee('id="reservasi"', false);
         $response->assertDontSee('id="kontak"', false);
         $response->assertDontSee('Formulir Reservasi');
+        // Portal Admin link is removed from public header and footer
+        $response->assertDontSee('Portal Admin');
     }
 
     public function test_contact_page_loads_with_reservation_form_and_location()
@@ -86,6 +88,7 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('Admin K-Space');
         $response->assertDontSee('Sudirman');
         $response->assertDontSee('Jakarta');
+        $response->assertDontSee('Portal Admin');
         $response->assertSee('date-white-icon');
         $response->assertSee('pr-10');
         $response->assertSee('pr-3.5');

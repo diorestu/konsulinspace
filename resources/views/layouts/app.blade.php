@@ -73,9 +73,6 @@
 
                 <!-- Action Button -->
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="{{ route('admin.login') }}" class="text-xs font-semibold text-slate-500 hover:text-[#0353a4] transition">
-                        Portal Admin
-                    </a>
                     <a href="{{ route('contact') }}" class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-[#0353a4] text-white font-semibold text-sm hover:bg-[#023e7d] active:scale-95 transition shadow-xs">
                         Pesan Ruangan
                     </a>
@@ -98,9 +95,8 @@
                 <a href="{{ route('home') }}#fasilitas" class="py-2 hover:text-[#0353a4]">Fasilitas</a>
                 <a href="{{ route('home') }}#faq" class="py-2 hover:text-[#0353a4]">FAQ</a>
                 <a href="{{ route('contact') }}" class="py-2 hover:text-[#0353a4]">Kontak & Reservasi</a>
-                <div class="pt-2 flex flex-col gap-2">
-                    <a href="{{ route('contact') }}" class="w-full text-center py-2.5 px-4 rounded-xl bg-[#0353a4] text-white font-semibold">Pesan Ruangan</a>
-                    <a href="{{ route('admin.login') }}" class="w-full text-center py-2.5 px-4 rounded-xl border border-slate-300 text-slate-700 font-semibold">Portal Admin</a>
+                <div class="pt-2">
+                    <a href="{{ route('contact') }}" class="w-full block text-center py-2.5 px-4 rounded-xl bg-[#0353a4] text-white font-semibold">Pesan Ruangan</a>
                 </div>
             </div>
         </div>
@@ -199,7 +195,6 @@
                 <div class="flex items-center gap-6">
                     <a href="{{ route('home') }}#faq" class="hover:text-slate-400 transition">FAQ</a>
                     <a href="{{ route('contact') }}" class="hover:text-slate-400 transition">Kontak & Reservasi</a>
-                    <a href="{{ route('admin.login') }}" class="text-slate-400 hover:text-[#75afee] transition font-medium">Portal Admin</a>
                 </div>
             </div>
         </div>
