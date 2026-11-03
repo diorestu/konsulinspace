@@ -63,7 +63,7 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('logo-transparent.png');
         // Meta tags, OG images, and Favicon
         $response->assertSee('og:image');
-        $response->assertSee('og-image.jpg');
+        $response->assertSee('og-image.png');
         $response->assertSee('favicon-32x32.png');
         $response->assertSee('apple-touch-icon.png');
         $response->assertSee('name="keywords"', false);

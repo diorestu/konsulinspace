@@ -3,7 +3,7 @@
 @section('title', 'KonsulinSpace - Co-Working Space & Virtual Office BSD, Tangerang')
 @section('meta_description', 'KonsulinSpace menyediakan co-working space fleksibel, private office fully-furnished, meeting room 4K, dan virtual office resmi di Greenwich Business Park, BSD City, Tangerang.')
 @section('meta_keywords', 'co-working space BSD, virtual office BSD, sewa kantor BSD City, private office Tangerang, meeting room BSD, alamat domisili PT Tangerang, izin PKP BSD, Greenwich Business Park, sewa ruangan BSD, KonsulinSpace')
-@section('og_image', asset('images/og-image.jpg'))
+@section('og_image', asset('images/og-image.png'))
 
 @section('content')
 

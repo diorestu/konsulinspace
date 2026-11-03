@@ -16,9 +16,9 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="@yield('title', 'KonsulinSpace - Co-Working Space & Virtual Office BSD, Tangerang')">
     <meta property="og:description" content="@yield('meta_description', 'Penyedia co-working space, private office siap huni, dan alamat domisili virtual office resmi di Greenwich Business Park, BSD City, Tangerang.')">
-    <meta property="og:image" content="@yield('og_image', asset('images/og-image.jpg'))">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-image.png'))">
+    <meta property="og:image:width" content="982">
+    <meta property="og:image:height" content="972">
     <meta property="og:site_name" content="KonsulinSpace">
     <meta property="og:locale" content="id_ID">
 
@@ -27,10 +27,11 @@
     <meta name="twitter:url" content="{{ url()->current() }}">
     <meta name="twitter:title" content="@yield('title', 'KonsulinSpace - Co-Working Space & Virtual Office BSD, Tangerang')">
     <meta name="twitter:description" content="@yield('meta_description', 'Penyedia co-working space, private office siap huni, dan alamat domisili virtual office resmi di Greenwich Business Park, BSD City, Tangerang.')">
-    <meta name="twitter:image" content="@yield('og_image', asset('images/og-image.jpg'))">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/og-image.png'))">
 
     <!-- Favicon & App Icons -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
