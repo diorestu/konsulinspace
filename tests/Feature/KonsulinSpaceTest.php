@@ -90,6 +90,9 @@ class KonsulinSpaceTest extends TestCase
         // Landing page shows popular rooms and catalog link
         $response->assertSee('Pilihan Ruangan Terpopuler');
         $response->assertSee(route('rooms.catalog'));
+        // Scroll to Top button above WhatsApp
+        $response->assertSee('id="scrollToTopBtn"', false);
+        $response->assertSee('aria-label="Scroll ke Atas"', false);
     }
 
     public function test_contact_page_loads_with_reservation_form_and_location()
