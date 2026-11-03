@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inquiry;
 use App\Models\Room;
+use App\Models\VirtualOfficePackage;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,7 +35,9 @@ class HomeController extends Controller
             'uptime' => '99.9% Internet Uptime',
         ];
 
-        return view('home', compact('rooms', 'featuredRooms', 'selectedCategory', 'stats'));
+        $virtualOfficePackages = VirtualOfficePackage::active()->get();
+
+        return view('home', compact('rooms', 'featuredRooms', 'selectedCategory', 'stats', 'virtualOfficePackages'));
     }
 
     public function roomDetail(string $slug)
@@ -76,7 +79,7 @@ class HomeController extends Controller
         $inquiry = Inquiry::create($validated);
 
         // Prepare WhatsApp link if user wants to follow up directly
-        $phoneTarget = '6281298765432';
+        $phoneTarget = '6281908797799';
         $serviceText = $inquiry->room ? $inquiry->room->name : ($inquiry->service_type ?? 'Layanan Umum');
         $waMessage = rawurlencode(
             "Halo Tim KonsulinSpace, saya telah mengisi formulir reservasi di website.\n\n" .

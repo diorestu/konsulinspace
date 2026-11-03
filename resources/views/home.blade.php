@@ -352,113 +352,46 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Plan 1: Silver -->
-            <div class="rounded-2xl p-6 border border-slate-200 bg-white flex flex-col justify-between hover:border-[#0353a4] transition">
+            @forelse($virtualOfficePackages ?? [] as $package)
+            <div class="{{ $package->is_popular ? 'relative rounded-2xl p-6 border-2 border-[#0353a4] bg-[#edf4fc]/30 flex flex-col justify-between shadow-md' : 'rounded-2xl p-6 border border-slate-200 bg-white flex flex-col justify-between hover:border-[#0353a4] transition' }}">
+                @if($package->is_popular)
+                <span class="absolute -top-3 right-6 bg-[#0353a4] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-0.5 rounded-full shadow-xs">
+                    Paling Populer
+                </span>
+                @endif
                 <div>
-                    <h3 class="text-base font-bold text-slate-900">Silver Starter</h3>
+                    <h3 class="text-base font-bold text-slate-900">{{ $package->name }}</h3>
+                    @if($package->tagline)
+                    <p class="text-[11px] text-slate-500 mt-1 line-clamp-1">{{ $package->tagline }}</p>
+                    @endif
                     <div class="mt-4 mb-5">
-                        <span class="text-2xl font-bold text-slate-900">Rp 350.000</span>
+                        <span class="text-2xl font-bold text-slate-900">{{ $package->formatted_price_monthly }}</span>
                         <span class="text-xs text-slate-500">/ bulan</span>
                     </div>
 
-                    <ul class="space-y-2.5 text-xs text-slate-600 border-t border-slate-100 pt-5">
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Alamat Bisnis Komersial BSD</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Penerimaan Surat & Paket</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Notifikasi WhatsApp Real-time</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Diskon Sewa Meeting Room</span>
-                        </li>
+                    <ul class="space-y-2.5 text-xs {{ $package->is_popular ? 'text-slate-700 border-t border-[#b0d0f4]' : 'text-slate-600 border-t border-slate-100' }} pt-5">
+                        @if(!empty($package->features) && is_array($package->features))
+                            @foreach($package->features as $feature)
+                            <li class="flex items-center gap-2">
+                                <span class="text-[#0353a4] font-bold">&bull;</span>
+                                <span>{{ $feature }}</span>
+                            </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
 
                 <div class="pt-6">
-                    <a href="{{ route('contact') }}" class="w-full block py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-xs text-center hover:bg-slate-50 transition">
-                        Pilih Silver
+                    <a href="{{ $package->cta_link ?: route('contact') }}" class="w-full block py-2.5 rounded-xl font-semibold text-xs text-center transition {{ $package->is_popular ? 'bg-[#0353a4] hover:bg-[#023e7d] text-white shadow-xs' : 'border border-slate-300 text-slate-800 hover:bg-slate-50' }}">
+                        {{ $package->cta_text ?: 'Pilih ' . $package->name }}
                     </a>
                 </div>
             </div>
-
-            <!-- Plan 2: Gold -->
-            <div class="rounded-2xl p-6 border-2 border-[#0353a4] bg-[#edf4fc]/30 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-base font-bold text-slate-900">Gold Business</h3>
-                    <div class="mt-4 mb-5">
-                        <span class="text-2xl font-bold text-slate-900">Rp 450.000</span>
-                        <span class="text-xs text-slate-500">/ bulan</span>
-                    </div>
-
-                    <ul class="space-y-2.5 text-xs text-slate-700 border-t border-[#b0d0f4] pt-5">
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Surat Keterangan Domisili Gedung</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Gratis 4 Jam Meeting Room / Bulan</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Layanan Resepsionis & Tamu</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Penerimaan & Scan Surat Digital</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="pt-6">
-                    <a href="{{ route('contact') }}" class="w-full block py-2.5 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs text-center transition">
-                        Pilih Gold
-                    </a>
-                </div>
+            @empty
+            <div class="col-span-full py-12 text-center bg-slate-50 rounded-2xl border border-slate-200">
+                <p class="text-sm font-semibold text-slate-600">Belum ada paket Virtual Office yang tersedia.</p>
             </div>
-
-            <!-- Plan 3: Platinum -->
-            <div class="rounded-2xl p-6 border border-slate-200 bg-white flex flex-col justify-between hover:border-[#0353a4] transition">
-                <div>
-                    <h3 class="text-base font-bold text-slate-900">Platinum Corporate</h3>
-                    <div class="mt-4 mb-5">
-                        <span class="text-2xl font-bold text-slate-900">Rp 650.000</span>
-                        <span class="text-xs text-slate-500">/ bulan</span>
-                    </div>
-
-                    <ul class="space-y-2.5 text-xs text-slate-600 border-t border-slate-100 pt-5">
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Izin Zonasi PKP & Pendampingan</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Nomor Telepon Khusus (021)</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Gratis 8 Jam Meeting Room / Bulan</span>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-[#0353a4]">&bull;</span>
-                            <span>Signage Logo Perusahaan di Lobby</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="pt-6">
-                    <a href="{{ route('contact') }}" class="w-full block py-2.5 rounded-xl border border-slate-300 text-slate-800 font-semibold text-xs text-center hover:bg-slate-50 transition">
-                        Pilih Platinum
-                    </a>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </section>

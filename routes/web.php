@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\VirtualOfficePackageController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/rooms/{room}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
         Route::put('/rooms/{room}', [RoomController::class, 'update'])->name('rooms.update');
         Route::delete('/rooms/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+
+        // Virtual Office CRUD
+        Route::resource('virtual-offices', VirtualOfficePackageController::class)->names('virtual-offices');
 
         // Dropzone & Media Endpoints
         Route::post('/rooms/upload-temp-media', [RoomController::class, 'uploadTempMedia'])->name('rooms.upload_temp_media');

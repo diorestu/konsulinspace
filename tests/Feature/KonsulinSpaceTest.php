@@ -6,6 +6,7 @@ use App\Models\Inquiry;
 use App\Models\Room;
 use App\Models\RoomMedia;
 use App\Models\User;
+use App\Models\VirtualOfficePackage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
@@ -326,5 +327,141 @@ class KonsulinSpaceTest extends TestCase
             'id' => $inquiry->id,
             'status' => 'contacted',
         ]);
+    }
+
+    public function test_guest_cannot_access_virtual_offices_admin()
+    {
+        $response = $this->get('/admin/virtual-offices');
+        $response->assertRedirect('/admin/login');
+    }
+
+    public function test_admin_sidebar_contains_virtual_office_menu()
+    {
+        $response = $this->actingAs($this->admin)->get('/admin');
+        $response->assertStatus(200);
+        $response->assertSee('Kelola Virtual Office');
+        $response->assertSee(route('admin.virtual-offices.index'));
+    }
+
+    public function test_admin_can_view_virtual_offices_list()
+    {
+        VirtualOfficePackage::create([
+            'name' => 'Diamond Elite',
+            'slug' => 'diamond-elite',
+            'tagline' => 'Paket kantor virtual eksekutif',
+            'price_monthly' => 950000,
+            'features' => ['Layanan Resepsionis', 'Ruang Rapat 12 Jam'],
+            'status' => 'active',
+            'order_position' => 1,
+        ]);
+
+        $response = $this->actingAs($this->admin)->get('/admin/virtual-offices');
+        $response->assertStatus(200);
+        $response->assertSee('Kelola Paket Virtual Office');
+        $response->assertSee('Diamond Elite');
+        $response->assertSee('Rp 950.000');
+        $response->assertSee('2 Fasilitas');
+    }
+
+    public function test_admin_can_create_virtual_office_package()
+    {
+        $response = $this->actingAs($this->admin)->post('/admin/virtual-offices', [
+            'name' => 'Custom Executive VO',
+            'tagline' => 'Alamat prestisius BSD',
+            'price_monthly' => 500000,
+            'price_yearly' => 5500000,
+            'features_text' => "- Alamat Bisnis Resmi\n- Resepsionis Tamu\n- Surat & Paket",
+            'is_popular' => 1,
+            'status' => 'active',
+            'order_position' => 2,
+            'cta_text' => 'Pilih Executive',
+        ]);
+
+        $response->assertRedirect('/admin/virtual-offices');
+        $response->assertSessionHas('success');
+
+        $this->assertDatabaseHas('virtual_office_packages', [
+            'name' => 'Custom Executive VO',
+            'price_monthly' => 500000,
+            'is_popular' => 1,
+            'status' => 'active',
+        ]);
+
+        $package = VirtualOfficePackage::where('name', 'Custom Executive VO')->first();
+        $this->assertCount(3, $package->features);
+        $this->assertEquals(['Alamat Bisnis Resmi', 'Resepsionis Tamu', 'Surat & Paket'], $package->features);
+    }
+
+    public function test_admin_can_edit_and_update_virtual_office_package()
+    {
+        $package = VirtualOfficePackage::create([
+            'name' => 'Starter Pack VO',
+            'price_monthly' => 300000,
+            'features' => ['Alamat Surat'],
+            'status' => 'active',
+        ]);
+
+        $editPage = $this->actingAs($this->admin)->get('/admin/virtual-offices/' . $package->id . '/edit');
+        $editPage->assertStatus(200);
+        $editPage->assertSee('Starter Pack VO');
+
+        $updateResponse = $this->actingAs($this->admin)->put('/admin/virtual-offices/' . $package->id, [
+            'name' => 'Starter Pack VO Revised',
+            'tagline' => 'Tagline baru',
+            'price_monthly' => 380000,
+            'features_text' => "Alamat Surat\nNotifikasi WhatsApp",
+            'is_popular' => 0,
+            'status' => 'active',
+            'order_position' => 5,
+        ]);
+
+        $updateResponse->assertRedirect('/admin/virtual-offices');
+        $this->assertDatabaseHas('virtual_office_packages', [
+            'id' => $package->id,
+            'name' => 'Starter Pack VO Revised',
+            'price_monthly' => 380000,
+        ]);
+
+        $package->refresh();
+        $this->assertCount(2, $package->features);
+    }
+
+    public function test_admin_can_delete_virtual_office_package()
+    {
+        $package = VirtualOfficePackage::create([
+            'name' => 'Temporary VO Package',
+            'price_monthly' => 250000,
+            'status' => 'inactive',
+        ]);
+
+        $response = $this->actingAs($this->admin)->delete('/admin/virtual-offices/' . $package->id);
+        $response->assertRedirect('/admin/virtual-offices');
+        $this->assertDatabaseMissing('virtual_office_packages', ['id' => $package->id]);
+    }
+
+    public function test_home_page_displays_active_virtual_office_packages()
+    {
+        VirtualOfficePackage::create([
+            'name' => 'Paket Alpha Dynamic',
+            'price_monthly' => 420000,
+            'features' => ['Fitur Khusus Alpha 1', 'Fitur Khusus Alpha 2'],
+            'status' => 'active',
+            'order_position' => 1,
+        ]);
+
+        VirtualOfficePackage::create([
+            'name' => 'Paket Hidden Dynamic',
+            'price_monthly' => 990000,
+            'features' => ['Fitur Tersembunyi'],
+            'status' => 'inactive',
+            'order_position' => 2,
+        ]);
+
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('Paket Alpha Dynamic');
+        $response->assertSee('Rp 420.000');
+        $response->assertSee('Fitur Khusus Alpha 1');
+        $response->assertDontSee('Paket Hidden Dynamic');
     }
 }

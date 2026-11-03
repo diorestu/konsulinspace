@@ -6,6 +6,7 @@ use App\Models\Inquiry;
 use App\Models\Room;
 use App\Models\RoomMedia;
 use App\Models\User;
+use App\Models\VirtualOfficePackage;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -359,6 +360,68 @@ class DatabaseSeeder extends Seeder
 
         foreach ($sampleInquiries as $inq) {
             Inquiry::create($inq);
+        }
+
+        // 4. Create Virtual Office Packages
+        $voPackages = [
+            [
+                'name' => 'Silver Starter',
+                'slug' => 'silver-starter',
+                'tagline' => 'Alamat bisnis komersial resmi untuk freelancer & usaha rintisan',
+                'price_monthly' => 350000,
+                'price_yearly' => 3800000,
+                'features' => [
+                    'Alamat Bisnis Komersial BSD',
+                    'Penerimaan Surat & Paket',
+                    'Notifikasi WhatsApp Real-time',
+                    'Diskon Sewa Meeting Room',
+                ],
+                'is_popular' => false,
+                'status' => 'active',
+                'order_position' => 1,
+                'cta_text' => 'Pilih Silver',
+            ],
+            [
+                'name' => 'Gold Business',
+                'slug' => 'gold-business',
+                'tagline' => 'Paling populer untuk legalitas PT/CV & kebutuhan ruang meeting bulanan',
+                'price_monthly' => 450000,
+                'price_yearly' => 4800000,
+                'features' => [
+                    'Surat Keterangan Domisili Gedung',
+                    'Gratis 4 Jam Meeting Room / Bulan',
+                    'Layanan Resepsionis & Tamu',
+                    'Penerimaan & Scan Surat Digital',
+                ],
+                'is_popular' => true,
+                'status' => 'active',
+                'order_position' => 2,
+                'cta_text' => 'Pilih Gold',
+            ],
+            [
+                'name' => 'Platinum Corporate',
+                'slug' => 'platinum-corporate',
+                'tagline' => 'Paket premium lengkap izin zonasi PKP & nomor kantor khusus',
+                'price_monthly' => 650000,
+                'price_yearly' => 6900000,
+                'features' => [
+                    'Izin Zonasi PKP & Pendampingan',
+                    'Nomor Telepon Khusus (021)',
+                    'Gratis 8 Jam Meeting Room / Bulan',
+                    'Signage Logo Perusahaan di Lobby',
+                ],
+                'is_popular' => false,
+                'status' => 'active',
+                'order_position' => 3,
+                'cta_text' => 'Pilih Platinum',
+            ],
+        ];
+
+        foreach ($voPackages as $pkgData) {
+            VirtualOfficePackage::updateOrCreate(
+                ['slug' => $pkgData['slug']],
+                $pkgData
+            );
         }
     }
 }

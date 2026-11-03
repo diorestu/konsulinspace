@@ -66,6 +66,12 @@
                 <span>Kelola Ruangan</span>
             </a>
 
+            <!-- Manage Virtual Office -->
+            <a href="{{ route('admin.virtual-offices.index') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('admin.virtual-offices.*') ? 'bg-[#0353a4] text-white shadow-sm shadow-[#0353a4]/30' : 'hover:bg-[#002855] text-slate-300' }}">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <span>Kelola Virtual Office</span>
+            </a>
+
             <!-- Add Room -->
             <a href="{{ route('admin.rooms.create') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('admin.rooms.create') ? 'bg-[#0353a4] text-white shadow-sm shadow-[#0353a4]/30' : 'hover:bg-[#002855] text-slate-300' }}">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
