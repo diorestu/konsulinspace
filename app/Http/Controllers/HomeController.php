@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HeroSlide;
 use App\Models\Inquiry;
 use App\Models\Room;
 use App\Models\VirtualOfficePackage;
@@ -11,21 +12,20 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $selectedCategory = $request->query('category', 'all');
-
-        $roomsQuery = Room::with('media')
+        // Pilihan Ruangan: hanya tampil 4 terpopuler saja pada landing page
+        $popularRooms = Room::with('media')
             ->where('status', 'available')
-            ->orderBy('order_position', 'asc');
+            ->orderBy('is_featured', 'desc')
+            ->orderBy('order_position', 'asc')
+            ->take(4)
+            ->get();
 
-        if ($selectedCategory !== 'all') {
-            $roomsQuery->where('category', $selectedCategory);
-        }
+        $rooms = $popularRooms;
 
-        $rooms = $roomsQuery->get();
         $featuredRooms = Room::with('media')
             ->where('is_featured', true)
             ->where('status', 'available')
-            ->take(6)
+            ->take(4)
             ->get();
 
         $stats = [
@@ -36,8 +36,36 @@ class HomeController extends Controller
         ];
 
         $virtualOfficePackages = VirtualOfficePackage::active()->get();
+        $heroSlides = HeroSlide::active()->get();
 
-        return view('home', compact('rooms', 'featuredRooms', 'selectedCategory', 'stats', 'virtualOfficePackages'));
+        return view('home', compact('popularRooms', 'rooms', 'featuredRooms', 'stats', 'virtualOfficePackages', 'heroSlides'));
+    }
+
+    public function roomsCatalog(Request $request)
+    {
+        $selectedCategory = $request->query('category', 'all');
+
+        $query = Room::with('media')
+            ->where('status', 'available')
+            ->orderBy('is_featured', 'desc')
+            ->orderBy('order_position', 'asc');
+
+        if ($selectedCategory !== 'all') {
+            $query->where('category', $selectedCategory);
+        }
+
+        if ($request->filled('search')) {
+            $search = $request->query('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('short_description', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        $rooms = $query->paginate(12)->withQueryString();
+
+        return view('rooms.index', compact('rooms', 'selectedCategory'));
     }
 
     public function roomDetail(string $slug)

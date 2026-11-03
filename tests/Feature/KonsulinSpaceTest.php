@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\HeroSlide;
 use App\Models\Inquiry;
 use App\Models\Room;
 use App\Models\RoomMedia;
@@ -77,6 +78,18 @@ class KonsulinSpaceTest extends TestCase
         $response->assertDontSee('Portal Admin');
         // Studio Podcast facility is removed
         $response->assertDontSee('Studio Podcast');
+        // Header menu items: Beranda, Virtual Office, Co-working Space, Kontak
+        $response->assertSee('Beranda');
+        $response->assertSee('Co-working Space');
+        $response->assertSee('Kontak');
+        // Pesan Ruangan CTA button with Call icon
+        $response->assertSee('Pesan Ruangan');
+        $response->assertSee('data-track-cta="whatsapp"', false);
+        // Universal tracking script
+        $response->assertSee('trackWhatsAppClick');
+        // Landing page shows popular rooms and catalog link
+        $response->assertSee('Pilihan Ruangan Terpopuler');
+        $response->assertSee(route('rooms.catalog'));
     }
 
     public function test_contact_page_loads_with_reservation_form_and_location()
@@ -463,5 +476,165 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('Rp 420.000');
         $response->assertSee('Fitur Khusus Alpha 1');
         $response->assertDontSee('Paket Hidden Dynamic');
+    }
+
+    public function test_header_menu_contains_only_specified_items_and_no_faq()
+    {
+        $response = $this->get('/');
+        $response->assertStatus(200);
+
+        // Header must not have #faq link in its nav
+        $headerHtml = '';
+        if (preg_match('/<header.*?<\/header>/s', $response->getContent(), $matches)) {
+            $headerHtml = $matches[0];
+        }
+
+        $this->assertNotEmpty($headerHtml);
+        $this->assertStringContainsString('Beranda', $headerHtml);
+        $this->assertStringContainsString('Virtual Office', $headerHtml);
+        $this->assertStringContainsString('Co-working Space', $headerHtml);
+        $this->assertStringContainsString('Kontak', $headerHtml);
+        $this->assertStringContainsString('Pesan Ruangan', $headerHtml);
+        // FAQ must be removed from header
+        $this->assertStringNotContainsString('#faq', $headerHtml);
+        $this->assertStringNotContainsString('>FAQ<', $headerHtml);
+    }
+
+    public function test_landing_page_shows_only_4_popular_rooms()
+    {
+        // Create 6 rooms
+        for ($i = 1; $i <= 6; $i++) {
+            Room::create([
+                'name' => "Room {$i}",
+                'category' => 'coworking',
+                'capacity' => '1 Orang',
+                'price_hourly' => 50000 * $i,
+                'status' => 'available',
+                'order_position' => $i,
+            ]);
+        }
+
+        $response = $this->get('/');
+        $response->assertStatus(200);
+
+        // Should see Room 1, 2, 3, 4
+        $response->assertSee('Room 1');
+        $response->assertSee('Room 2');
+        $response->assertSee('Room 3');
+        $response->assertSee('Room 4');
+        // Section #ruangan should not contain Room 5 and Room 6
+        if (preg_match('/<section id="ruangan".*?<\/section>/s', $response->getContent(), $matches)) {
+            $ruanganHtml = $matches[0];
+            $this->assertStringContainsString('Room 1', $ruanganHtml);
+            $this->assertStringContainsString('Room 4', $ruanganHtml);
+            $this->assertStringNotContainsString('Room 5', $ruanganHtml);
+            $this->assertStringNotContainsString('Room 6', $ruanganHtml);
+        }
+    }
+
+    public function test_dedicated_rooms_catalog_page_loads_and_filters()
+    {
+        $cowork = Room::create([
+            'name' => 'Cowork Room Special',
+            'category' => 'coworking',
+            'status' => 'available',
+        ]);
+
+        $meeting = Room::create([
+            'name' => 'Meeting Room Elite',
+            'category' => 'meeting_room',
+            'status' => 'available',
+        ]);
+
+        // General catalog
+        $response = $this->get('/rooms');
+        $response->assertStatus(200);
+        $response->assertSee('Katalog Lengkap Ruangan');
+        $response->assertSee('Cowork Room Special');
+        $response->assertSee('Meeting Room Elite');
+
+        // Filter by category coworking
+        $filterResponse = $this->get('/rooms?category=coworking');
+        $filterResponse->assertStatus(200);
+        $filterResponse->assertSee('Cowork Room Special');
+        $filterResponse->assertDontSee('Meeting Room Elite');
+    }
+
+    public function test_google_tracking_tags_render_when_configured()
+    {
+        config([
+            'services.google.site_verification' => 'test-gsc-verification-code',
+            'services.google.gtm_id' => 'GTM-TEST1234',
+            'services.google.ga4_id' => 'G-TESTGA456',
+        ]);
+
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('name="google-site-verification" content="test-gsc-verification-code"', false);
+        $response->assertSee('GTM-TEST1234');
+        $response->assertSee('G-TESTGA456');
+    }
+
+    public function test_admin_can_manage_hero_slides()
+    {
+        // 1. Admin views hero slides
+        $indexResponse = $this->actingAs($this->admin)->get('/admin/hero-slides');
+        $indexResponse->assertStatus(200);
+        $indexResponse->assertSee('Kelola Hero Carousel');
+
+        // 2. Admin creates with_text slide
+        $createResponse = $this->actingAs($this->admin)->post('/admin/hero-slides', [
+            'slide_type' => 'with_text',
+            'title' => 'New Awesome Slide',
+            'badge_text' => 'Greenwich BSD',
+            'subtitle' => 'Deskripsi slide baru',
+            'image_url_input' => 'https://images.unsplash.com/photo-12345678',
+            'cta_primary_text' => 'Lihat Sekarang',
+            'cta_primary_link' => '#ruangan',
+            'status' => 'active',
+            'order_position' => 1,
+        ]);
+        $createResponse->assertRedirect('/admin/hero-slides');
+        $this->assertDatabaseHas('hero_slides', [
+            'title' => 'New Awesome Slide',
+            'slide_type' => 'with_text',
+        ]);
+
+        // 3. Admin creates image_only slide
+        $imageOnlyResponse = $this->actingAs($this->admin)->post('/admin/hero-slides', [
+            'slide_type' => 'image_only',
+            'image_url_input' => 'https://images.unsplash.com/photo-banner-only',
+            'status' => 'active',
+            'order_position' => 2,
+        ]);
+        $imageOnlyResponse->assertRedirect('/admin/hero-slides');
+        $this->assertDatabaseHas('hero_slides', [
+            'slide_type' => 'image_only',
+            'image_path' => 'https://images.unsplash.com/photo-banner-only',
+        ]);
+
+        // 4. Admin edits slide
+        $slide = HeroSlide::where('title', 'New Awesome Slide')->first();
+        $editPage = $this->actingAs($this->admin)->get('/admin/hero-slides/' . $slide->id . '/edit');
+        $editPage->assertStatus(200);
+        $editPage->assertSee('New Awesome Slide');
+
+        $updateResponse = $this->actingAs($this->admin)->put('/admin/hero-slides/' . $slide->id, [
+            'slide_type' => 'with_text',
+            'title' => 'New Awesome Slide Updated',
+            'image_url_input' => 'https://images.unsplash.com/photo-12345678',
+            'status' => 'active',
+            'order_position' => 3,
+        ]);
+        $updateResponse->assertRedirect('/admin/hero-slides');
+        $this->assertDatabaseHas('hero_slides', [
+            'id' => $slide->id,
+            'title' => 'New Awesome Slide Updated',
+        ]);
+
+        // 5. Admin deletes slide
+        $deleteResponse = $this->actingAs($this->admin)->delete('/admin/hero-slides/' . $slide->id);
+        $deleteResponse->assertRedirect('/admin/hero-slides');
+        $this->assertDatabaseMissing('hero_slides', ['id' => $slide->id]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\HeroSlide;
 use App\Models\Inquiry;
 use App\Models\Room;
 use App\Models\RoomMedia;
@@ -421,6 +422,69 @@ class DatabaseSeeder extends Seeder
             VirtualOfficePackage::updateOrCreate(
                 ['slug' => $pkgData['slug']],
                 $pkgData
+            );
+        }
+
+        // 5. Create Default Hero Carousel Slides
+        $heroSlidesData = [
+            [
+                'title' => 'Ruang Kerja & Virtual Office di BSD, Tangerang',
+                'badge_text' => 'Greenwich Business Park, BSD City',
+                'subtitle' => 'Co-working space fleksibel, private office siap pakai, dan legalitas domisili resmi untuk perizinan usaha Anda di kawasan bisnis terdepan.',
+                'image_path' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2100&q=80',
+                'cta_primary_text' => 'Lihat Ruangan',
+                'cta_primary_link' => '#ruangan',
+                'cta_secondary_text' => 'Reservasi Sekarang',
+                'cta_secondary_link' => '/kontak',
+                'slide_type' => 'with_text',
+                'order_position' => 1,
+                'status' => 'active',
+            ],
+            [
+                'title' => 'Alamat Domisili Resmi PT & CV di BSD Tangerang',
+                'badge_text' => 'Legalitas Usaha & PKP',
+                'subtitle' => 'Zonasi komersial perkantoran resmi untuk pengukuhan PKP, surat domisili gedung, penanganan surat masuk kilat, dan resepsionis representatif.',
+                'image_path' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2100&q=80',
+                'cta_primary_text' => 'Paket Virtual Office',
+                'cta_primary_link' => '#virtual-office',
+                'cta_secondary_text' => 'Tanya Admin K-Space',
+                'cta_secondary_link' => 'https://wa.me/6281908797799?text=Halo%20Admin%20K-Space,%20saya%20tertarik%20dengan%20paket%20virtual%20office.',
+                'slide_type' => 'with_text',
+                'order_position' => 2,
+                'status' => 'active',
+            ],
+            [
+                'title' => 'Meeting Room Profesional & Video Conference',
+                'badge_text' => 'Audio Visual 4K & Kedap Suara',
+                'subtitle' => 'Ruang rapat 4 hingga 20 orang dilengkapi monitor presentasi 4K, mikrofon konferensi jernih, whiteboard, dan free flow minuman.',
+                'image_path' => 'https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=2100&q=80',
+                'cta_primary_text' => 'Sewa Ruang Rapat',
+                'cta_primary_link' => '/rooms?category=meeting_room',
+                'cta_secondary_text' => 'Hubungi Kami',
+                'cta_secondary_link' => '/kontak',
+                'slide_type' => 'with_text',
+                'order_position' => 3,
+                'status' => 'active',
+            ],
+            [
+                'title' => 'Private Office Siap Huni Tim 2 - 20 Orang',
+                'badge_text' => 'Akses Kunci Mandiri 24/7',
+                'subtitle' => 'Ruangan kantor privat fully-furnished dengan meja ergonomis, akses kartu RFID mandiri, kuota print gratis, dan free-flow kopi harian.',
+                'image_path' => 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2100&q=80',
+                'cta_primary_text' => 'Pilihan Unit Kantor',
+                'cta_primary_link' => '/rooms?category=private_office',
+                'cta_secondary_text' => 'Jadwal Survei Gedung',
+                'cta_secondary_link' => '/kontak',
+                'slide_type' => 'with_text',
+                'order_position' => 4,
+                'status' => 'active',
+            ],
+        ];
+
+        foreach ($heroSlidesData as $slide) {
+            HeroSlide::firstOrCreate(
+                ['title' => $slide['title']],
+                $slide
             );
         }
     }

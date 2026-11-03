@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HeroSlideController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\VirtualOfficePackageController;
@@ -14,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/kontak', [HomeController::class, 'contact'])->name('contact');
+Route::get('/rooms', [HomeController::class, 'roomsCatalog'])->name('rooms.catalog');
 Route::get('/rooms/{slug}', [HomeController::class, 'roomDetail'])->name('rooms.show');
+Route::get('/kontak', [HomeController::class, 'contact'])->name('contact');
 Route::post('/inquiry', [HomeController::class, 'storeInquiry'])->name('inquiry.store');
 
 Route::get('/login', fn() => redirect()->route('admin.login'))->name('login');
@@ -50,6 +52,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Virtual Office CRUD
         Route::resource('virtual-offices', VirtualOfficePackageController::class)->names('virtual-offices');
+
+        // Hero Carousel Slides CRUD
+        Route::resource('hero-slides', HeroSlideController::class)->names('hero-slides');
 
         // Dropzone & Media Endpoints
         Route::post('/rooms/upload-temp-media', [RoomController::class, 'uploadTempMedia'])->name('rooms.upload_temp_media');

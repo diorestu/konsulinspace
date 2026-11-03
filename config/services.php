@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'google' => [
+        'site_verification' => env('GOOGLE_SITE_VERIFICATION'),
+        'gtm_id' => env('GTM_ID'),
+        'ga4_id' => env('GA4_MEASUREMENT_ID'),
+    ],
+
 ];

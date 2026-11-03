@@ -12,131 +12,85 @@
     
     <!-- Slides Container -->
     <div class="relative w-full h-full">
+        @forelse($heroSlides ?? [] as $index => $slide)
+        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out {{ $index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none' }}" data-slide-index="{{ $index }}">
+            <img src="{{ $slide->image_url }}" alt="{{ $slide->title ?: 'Banner KonsulinSpace' }}" class="w-full h-full object-cover">
+            
+            @if($slide->slide_type === 'with_text')
+            <div class="absolute inset-0 bg-gradient-to-r from-[#000814]/95 via-[#001845]/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#000814]/80 via-transparent to-transparent"></div>
+            
+            <div class="absolute inset-0 flex items-center">
+                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10">
+                    <div class="max-w-2xl space-y-4 sm:space-y-5 text-white">
+                        @if($slide->badge_text)
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide">
+                            {{ $slide->badge_text }}
+                        </span>
+                        @endif
 
-        <!-- Slide 1: Ruang Kerja & Co-Working -->
-        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10" data-slide-index="0">
+                        @if($slide->title)
+                        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                            {{ $slide->title }}
+                        </h1>
+                        @endif
+
+                        @if($slide->subtitle)
+                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                            {{ $slide->subtitle }}
+                        </p>
+                        @endif
+
+                        <div class="pt-2 flex flex-wrap items-center gap-3">
+                            @if($slide->cta_primary_text)
+                            @php
+                                $isPrimaryWa = str_contains($slide->cta_primary_link ?? '', 'wa.me');
+                                $isPrimaryCall = str_contains(strtolower($slide->cta_primary_text), 'pesan');
+                            @endphp
+                            <a href="{{ $slide->cta_primary_link ?: '#ruangan' }}" @if($isPrimaryWa) target="_blank" rel="noopener noreferrer" data-track-cta="whatsapp" data-cta-label="hero_slide_{{ $index }}_cta_primary" @endif class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs sm:text-sm text-center shadow-md shadow-[#0353a4]/30 transition">
+                                @if($isPrimaryCall)
+                                <svg class="w-4 h-4 shrink-0 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                @endif
+                                <span>{{ $slide->cta_primary_text }}</span>
+                            </a>
+                            @endif
+
+                            @if($slide->cta_secondary_text)
+                            @php
+                                $isSecondaryWa = str_contains($slide->cta_secondary_link ?? '', 'wa.me');
+                                $isSecondaryCall = str_contains(strtolower($slide->cta_secondary_text), 'pesan');
+                            @endphp
+                            <a href="{{ $slide->cta_secondary_link ?: route('contact') }}" @if($isSecondaryWa) target="_blank" rel="noopener noreferrer" data-track-cta="whatsapp" data-cta-label="hero_slide_{{ $index }}_cta_secondary" @endif class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/30 hover:border-white text-white font-semibold text-xs sm:text-sm text-center backdrop-blur-sm transition">
+                                @if($isSecondaryCall)
+                                <svg class="w-4 h-4 shrink-0 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                @endif
+                                <span>{{ $slide->cta_secondary_text }}</span>
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @elseif($slide->cta_primary_link)
+            <a href="{{ $slide->cta_primary_link }}" class="absolute inset-0" aria-label="Lihat Informasi Slide"></a>
+            @endif
+        </div>
+        @empty
+        <!-- Fallback if empty -->
+        <div class="carousel-slide absolute inset-0 opacity-100 z-10" data-slide-index="0">
             <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2100&q=80" alt="Ruang Kerja KonsulinSpace Greenwich BSD" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-[#000814]/95 via-[#001845]/80 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#000814]/80 via-transparent to-transparent"></div>
-            
             <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10">
-                    <div class="max-w-2xl space-y-4 sm:space-y-5 text-white">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide">
-                            Greenwich Business Park, BSD City
-                        </span>
-                        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-                            Ruang Kerja & <span class="text-[#75afee]">Virtual Office</span> di BSD, Tangerang
-                        </h1>
-                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
-                            Co-working space fleksibel, private office siap pakai, dan legalitas domisili resmi untuk perizinan usaha Anda di kawasan bisnis terdepan.
-                        </p>
-                        <div class="pt-2 flex flex-wrap items-center gap-3">
-                            <a href="#ruangan" class="px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs sm:text-sm text-center shadow-md shadow-[#0353a4]/30 transition">
-                                Lihat Ruangan
-                            </a>
-                            <a href="{{ route('contact') }}" class="px-6 py-3 rounded-xl border border-white/30 hover:border-white text-white font-semibold text-xs sm:text-sm text-center backdrop-blur-sm transition">
-                                Reservasi Sekarang
-                            </a>
-                        </div>
-                    </div>
+                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10 text-white">
+                    <h1 class="text-3xl sm:text-5xl font-extrabold">Ruang Kerja & Virtual Office BSD</h1>
                 </div>
             </div>
         </div>
-
-        <!-- Slide 2: Virtual Office & Legalitas PT/CV -->
-        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 pointer-events-none" data-slide-index="1">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2100&q=80" alt="Virtual Office Gedung BSD Tangerang" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#000814]/95 via-[#001845]/80 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#000814]/80 via-transparent to-transparent"></div>
-            
-            <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10">
-                    <div class="max-w-2xl space-y-4 sm:space-y-5 text-white">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide">
-                            Legalitas Usaha & PKP
-                        </span>
-                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-                            Alamat Domisili Resmi <span class="text-[#75afee]">PT & CV</span> di BSD Tangerang
-                        </h2>
-                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
-                            Zonasi komersial perkantoran resmi untuk pengukuhan PKP, surat domisili gedung, penanganan surat masuk kilat, dan resepsionis representatif.
-                        </p>
-                        <div class="pt-2 flex flex-wrap items-center gap-3">
-                            <a href="#virtual-office" class="px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs sm:text-sm text-center shadow-md shadow-[#0353a4]/30 transition">
-                                Paket Virtual Office
-                            </a>
-                            <a href="https://wa.me/6281908797799?text=Halo%20Admin%20K-Space,%20saya%20tertarik%20dengan%20paket%20virtual%20office." target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl border border-white/30 hover:border-white text-white font-semibold text-xs sm:text-sm text-center backdrop-blur-sm transition">
-                                Tanya Admin K-Space
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 3: Meeting Room & Konferensi 4K -->
-        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 pointer-events-none" data-slide-index="2">
-            <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=2100&q=80" alt="Executive Meeting Room KonsulinSpace" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#000814]/95 via-[#001845]/80 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#000814]/80 via-transparent to-transparent"></div>
-            
-            <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10">
-                    <div class="max-w-2xl space-y-4 sm:space-y-5 text-white">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide">
-                            Audio Visual 4K & Kedap Suara
-                        </span>
-                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-                            Meeting Room Profesional & <span class="text-[#75afee]">Video Conference</span>
-                        </h2>
-                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
-                            Ruang rapat 4 hingga 20 orang dilengkapi monitor presentasi 4K, mikrofon konferensi jernih, whiteboard, dan free flow minuman.
-                        </p>
-                        <div class="pt-2 flex flex-wrap items-center gap-3">
-                            <a href="{{ route('home') }}?category=meeting_room#ruangan" class="px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs sm:text-sm text-center shadow-md shadow-[#0353a4]/30 transition">
-                                Sewa Ruang Rapat
-                            </a>
-                            <a href="{{ route('contact') }}" class="px-6 py-3 rounded-xl border border-white/30 hover:border-white text-white font-semibold text-xs sm:text-sm text-center backdrop-blur-sm transition">
-                                Hubungi Kami
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 4: Private Office Suites -->
-        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 pointer-events-none" data-slide-index="3">
-            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2100&q=80" alt="Private Office Suite KonsulinSpace" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-r from-[#000814]/95 via-[#001845]/80 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#000814]/80 via-transparent to-transparent"></div>
-            
-            <div class="absolute inset-0 flex items-center">
-                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10">
-                    <div class="max-w-2xl space-y-4 sm:space-y-5 text-white">
-                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide">
-                            Akses Kunci Mandiri 24/7
-                        </span>
-                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-                            Private Office Siap Huni <span class="text-[#75afee]">Tim 2 - 20 Orang</span>
-                        </h2>
-                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
-                            Ruangan kantor privat fully-furnished dengan meja ergonomis, akses kartu RFID mandiri, kuota print gratis, dan free-flow kopi harian.
-                        </p>
-                        <div class="pt-2 flex flex-wrap items-center gap-3">
-                            <a href="{{ route('home') }}?category=private_office#ruangan" class="px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs sm:text-sm text-center shadow-md shadow-[#0353a4]/30 transition">
-                                Pilihan Unit Kantor
-                            </a>
-                            <a href="{{ route('contact') }}" class="px-6 py-3 rounded-xl border border-white/30 hover:border-white text-white font-semibold text-xs sm:text-sm text-center backdrop-blur-sm transition">
-                                Jadwal Survei Gedung
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        @endforelse
     </div>
 
     <!-- Navigation Arrows -->
@@ -149,10 +103,9 @@
 
     <!-- Indicators (Dots / Pills) -->
     <div id="carouselIndicators" class="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
-        <button type="button" data-slide-to="0" class="carousel-dot h-2 w-8 bg-[#75afee] rounded-full transition-all duration-300 focus:outline-none" aria-label="Ke Slide 1"></button>
-        <button type="button" data-slide-to="1" class="carousel-dot h-2 w-2.5 bg-white/40 hover:bg-white/70 rounded-full transition-all duration-300 focus:outline-none" aria-label="Ke Slide 2"></button>
-        <button type="button" data-slide-to="2" class="carousel-dot h-2 w-2.5 bg-white/40 hover:bg-white/70 rounded-full transition-all duration-300 focus:outline-none" aria-label="Ke Slide 3"></button>
-        <button type="button" data-slide-to="3" class="carousel-dot h-2 w-2.5 bg-white/40 hover:bg-white/70 rounded-full transition-all duration-300 focus:outline-none" aria-label="Ke Slide 4"></button>
+        @foreach($heroSlides ?? [] as $index => $slide)
+        <button type="button" data-slide-to="{{ $index }}" class="carousel-dot h-2 {{ $index === 0 ? 'w-8 bg-[#75afee]' : 'w-2.5 bg-white/40 hover:bg-white/70' }} rounded-full transition-all duration-300 focus:outline-none" aria-label="Ke Slide {{ $index + 1 }}"></button>
+        @endforeach
     </div>
 </section>
 
@@ -247,42 +200,32 @@
     </div>
 </section>
 
-<!-- Katalog Ruangan Tersedia (With Category Filter) -->
+<!-- Pilihan Ruangan Terpopuler (Hanya 4 Terpopuler di Landing Page) -->
 <section id="ruangan" class="py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Pilihan Ruangan</h2>
+                <span class="text-xs font-bold text-[#0353a4] uppercase tracking-wider block mb-1">Rekomendasi Utama</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Pilihan Ruangan Terpopuler</h2>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">4 Ruangan favorit profesional & tim berkembang di BSD City.</p>
             </div>
 
-            <!-- Minimal Category Tabs -->
-            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none text-xs">
-                <a href="{{ route('home') }}?category=all#ruangan" class="px-3 py-1.5 rounded-lg font-medium transition shrink-0 {{ $selectedCategory === 'all' ? 'bg-[#0353a4] text-white' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200' }}">
-                    Semua
-                </a>
-                <a href="{{ route('home') }}?category=coworking#ruangan" class="px-3 py-1.5 rounded-lg font-medium transition shrink-0 {{ $selectedCategory === 'coworking' ? 'bg-[#0353a4] text-white' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200' }}">
-                    Co-Working
-                </a>
-                <a href="{{ route('home') }}?category=meeting_room#ruangan" class="px-3 py-1.5 rounded-lg font-medium transition shrink-0 {{ $selectedCategory === 'meeting_room' ? 'bg-[#0353a4] text-white' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200' }}">
-                    Meeting Room
-                </a>
-                <a href="{{ route('home') }}?category=private_office#ruangan" class="px-3 py-1.5 rounded-lg font-medium transition shrink-0 {{ $selectedCategory === 'private_office' ? 'bg-[#0353a4] text-white' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200' }}">
-                    Private Office
-                </a>
-                <a href="{{ route('home') }}?category=virtual_office#ruangan" class="px-3 py-1.5 rounded-lg font-medium transition shrink-0 {{ $selectedCategory === 'virtual_office' ? 'bg-[#0353a4] text-white' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200' }}">
-                    Virtual Office
-                </a>
-                <a href="{{ route('home') }}?category=event_space#ruangan" class="px-3 py-1.5 rounded-lg font-medium transition shrink-0 {{ $selectedCategory === 'event_space' ? 'bg-[#0353a4] text-white' : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200' }}">
-                    Event Hall
+            <div>
+                <a href="{{ route('rooms.catalog') }}" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0353a4] hover:text-[#023e7d] transition group">
+                    <span>Lihat Seluruh Ruangan (Katalog Lengkap)</span>
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
                 </a>
             </div>
         </div>
 
-        <!-- Rooms Grid -->
+        <!-- 4 Popular Rooms Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @forelse($rooms as $room)
+            @forelse($popularRooms as $room)
             @php
                 $videoMedia = $room->media->firstWhere('file_type', 'video');
+                $waMessage = rawurlencode("Halo Admin K-Space, saya tertarik ingin menyewa ruangan '{$room->name}' ({$room->formatted_price}). Mohon info ketersediaan.");
             @endphp
             <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-lg transition-shadow duration-200 flex flex-col group">
                 <!-- Thumbnail -->
@@ -292,6 +235,12 @@
                     @if($videoMedia)
                     <span class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-rose-600 text-white">
                         Video
+                    </span>
+                    @endif
+
+                    @if($room->is_featured)
+                    <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#0353a4] text-white shadow-xs">
+                        Terpopuler
                     </span>
                     @endif
                 </div>
@@ -321,24 +270,44 @@
                     </div>
 
                     <!-- Pricing & Button -->
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                        <div>
+                    <div class="pt-3 border-t border-slate-100 space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Harga</span>
                             <span class="text-sm font-bold text-slate-900">{{ $room->formatted_price }}</span>
                         </div>
-                        <a href="{{ route('rooms.show', $room->slug) }}" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-[#0353a4] text-white text-xs font-semibold transition group/btn">
-                            <span>Detail</span>
-                            <svg class="w-3.5 h-3.5 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </a>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="{{ route('rooms.show', $room->slug) }}" class="inline-flex items-center justify-center py-2 px-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold transition">
+                                <span>Detail</span>
+                            </a>
+                            <a href="https://wa.me/6281908797799?text={{ $waMessage }}" target="_blank" rel="noopener noreferrer" data-track-cta="whatsapp" data-cta-label="popular_room_pesan_{{ $room->slug }}" class="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white text-xs font-semibold transition shadow-xs">
+                                <svg class="w-3.5 h-3.5 shrink-0 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                <span>Pesan</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             @empty
             <div class="col-span-full py-12 text-center bg-white rounded-2xl border border-slate-200">
-                <p class="text-sm font-semibold text-slate-600">Tidak ada ruangan dalam kategori ini.</p>
+                <p class="text-sm font-semibold text-slate-600">Belum ada ruangan yang ditampilkan.</p>
             </div>
             @endforelse
+        </div>
+
+        <!-- Banner Arahkan ke Halaman Khusus Ruangan -->
+        <div class="mt-12 p-8 rounded-3xl bg-white border border-slate-200 text-center shadow-xs">
+            <h3 class="text-lg font-bold text-slate-900">Mencari Ruangan Lain?</h3>
+            <p class="text-xs text-slate-500 mt-1 max-w-lg mx-auto">Kami memiliki berbagai pilihan unit kantor, co-working space, dan ruang rapat lainnya dengan kapasitas 1 hingga 50 orang.</p>
+            <div class="mt-5">
+                <a href="{{ route('rooms.catalog') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#001845] hover:bg-[#0353a4] text-white text-xs sm:text-sm font-semibold transition shadow-sm group">
+                    <span>Buka Katalog Lengkap Seluruh Ruangan</span>
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </div>
 </section>
