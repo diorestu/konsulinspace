@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
-@section('title', $room->name . ' - KonsulinSpace')
-@section('meta_description', $room->short_description ?: 'Sewa ' . $room->name . ' di KonsulinSpace dengan fasilitas lengkap, koneksi internet cepat, dan lingkungan kerja profesional.')
+@section('title', $room->name . ' - Sewa Ruangan KonsulinSpace BSD')
+@section('meta_description', $room->short_description ?: 'Sewa ' . $room->name . ' (' . $room->category_label . ') di Greenwich Business Park, BSD City, Tangerang. Tarif ' . $room->formatted_price . ' lengkap dengan fasilitas profesional.')
+@section('meta_keywords', 'sewa ' . strtolower($room->name) . ', ' . strtolower($room->category_label) . ' BSD, sewa ruang kerja Tangerang, Greenwich Business Park, KonsulinSpace BSD')
+@section('og_image', $room->thumbnail_url ?: asset('images/og-image.jpg'))
 
 @section('content')
 

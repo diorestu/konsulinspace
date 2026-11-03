@@ -61,6 +61,13 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('aspect-[21/9]');
         $response->assertSee('carousel-slide');
         $response->assertSee('logo-transparent.png');
+        // Meta tags, OG images, and Favicon
+        $response->assertSee('og:image');
+        $response->assertSee('og-image.jpg');
+        $response->assertSee('favicon-32x32.png');
+        $response->assertSee('apple-touch-icon.png');
+        $response->assertSee('name="keywords"', false);
+        $response->assertSee('rel="canonical"', false);
         // Landing page does not contain reservation form or location sections
         $response->assertDontSee('id="reservasi"', false);
         $response->assertDontSee('id="kontak"', false);

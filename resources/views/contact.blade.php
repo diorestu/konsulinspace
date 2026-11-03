@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak & Reservasi Ruangan - KonsulinSpace')
-@section('meta_description', 'Hubungi tim KonsulinSpace untuk konsultasi sewa co-working space, meeting room, private office, dan pendaftaran alamat virtual office di BSD, Tangerang.')
+@section('title', 'Kontak & Reservasi Ruangan - KonsulinSpace BSD')
+@section('meta_description', 'Hubungi tim KonsulinSpace untuk konsultasi sewa co-working space, meeting room 4K, private office, dan pendaftaran alamat virtual office resmi di Greenwich Business Park, BSD City, Tangerang.')
+@section('meta_keywords', 'kontak konsulinspace, reservasi ruangan BSD, sewa meeting room Tangerang, pendaftaran virtual office BSD, Greenwich Business Park Blok B1, WhatsApp Admin K-Space')
+@section('og_image', asset('images/og-image.jpg'))
 
 @section('content')
 

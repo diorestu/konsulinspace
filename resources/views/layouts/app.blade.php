@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'KonsulinSpace - Modern Co-Working Space & Virtual Office')</title>
-    <meta name="description" content="@yield('meta_description', 'KonsulinSpace menyediakan ruang kerja bersama (co-working space), private office, meeting room, dan jasa virtual office prestisius di lokasi strategis.')">
+    <title>@yield('title', 'KonsulinSpace - Co-Working Space & Virtual Office BSD, Tangerang')</title>
+    <meta name="description" content="@yield('meta_description', 'KonsulinSpace menyediakan ruang kerja fleksibel, private office, meeting room 4K, dan virtual office legalitas resmi di Greenwich Business Park, BSD City, Tangerang.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'co-working space BSD, virtual office BSD, sewa kantor Tangerang, private office BSD City, meeting room BSD, alamat domisili PT Tangerang, izin PKP BSD, Greenwich Business Park, KonsulinSpace')">
+    <meta name="author" content="KonsulinSpace">
+    <meta name="robots" content="index, follow">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'KonsulinSpace - Co-Working Space & Virtual Office BSD, Tangerang')">
+    <meta property="og:description" content="@yield('meta_description', 'Penyedia co-working space, private office siap huni, dan alamat domisili virtual office resmi di Greenwich Business Park, BSD City, Tangerang.')">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-image.jpg'))">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="KonsulinSpace">
+    <meta property="og:locale" content="id_ID">
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="@yield('title', 'KonsulinSpace - Co-Working Space & Virtual Office BSD, Tangerang')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Penyedia co-working space, private office siap huni, dan alamat domisili virtual office resmi di Greenwich Business Park, BSD City, Tangerang.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/og-image.jpg'))">
+
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <meta name="theme-color" content="#001845">
 
     <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
