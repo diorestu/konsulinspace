@@ -74,6 +74,8 @@ class KonsulinSpaceTest extends TestCase
         $response->assertDontSee('Formulir Reservasi');
         // Portal Admin link is removed from public header and footer
         $response->assertDontSee('Portal Admin');
+        // Studio Podcast facility is removed
+        $response->assertDontSee('Studio Podcast');
     }
 
     public function test_contact_page_loads_with_reservation_form_and_location()

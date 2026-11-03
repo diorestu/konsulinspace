@@ -286,39 +286,6 @@ class DatabaseSeeder extends Seeder
                     ],
                 ],
             ],
-            [
-                'name' => 'Podcast & Recording Studio Pro',
-                'category' => 'meeting_room',
-                'capacity' => '4 Orang',
-                'area_sqm' => '16 m²',
-                'price_hourly' => 250000,
-                'price_daily' => 1750000,
-                'price_monthly' => null,
-                'location_floor' => 'Lantai 2 - Creator Wing',
-                'short_description' => 'Studio podcast kedap suara akustik dengan mikrofon Shure SM7B, mixer Rodecaster Pro II, dan studio lighting.',
-                'description' => 'Studio rekaman modern siap pakai untuk pembuatan konten podcast, voice over, webinar, dan video shooting. Ruangan dilapisi foam akustik premium dengan kamera 4K dan ring light RGB.',
-                'amenities' => [
-                    '4x Shure SM7B Microphones + Cloudlifter',
-                    'Rodecaster Pro II Audio Production Console',
-                    '2x Sony 4K Cameras with HDMI Capture Card',
-                    'Aputure Keylight & RGB Ambient Lighting',
-                    'Soundproofed Acoustic Treatment Room',
-                    'Headphones Monitoring Audio-Technica ATH-M50x',
-                ],
-                'is_featured' => false,
-                'status' => 'available',
-                'order_position' => 8,
-                'media' => [
-                    [
-                        'file_path' => 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80',
-                        'file_name' => 'podcast-studio-1.jpg',
-                        'file_type' => 'image',
-                        'mime_type' => 'image/jpeg',
-                        'file_size' => 430000,
-                        'is_primary' => true,
-                    ],
-                ],
-            ],
         ];
 
         foreach ($roomsData as $data) {

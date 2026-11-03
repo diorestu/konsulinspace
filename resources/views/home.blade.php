@@ -470,7 +470,7 @@
             <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Fasilitas Termasuk</h2>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             <div class="p-4 rounded-xl bg-[#002855] border border-[#023e7d] text-center">
                 <div class="w-9 h-9 rounded-lg bg-[#0353a4]/40 text-[#75afee] flex items-center justify-center mx-auto mb-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -483,13 +483,6 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
                 <h4 class="text-xs font-bold">Akses 24 Jam</h4>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[#002855] border border-[#023e7d] text-center">
-                <div class="w-9 h-9 rounded-lg bg-[#0353a4]/40 text-[#75afee] flex items-center justify-center mx-auto mb-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"/></svg>
-                </div>
-                <h4 class="text-xs font-bold">Studio Podcast</h4>
             </div>
 
             <div class="p-4 rounded-xl bg-[#002855] border border-[#023e7d] text-center">
