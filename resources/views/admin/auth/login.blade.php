@@ -24,11 +24,8 @@
     <div class="w-full max-w-md">
         <!-- Logo & Brand Header -->
         <div class="text-center mb-8">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#002855] via-[#0353a4] to-[#0466c8] flex items-center justify-center text-white font-black text-2xl mx-auto mb-3 shadow-lg shadow-[#0353a4]/40">
-                K
-            </div>
-            <h1 class="text-2xl font-bold text-white tracking-tight">Konsulin<span class="text-[#75afee]">Space</span></h1>
-            <p class="text-slate-400 text-sm mt-1">Portal Admin & Manajemen Ruangan</p>
+            <img src="{{ asset('images/logo-white.png') }}" alt="KonsulinSpace Logo" class="h-16 w-auto object-contain mx-auto mb-3">
+            <p class="text-slate-400 text-sm">Portal Admin & Manajemen Ruangan</p>
         </div>
 
         <!-- Login Card -->

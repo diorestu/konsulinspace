@@ -5,62 +5,178 @@
 
 @section('content')
 
-<!-- Hero Section -->
-<section class="relative bg-[#001845] text-white overflow-hidden py-16 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Hero Carousel Section (Full-Width 21:9, Auto-Sliding 6s) -->
+<section id="heroCarousel" class="relative w-full overflow-hidden bg-[#000814] select-none min-h-[460px] sm:min-h-[500px] md:min-h-0 md:aspect-[21/9]" aria-label="Hero Carousel">
+    
+    <!-- Slides Container -->
+    <div class="relative w-full h-full">
+
+        <!-- Slide 1: Ruang Kerja & Co-Working -->
+        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10" data-slide-index="0">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2100&q=80" alt="Ruang Kerja KonsulinSpace Greenwich BSD" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#000814]/95 via-[#001845]/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#000814]/80 via-transparent to-transparent"></div>
             
-            <!-- Left Headline -->
-            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                    Ruang Kerja & <span class="text-[#75afee]">Virtual Office</span> di BSD, Tangerang
-                </h1>
-
-                <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                    Co-working space fleksibel, private office siap pakai, dan alamat domisili resmi untuk perizinan usaha Anda.
-                </p>
-
-                <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
-                    <a href="#ruangan" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-sm text-center shadow-sm transition">
-                        Lihat Ruangan
-                    </a>
-                    <a href="#virtual-office" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-700 hover:border-slate-500 text-slate-200 font-semibold text-sm text-center transition">
-                        Paket Virtual Office
-                    </a>
-                </div>
-
-                <!-- Minimal Info Numbers -->
-                <div class="pt-8 grid grid-cols-3 gap-6 border-t border-slate-800 text-left max-w-lg">
-                    <div>
-                        <p class="text-2xl font-bold text-white">4</p>
-                        <p class="text-xs text-slate-400 mt-0.5">Lantai Fasilitas</p>
-                    </div>
-                    <div>
-                        <p class="text-2xl font-bold text-white">300 Mbps</p>
-                        <p class="text-xs text-slate-400 mt-0.5">Internet Fiber</p>
-                    </div>
-                    <div>
-                        <p class="text-2xl font-bold text-white">24/7</p>
-                        <p class="text-xs text-slate-400 mt-0.5">Akses Member</p>
+            <div class="absolute inset-0 flex items-center">
+                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10">
+                    <div class="max-w-2xl space-y-4 sm:space-y-5 text-white">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide">
+                            Greenwich Business Park, BSD City
+                        </span>
+                        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                            Ruang Kerja & <span class="text-[#75afee]">Virtual Office</span> di BSD, Tangerang
+                        </h1>
+                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                            Co-working space fleksibel, private office siap pakai, dan legalitas domisili resmi untuk perizinan usaha Anda di kawasan bisnis terdepan.
+                        </p>
+                        <div class="pt-2 flex flex-wrap items-center gap-3">
+                            <a href="#ruangan" class="px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs sm:text-sm text-center shadow-md shadow-[#0353a4]/30 transition">
+                                Lihat Ruangan
+                            </a>
+                            <a href="{{ route('contact') }}" class="px-6 py-3 rounded-xl border border-white/30 hover:border-white text-white font-semibold text-xs sm:text-sm text-center backdrop-blur-sm transition">
+                                Reservasi Sekarang
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Right Hero Card / Visual Preview -->
-            <div class="lg:col-span-5">
-                <div class="relative rounded-2xl overflow-hidden shadow-xl border border-slate-800 bg-[#002855]">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" alt="KonsulinSpace Lounge" class="w-full h-80 sm:h-96 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#001845]/90 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-5 left-5 right-5 text-white">
-                        <h4 class="text-base font-bold">Modern Workspace Hub</h4>
-                        <p class="text-xs text-slate-300 mt-0.5">Dirancang untuk kenyamanan & produktivitas kerja</p>
-                    </div>
-                </div>
-            </div>
-
         </div>
+
+        <!-- Slide 2: Virtual Office & Legalitas PT/CV -->
+        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 pointer-events-none" data-slide-index="1">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2100&q=80" alt="Virtual Office Gedung BSD Tangerang" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#000814]/95 via-[#001845]/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#000814]/80 via-transparent to-transparent"></div>
+            
+            <div class="absolute inset-0 flex items-center">
+                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10">
+                    <div class="max-w-2xl space-y-4 sm:space-y-5 text-white">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide">
+                            Legalitas Usaha & PKP
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                            Alamat Domisili Resmi <span class="text-[#75afee]">PT & CV</span> di BSD Tangerang
+                        </h2>
+                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                            Zonasi komersial perkantoran resmi untuk pengukuhan PKP, surat domisili gedung, penanganan surat masuk kilat, dan resepsionis representatif.
+                        </p>
+                        <div class="pt-2 flex flex-wrap items-center gap-3">
+                            <a href="#virtual-office" class="px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs sm:text-sm text-center shadow-md shadow-[#0353a4]/30 transition">
+                                Paket Virtual Office
+                            </a>
+                            <a href="https://wa.me/6281908797799?text=Halo%20Admin%20K-Space,%20saya%20tertarik%20dengan%20paket%20virtual%20office." target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl border border-white/30 hover:border-white text-white font-semibold text-xs sm:text-sm text-center backdrop-blur-sm transition">
+                                Tanya Admin K-Space
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Meeting Room & Konferensi 4K -->
+        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 pointer-events-none" data-slide-index="2">
+            <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=2100&q=80" alt="Executive Meeting Room KonsulinSpace" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#000814]/95 via-[#001845]/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#000814]/80 via-transparent to-transparent"></div>
+            
+            <div class="absolute inset-0 flex items-center">
+                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10">
+                    <div class="max-w-2xl space-y-4 sm:space-y-5 text-white">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide">
+                            Audio Visual 4K & Kedap Suara
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                            Meeting Room Profesional & <span class="text-[#75afee]">Video Conference</span>
+                        </h2>
+                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                            Ruang rapat 4 hingga 20 orang dilengkapi monitor presentasi 4K, mikrofon konferensi jernih, whiteboard, dan free flow minuman.
+                        </p>
+                        <div class="pt-2 flex flex-wrap items-center gap-3">
+                            <a href="{{ route('home') }}?category=meeting_room#ruangan" class="px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs sm:text-sm text-center shadow-md shadow-[#0353a4]/30 transition">
+                                Sewa Ruang Rapat
+                            </a>
+                            <a href="{{ route('contact') }}" class="px-6 py-3 rounded-xl border border-white/30 hover:border-white text-white font-semibold text-xs sm:text-sm text-center backdrop-blur-sm transition">
+                                Hubungi Kami
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Private Office Suites -->
+        <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 pointer-events-none" data-slide-index="3">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2100&q=80" alt="Private Office Suite KonsulinSpace" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#000814]/95 via-[#001845]/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#000814]/80 via-transparent to-transparent"></div>
+            
+            <div class="absolute inset-0 flex items-center">
+                <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-10">
+                    <div class="max-w-2xl space-y-4 sm:space-y-5 text-white">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide">
+                            Akses Kunci Mandiri 24/7
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                            Private Office Siap Huni <span class="text-[#75afee]">Tim 2 - 20 Orang</span>
+                        </h2>
+                        <p class="text-xs sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                            Ruangan kantor privat fully-furnished dengan meja ergonomis, akses kartu RFID mandiri, kuota print gratis, dan free-flow kopi harian.
+                        </p>
+                        <div class="pt-2 flex flex-wrap items-center gap-3">
+                            <a href="{{ route('home') }}?category=private_office#ruangan" class="px-6 py-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white font-semibold text-xs sm:text-sm text-center shadow-md shadow-[#0353a4]/30 transition">
+                                Pilihan Unit Kantor
+                            </a>
+                            <a href="{{ route('contact') }}" class="px-6 py-3 rounded-xl border border-white/30 hover:border-white text-white font-semibold text-xs sm:text-sm text-center backdrop-blur-sm transition">
+                                Jadwal Survei Gedung
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button type="button" id="carouselPrevBtn" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-[#0353a4] text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition shadow-lg focus:outline-none" aria-label="Slide Sebelumnya">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button type="button" id="carouselNextBtn" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-[#0353a4] text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition shadow-lg focus:outline-none" aria-label="Slide Selanjutnya">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </button>
+
+    <!-- Indicators (Dots / Pills) -->
+    <div id="carouselIndicators" class="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+        <button type="button" data-slide-to="0" class="carousel-dot h-2 w-8 bg-[#75afee] rounded-full transition-all duration-300 focus:outline-none" aria-label="Ke Slide 1"></button>
+        <button type="button" data-slide-to="1" class="carousel-dot h-2 w-2.5 bg-white/40 hover:bg-white/70 rounded-full transition-all duration-300 focus:outline-none" aria-label="Ke Slide 2"></button>
+        <button type="button" data-slide-to="2" class="carousel-dot h-2 w-2.5 bg-white/40 hover:bg-white/70 rounded-full transition-all duration-300 focus:outline-none" aria-label="Ke Slide 3"></button>
+        <button type="button" data-slide-to="3" class="carousel-dot h-2 w-2.5 bg-white/40 hover:bg-white/70 rounded-full transition-all duration-300 focus:outline-none" aria-label="Ke Slide 4"></button>
     </div>
 </section>
+
+<!-- Stats Bar below Carousel -->
+<div class="bg-[#001845] border-b border-slate-800 py-6 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-[#75afee]">Greenwich</p>
+                <p class="text-xs text-slate-400 mt-0.5">Business Park BSD</p>
+            </div>
+            <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-white">4 Lantai</p>
+                <p class="text-xs text-slate-400 mt-0.5">Fasilitas Lengkap</p>
+            </div>
+            <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-white">300 Mbps</p>
+                <p class="text-xs text-slate-400 mt-0.5">Internet Fiber</p>
+            </div>
+            <div>
+                <p class="text-xl sm:text-2xl font-extrabold text-white">24/7</p>
+                <p class="text-xs text-slate-400 mt-0.5">Akses Member</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Layanan -->
 <section id="layanan" class="py-16 bg-white border-b border-slate-100">
@@ -461,5 +577,129 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const carousel = document.getElementById('heroCarousel');
+        if (!carousel) return;
+
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const dots = carousel.querySelectorAll('.carousel-dot');
+        const prevBtn = document.getElementById('carouselPrevBtn');
+        const nextBtn = document.getElementById('carouselNextBtn');
+        const totalSlides = slides.length;
+        let currentIndex = 0;
+        let slideTimer = null;
+        const SLIDE_INTERVAL = 6000; // Auto-sliding every 6 seconds (between 5 and 10 seconds)
+
+        function goToSlide(index) {
+            currentIndex = (index + totalSlides) % totalSlides;
+
+            slides.forEach((slide, i) => {
+                if (i === currentIndex) {
+                    slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+                    slide.classList.add('opacity-100', 'z-10');
+                } else {
+                    slide.classList.remove('opacity-100', 'z-10');
+                    slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                if (i === currentIndex) {
+                    dot.classList.remove('w-2.5', 'bg-white/40');
+                    dot.classList.add('w-8', 'bg-[#75afee]');
+                } else {
+                    dot.classList.remove('w-8', 'bg-[#75afee]');
+                    dot.classList.add('w-2.5', 'bg-white/40');
+                }
+            });
+        }
+
+        function nextSlide() {
+            goToSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            goToSlide(currentIndex - 1);
+        }
+
+        function startAutoSlide() {
+            stopAutoSlide();
+            slideTimer = setInterval(nextSlide, SLIDE_INTERVAL);
+        }
+
+        function stopAutoSlide() {
+            if (slideTimer) {
+                clearInterval(slideTimer);
+                slideTimer = null;
+            }
+        }
+
+        function resetTimer() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function () {
+                nextSlide();
+                resetTimer();
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function () {
+                prevSlide();
+                resetTimer();
+            });
+        }
+
+        dots.forEach((dot) => {
+            dot.addEventListener('click', function () {
+                const targetIndex = parseInt(this.getAttribute('data-slide-to'), 10);
+                goToSlide(targetIndex);
+                resetTimer();
+            });
+        });
+
+        // Pause on hover
+        carousel.addEventListener('mouseenter', stopAutoSlide);
+        carousel.addEventListener('mouseleave', startAutoSlide);
+
+        // Touch swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        carousel.addEventListener('touchstart', function (e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', function (e) {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchEndX - touchStartX;
+            if (Math.abs(diff) > 40) {
+                if (diff < 0) nextSlide();
+                else prevSlide();
+                resetTimer();
+            }
+        }, { passive: true });
+
+        // Keyboard arrow navigation
+        window.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+                resetTimer();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+                resetTimer();
+            }
+        });
+
+        // Start auto slide
+        startAutoSlide();
+    });
+</script>
+@endpush
 
 @endsection

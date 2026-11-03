@@ -24,10 +24,9 @@
 
     <!-- Mobile Header -->
     <div class="md:hidden bg-[#001845] text-white px-4 py-3 flex items-center justify-between sticky top-0 z-50">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-lg bg-[#0353a4] flex items-center justify-center font-bold text-white text-base">K</div>
-            <span class="font-bold tracking-tight">Konsulin<span class="text-[#75afee]">Admin</span></span>
-        </div>
+        <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2">
+            <img src="{{ asset('images/logo-white.png') }}" alt="KonsulinSpace Logo" class="h-8 w-auto object-contain">
+        </a>
         <button id="adminSidebarToggle" class="p-2 rounded-md hover:bg-[#002855]">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
@@ -36,14 +35,10 @@
     <!-- Sidebar Navigation -->
     <aside id="adminSidebar" class="w-64 bg-[#001845] text-slate-300 shrink-0 hidden md:flex flex-col min-h-screen border-r border-[#002855] transition-all z-40 fixed md:static inset-y-0 left-0">
         <!-- Logo -->
-        <div class="h-20 px-6 border-b border-[#002855] flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#002855] via-[#0353a4] to-[#0466c8] flex items-center justify-center text-white font-black text-xl shadow-md shadow-[#0353a4]/25">
-                K
-            </div>
-            <div>
-                <span class="text-base font-bold text-white tracking-tight">Konsulin<span class="text-[#75afee]">Space</span></span>
-                <p class="text-[10px] uppercase font-bold tracking-widest text-[#75afee]">Admin Panel</p>
-            </div>
+        <div class="h-20 px-6 border-b border-[#002855] flex items-center">
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
+                <img src="{{ asset('images/logo-white.png') }}" alt="KonsulinSpace Logo" class="h-10 w-auto object-contain">
+            </a>
         </div>
 
         <!-- Navigation Links -->

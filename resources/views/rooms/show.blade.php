@@ -28,7 +28,7 @@
                 <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">{{ $room->name }}</h1>
                 <p class="text-xs sm:text-sm text-slate-500 mt-1 flex items-center gap-1.5">
                     <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                    <span>{{ $room->location_floor ?: 'Gedung Konsulin BSD, Tangerang' }}</span>
+                    <span>{{ $room->location_floor ?: 'Greenwich Business Park, Blok B1, BSD' }}</span>
                 </p>
             </div>
 
@@ -177,8 +177,8 @@
 
                     <!-- WhatsApp Direct Link -->
                     @php
-                        $msg = rawurlencode("Halo KonsulinSpace, saya tertarik ingin menyewa ruangan '{$room->name}' ({$room->formatted_price}). Mohon info ketersediaan.");
-                        $waDirect = "https://wa.me/6281298765432?text={$msg}";
+                        $msg = rawurlencode("Halo Admin K-Space, saya tertarik ingin menyewa ruangan '{$room->name}' ({$room->formatted_price}). Mohon info ketersediaan.");
+                        $waDirect = "https://wa.me/6281908797799?text={$msg}";
                     @endphp
                     <div class="pt-2 text-center border-t border-slate-100">
                         <a href="{{ $waDirect }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl border border-[#0353a4] text-[#0353a4] font-semibold text-xs hover:bg-[#edf4fc] transition">

@@ -56,6 +56,11 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('BSD, Tangerang');
         $response->assertDontSee('Sudirman');
         $response->assertDontSee('Jakarta');
+        // Hero 21:9 carousel and logo
+        $response->assertSee('heroCarousel');
+        $response->assertSee('aspect-[21/9]');
+        $response->assertSee('carousel-slide');
+        $response->assertSee('logo-transparent.png');
         // Landing page does not contain reservation form or location sections
         $response->assertDontSee('id="reservasi"', false);
         $response->assertDontSee('id="kontak"', false);
@@ -68,8 +73,10 @@ class KonsulinSpaceTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Kontak & Reservasi Ruangan');
         $response->assertSee('Formulir Reservasi');
-        $response->assertSee('Gedung Konsulin BSD Green Office');
-        $response->assertSee('BSD, Tangerang');
+        $response->assertSee('Greenwich Business Park, Blok B1');
+        $response->assertSee('Pagedangan');
+        $response->assertSee('+6281908797799');
+        $response->assertSee('Admin K-Space');
         $response->assertDontSee('Sudirman');
         $response->assertDontSee('Jakarta');
         $response->assertSee('date-white-icon');
