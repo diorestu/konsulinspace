@@ -62,7 +62,8 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('heroCarousel');
         $response->assertSee('aspect-[21/9]');
         $response->assertSee('carousel-slide');
-        $response->assertSee('logo-transparent.png');
+        $response->assertSee('konsulinspace-logo.png');
+        $response->assertSee('konsulinspace-logo-white.png');
         // Meta tags, OG images, and Favicon
         $response->assertSee('og:image');
         $response->assertSee('og-image.png');
