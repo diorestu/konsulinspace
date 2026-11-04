@@ -42,6 +42,8 @@ class VirtualOfficePackageController extends Controller
             'tagline' => 'nullable|string|max:255',
             'price_monthly' => 'required|numeric|min:0',
             'price_yearly' => 'nullable|numeric|min:0',
+            'price_note' => 'nullable|string|max:50',
+            'billing_period' => 'nullable|string|max:50',
             'features_text' => 'nullable|string',
             'is_popular' => 'nullable|boolean',
             'status' => 'required|in:active,inactive',
@@ -66,6 +68,8 @@ class VirtualOfficePackageController extends Controller
         $package->tagline = $validated['tagline'] ?? null;
         $package->price_monthly = $validated['price_monthly'];
         $package->price_yearly = $validated['price_yearly'] ?? null;
+        $package->price_note = $validated['price_note'] ?? 'exclude PPn';
+        $package->billing_period = $validated['billing_period'] ?? 'tahun';
         $package->features = $features;
         $package->is_popular = $request->boolean('is_popular');
         $package->status = $validated['status'];
@@ -97,6 +101,8 @@ class VirtualOfficePackageController extends Controller
             'tagline' => 'nullable|string|max:255',
             'price_monthly' => 'required|numeric|min:0',
             'price_yearly' => 'nullable|numeric|min:0',
+            'price_note' => 'nullable|string|max:50',
+            'billing_period' => 'nullable|string|max:50',
             'features_text' => 'nullable|string',
             'is_popular' => 'nullable|boolean',
             'status' => 'required|in:active,inactive',
@@ -111,6 +117,8 @@ class VirtualOfficePackageController extends Controller
         $virtualOffice->tagline = $validated['tagline'] ?? null;
         $virtualOffice->price_monthly = $validated['price_monthly'];
         $virtualOffice->price_yearly = $validated['price_yearly'] ?? null;
+        $virtualOffice->price_note = $validated['price_note'] ?? 'exclude PPn';
+        $virtualOffice->billing_period = $validated['billing_period'] ?? 'tahun';
         $virtualOffice->features = $features;
         $virtualOffice->is_popular = $request->boolean('is_popular');
         $virtualOffice->status = $validated['status'];

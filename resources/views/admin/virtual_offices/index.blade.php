@@ -48,8 +48,8 @@
                 <thead>
                     <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500">
                         <th class="py-3.5 px-4 sm:px-6">Nama Paket</th>
-                        <th class="py-3.5 px-4">Harga Bulanan</th>
-                        <th class="py-3.5 px-4">Harga Tahunan</th>
+                        <th class="py-3.5 px-4">Harga Paket</th>
+                        <th class="py-3.5 px-4">Keterangan</th>
                         <th class="py-3.5 px-4">Fasilitas Termasuk</th>
                         <th class="py-3.5 px-4">Urutan</th>
                         <th class="py-3.5 px-4">Status</th>
@@ -83,20 +83,17 @@
                             </div>
                         </td>
 
-                        <!-- Monthly Price -->
+                        <!-- Price -->
                         <td class="py-4 px-4">
                             <span class="font-bold text-slate-900">{{ $package->formatted_price_monthly }}</span>
-                            <span class="text-xs text-slate-400 block">/ bulan</span>
+                            <span class="text-xs text-slate-400 block">/ {{ $package->billing_period ?: 'tahun' }}</span>
                         </td>
 
-                        <!-- Yearly Price -->
+                        <!-- Note -->
                         <td class="py-4 px-4">
-                            @if($package->price_yearly)
-                            <span class="font-semibold text-slate-800">{{ $package->formatted_price_yearly }}</span>
-                            <span class="text-xs text-slate-400 block">/ tahun</span>
-                            @else
-                            <span class="text-xs text-slate-400">-</span>
-                            @endif
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                                {{ $package->price_note ?: 'exclude PPn' }}
+                            </span>
                         </td>
 
                         <!-- Features Preview -->

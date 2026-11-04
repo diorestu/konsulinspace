@@ -363,67 +363,29 @@ class DatabaseSeeder extends Seeder
             Inquiry::create($inq);
         }
 
-        // 4. Create Virtual Office Packages
-        $voPackages = [
-            [
-                'name' => 'Silver Starter',
-                'slug' => 'silver-starter',
-                'tagline' => 'Alamat bisnis komersial resmi untuk freelancer & usaha rintisan',
-                'price_monthly' => 350000,
-                'price_yearly' => 3800000,
-                'features' => [
-                    'Alamat Bisnis Komersial BSD',
-                    'Penerimaan Surat & Paket',
-                    'Notifikasi WhatsApp Real-time',
-                    'Diskon Sewa Meeting Room',
-                ],
-                'is_popular' => false,
-                'status' => 'active',
-                'order_position' => 1,
-                'cta_text' => 'Pilih Silver',
+        // 4. Create Virtual Office Package (1 Paket Saja)
+        VirtualOfficePackage::query()->delete();
+        VirtualOfficePackage::create([
+            'name' => 'Virtual Office',
+            'slug' => 'virtual-office',
+            'tagline' => 'Alamat domisili komersial resmi untuk legalitas perusahaan & pendirian PT/CV Anda di BSD City.',
+            'price_monthly' => 2600000,
+            'price_yearly' => 2600000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
+            'features' => [
+                'Meeting Room Facility 4 hours/month',
+                'PT. Address & Mail',
+                'Surat Keterangan Domisili Gedung (SKDU)',
+                'Layanan Resepsionis & Penerimaan Tamu Profesional',
+                'Notifikasi Surat & Dokumen via WhatsApp Real-time',
+                'Zonasi Perkantoran Komersial untuk Pengurusan PKP',
             ],
-            [
-                'name' => 'Gold Business',
-                'slug' => 'gold-business',
-                'tagline' => 'Paling populer untuk legalitas PT/CV & kebutuhan ruang meeting bulanan',
-                'price_monthly' => 450000,
-                'price_yearly' => 4800000,
-                'features' => [
-                    'Surat Keterangan Domisili Gedung',
-                    'Gratis 4 Jam Meeting Room / Bulan',
-                    'Layanan Resepsionis & Tamu',
-                    'Penerimaan & Scan Surat Digital',
-                ],
-                'is_popular' => true,
-                'status' => 'active',
-                'order_position' => 2,
-                'cta_text' => 'Pilih Gold',
-            ],
-            [
-                'name' => 'Platinum Corporate',
-                'slug' => 'platinum-corporate',
-                'tagline' => 'Paket premium lengkap izin zonasi PKP & nomor kantor khusus',
-                'price_monthly' => 650000,
-                'price_yearly' => 6900000,
-                'features' => [
-                    'Izin Zonasi PKP & Pendampingan',
-                    'Nomor Telepon Khusus (021)',
-                    'Gratis 8 Jam Meeting Room / Bulan',
-                    'Signage Logo Perusahaan di Lobby',
-                ],
-                'is_popular' => false,
-                'status' => 'active',
-                'order_position' => 3,
-                'cta_text' => 'Pilih Platinum',
-            ],
-        ];
-
-        foreach ($voPackages as $pkgData) {
-            VirtualOfficePackage::updateOrCreate(
-                ['slug' => $pkgData['slug']],
-                $pkgData
-            );
-        }
+            'is_popular' => true,
+            'status' => 'active',
+            'order_position' => 1,
+            'cta_text' => 'Pilih Paket Virtual Office',
+        ]);
 
         // 5. Create Default Hero Carousel Slides
         $heroSlidesData = [

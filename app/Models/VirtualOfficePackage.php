@@ -17,6 +17,8 @@ class VirtualOfficePackage extends Model
         'tagline',
         'price_monthly',
         'price_yearly',
+        'price_note',
+        'billing_period',
         'features',
         'is_popular',
         'status',

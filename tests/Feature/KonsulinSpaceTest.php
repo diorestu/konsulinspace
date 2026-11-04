@@ -386,6 +386,8 @@ class KonsulinSpaceTest extends TestCase
             'tagline' => 'Alamat prestisius BSD',
             'price_monthly' => 500000,
             'price_yearly' => 5500000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
             'features_text' => "- Alamat Bisnis Resmi\n- Resepsionis Tamu\n- Surat & Paket",
             'is_popular' => 1,
             'status' => 'active',
@@ -399,6 +401,8 @@ class KonsulinSpaceTest extends TestCase
         $this->assertDatabaseHas('virtual_office_packages', [
             'name' => 'Custom Executive VO',
             'price_monthly' => 500000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
             'is_popular' => 1,
             'status' => 'active',
         ]);
@@ -413,6 +417,8 @@ class KonsulinSpaceTest extends TestCase
         $package = VirtualOfficePackage::create([
             'name' => 'Starter Pack VO',
             'price_monthly' => 300000,
+            'price_note' => 'include PPn',
+            'billing_period' => 'bulan',
             'features' => ['Alamat Surat'],
             'status' => 'active',
         ]);
@@ -425,6 +431,8 @@ class KonsulinSpaceTest extends TestCase
             'name' => 'Starter Pack VO Revised',
             'tagline' => 'Tagline baru',
             'price_monthly' => 380000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
             'features_text' => "Alamat Surat\nNotifikasi WhatsApp",
             'is_popular' => 0,
             'status' => 'active',
@@ -436,6 +444,8 @@ class KonsulinSpaceTest extends TestCase
             'id' => $package->id,
             'name' => 'Starter Pack VO Revised',
             'price_monthly' => 380000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
         ]);
 
         $package->refresh();
@@ -479,6 +489,39 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('Rp 420.000');
         $response->assertSee('Fitur Khusus Alpha 1');
         $response->assertDontSee('Paket Hidden Dynamic');
+    }
+
+    public function test_single_virtual_office_package_displays_price_note_and_key_features()
+    {
+        VirtualOfficePackage::query()->delete();
+        VirtualOfficePackage::create([
+            'name' => 'Virtual Office',
+            'slug' => 'virtual-office',
+            'tagline' => 'Alamat domisili komersial resmi untuk legalitas perusahaan.',
+            'price_monthly' => 2600000,
+            'price_yearly' => 2600000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
+            'features' => [
+                'Meeting Room Facility 4 hours/month',
+                'PT. Address & Mail',
+                'Surat Keterangan Domisili Gedung (SKDU)',
+                'Layanan Resepsionis & Penerimaan Tamu Profesional',
+            ],
+            'is_popular' => true,
+            'status' => 'active',
+            'order_position' => 1,
+            'cta_text' => 'Pilih Paket Virtual Office',
+        ]);
+
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('Rp 2.600.000');
+        $response->assertSee('exclude PPn');
+        $response->assertSee('/ tahun');
+        $response->assertSee('Meeting Room Facility 4 hours/month');
+        $response->assertSee('PT. Address & Mail');
+        $response->assertSee('data-track-cta="whatsapp"', false);
     }
 
     public function test_header_menu_contains_only_specified_items_and_no_faq()
