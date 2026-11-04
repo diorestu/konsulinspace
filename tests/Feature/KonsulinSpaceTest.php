@@ -505,8 +505,8 @@ class KonsulinSpaceTest extends TestCase
             'features' => [
                 'Meeting Room Facility 4 hours/month',
                 'PT. Address & Mail',
-                'Surat Keterangan Domisili Gedung (SKDU)',
                 'Layanan Resepsionis & Penerimaan Tamu Profesional',
+                'Zonasi Perkantoran Komersial untuk Pengurusan PKP',
             ],
             'is_popular' => true,
             'status' => 'active',
@@ -521,6 +521,8 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('/ tahun');
         $response->assertSee('Meeting Room Facility 4 hours/month');
         $response->assertSee('PT. Address & Mail');
+        $response->assertDontSee('Surat Keterangan Domisili Gedung (SKDU)');
+        $response->assertDontSee('Notifikasi Surat & Dokumen via WhatsApp Real-time');
         $response->assertSee('data-track-cta="whatsapp"', false);
     }
 

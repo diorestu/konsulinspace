@@ -79,7 +79,7 @@
             <label for="features_text" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                 Fasilitas yang Didapat <span class="text-rose-500">*</span>
             </label>
-            <textarea name="features_text" id="features_text" rows="6" placeholder="Alamat Bisnis Komersial BSD&#10;Surat Keterangan Domisili Gedung&#10;Gratis 4 Jam Meeting Room / Bulan&#10;Layanan Resepsionis & Tamu&#10;Penerimaan & Scan Surat Digital" class="w-full p-4 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] outline-none font-mono text-xs leading-relaxed">{{ old('features_text') }}</textarea>
+            <textarea name="features_text" id="features_text" rows="6" placeholder="Meeting Room Facility 4 hours/month&#10;PT. Address & Mail&#10;Layanan Resepsionis & Penerimaan Tamu Profesional&#10;Zonasi Perkantoran Komersial untuk Pengurusan PKP" class="w-full p-4 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-[#0353a4] focus:border-[#0353a4] outline-none font-mono text-xs leading-relaxed">{{ old('features_text') }}</textarea>
             <p class="text-[11px] text-slate-400 mt-1.5 flex items-center gap-1.5">
                 <svg class="w-4 h-4 text-[#0353a4] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span>Tuliskan <strong>satu fasilitas per baris</strong>. Format bullet / strip otomatis dirapikan oleh sistem.</span>
