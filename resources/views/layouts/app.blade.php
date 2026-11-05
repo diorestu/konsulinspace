@@ -89,10 +89,10 @@
     <!-- Navigation Header -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all shadow-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
+            <div class="flex items-center justify-between h-20 md:h-[88px]">
                 <!-- Brand Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <img src="{{ asset('images/konsulinspace-logo.png') }}" alt="KonsulinSpace Logo" class="h-14 w-auto object-contain group-hover:opacity-90 transition">
+                    <img src="{{ asset('images/konsulinspace-logo.png') }}" alt="KonsulinSpace Logo" class="h-[70px] w-auto object-contain group-hover:opacity-90 transition">
                 </a>
 
                 <!-- Desktop Nav Items: Beranda, Virtual Office, Co-working Space, Kontak -->
@@ -183,7 +183,7 @@
                 <!-- Brand Info -->
                 <div class="lg:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
-                        <img src="{{ asset('images/konsulinspace-logo-white.png') }}" alt="KonsulinSpace Logo" class="h-14 w-auto object-contain">
+                        <img src="{{ asset('images/konsulinspace-logo-white.png') }}" alt="KonsulinSpace Logo" class="h-[70px] w-auto object-contain">
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
                         Penyedia co-working space, private office, meeting room, dan legalitas alamat virtual office di BSD, Tangerang.

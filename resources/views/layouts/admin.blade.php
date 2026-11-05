@@ -34,7 +34,7 @@
     <!-- Mobile Header -->
     <div class="md:hidden bg-[#001845] text-white px-4 py-3 flex items-center justify-between sticky top-0 z-50">
         <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2">
-            <img src="{{ asset('images/konsulinspace-logo-white.png') }}" alt="KonsulinSpace Logo" class="h-9 w-auto object-contain">
+            <img src="{{ asset('images/konsulinspace-logo-white.png') }}" alt="KonsulinSpace Logo" class="h-[45px] w-auto object-contain">
         </a>
         <button id="adminSidebarToggle" class="p-2 rounded-md hover:bg-[#002855]">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -46,7 +46,7 @@
         <!-- Logo -->
         <div class="h-20 px-6 border-b border-[#002855] flex items-center">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
-                <img src="{{ asset('images/konsulinspace-logo-white.png') }}" alt="KonsulinSpace Logo" class="h-11 w-auto object-contain">
+                <img src="{{ asset('images/konsulinspace-logo-white.png') }}" alt="KonsulinSpace Logo" class="h-[55px] w-auto object-contain">
             </a>
         </div>
 

@@ -33,7 +33,7 @@
     <div class="w-full max-w-md">
         <!-- Logo & Brand Header -->
         <div class="text-center mb-8">
-            <img src="{{ asset('images/konsulinspace-logo-white.png') }}" alt="KonsulinSpace Logo" class="h-20 w-auto object-contain mx-auto mb-3">
+            <img src="{{ asset('images/konsulinspace-logo-white.png') }}" alt="KonsulinSpace Logo" class="h-[100px] w-auto object-contain mx-auto mb-3">
             <p class="text-slate-400 text-sm">Portal Admin & Manajemen Ruangan</p>
         </div>
 
