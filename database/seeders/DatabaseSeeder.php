@@ -262,7 +262,7 @@ class DatabaseSeeder extends Seeder
                 'price_hourly' => 1250000,
                 'price_daily' => 8000000,
                 'price_monthly' => null,
-                'location_floor' => 'Lantai 4 - Event & Workshop Hall',
+                'location_floor' => 'Lantai 3 - Event & Workshop Hall',
                 'short_description' => 'Ruang serbaguna modular untuk seminar, workshop teknologi, konferensi pers, dan networking night.',
                 'description' => 'Event hall dengan layout fleksibel (theater, classroom, banquet, or U-shape). Dilengkapi sound system profesional line-array, wireless mics, dual laser projector, lighting panggung, dan area registrasi tamu yang luas.',
                 'amenities' => [

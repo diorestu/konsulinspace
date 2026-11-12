@@ -56,6 +56,8 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('<details', false);
         // Landing page location copywriting BSD, Tangerang
         $response->assertSee('BSD, Tangerang');
+        $response->assertSee('3 Lantai');
+        $response->assertDontSee('4 Lantai');
         $response->assertDontSee('Sudirman');
         $response->assertDontSee('Jakarta');
         // Hero 21:9 carousel and logo

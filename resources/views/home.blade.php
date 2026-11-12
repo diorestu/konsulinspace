@@ -118,7 +118,7 @@
                 <p class="text-xs text-slate-400 mt-0.5">Business Park BSD</p>
             </div>
             <div>
-                <p class="text-xl sm:text-2xl font-extrabold text-white">4 Lantai</p>
+                <p class="text-xl sm:text-2xl font-extrabold text-white">3 Lantai</p>
                 <p class="text-xs text-slate-400 mt-0.5">Fasilitas Lengkap</p>
             </div>
             <div>
