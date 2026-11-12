@@ -81,9 +81,9 @@ class KonsulinSpaceTest extends TestCase
         $response->assertDontSee('Portal Admin');
         // Studio Podcast facility is removed
         $response->assertDontSee('Studio Podcast');
-        // Header menu items: Beranda, Virtual Office, Co-working Space, Kontak
+        // Header menu items: Beranda, Virtual Office, Our Space, Kontak
         $response->assertSee('Beranda');
-        $response->assertSee('Co-working Space');
+        $response->assertSee('Our Space');
         $response->assertSee('Kontak');
         // Pesan Ruangan CTA button with Call icon
         $response->assertSee('Pesan Ruangan');
@@ -590,7 +590,8 @@ class KonsulinSpaceTest extends TestCase
         $this->assertNotEmpty($headerHtml);
         $this->assertStringContainsString('Beranda', $headerHtml);
         $this->assertStringContainsString('Virtual Office', $headerHtml);
-        $this->assertStringContainsString('Co-working Space', $headerHtml);
+        $this->assertStringContainsString('Our Space', $headerHtml);
+        $this->assertStringNotContainsString('Co-working Space', $headerHtml);
         $this->assertStringContainsString('Kontak', $headerHtml);
         $this->assertStringContainsString('Pesan Ruangan', $headerHtml);
         // FAQ must be removed from header
@@ -638,24 +639,59 @@ class KonsulinSpaceTest extends TestCase
             'status' => 'available',
         ]);
 
-        $meeting = Room::create([
-            'name' => 'Meeting Room Elite',
-            'category' => 'meeting_room',
+        $private = Room::create([
+            'name' => 'Private Suite Alpha',
+            'category' => 'private_office',
+            'price_monthly' => 8500000,
             'status' => 'available',
         ]);
 
-        // General catalog
+        $meeting = Room::create([
+            'name' => 'Meeting Room Elite',
+            'category' => 'meeting_room',
+            'price_hourly' => 150000,
+            'status' => 'available',
+        ]);
+
+        VirtualOfficePackage::create([
+            'name' => 'VO Test Package',
+            'slug' => 'vo-test-package',
+            'price_monthly' => 2600000,
+            'status' => 'active',
+        ]);
+
+        // General catalog: only shows private office and meeting room (as facility), plus virtual office
         $response = $this->get('/rooms');
         $response->assertStatus(200);
-        $response->assertSee('Katalog Lengkap Ruangan');
-        $response->assertSee('Cowork Room Special');
+        $response->assertSee('Our Space &amp; Virtual Office', false);
+        $response->assertSee('Private Suite Alpha');
         $response->assertSee('Meeting Room Elite');
+        $response->assertSee('Fasilitas Tambahan');
+        // Coworking is excluded
+        $response->assertDontSee('Cowork Room Special');
+        // Virtual office packages are displayed
+        $response->assertSee('VO Test Package');
 
-        // Filter by category coworking
-        $filterResponse = $this->get('/rooms?category=coworking');
-        $filterResponse->assertStatus(200);
-        $filterResponse->assertSee('Cowork Room Special');
-        $filterResponse->assertDontSee('Meeting Room Elite');
+        // Filter by category private_office
+        $filterPrivate = $this->get('/rooms?category=private_office');
+        $filterPrivate->assertStatus(200);
+        $filterPrivate->assertSee('Private Suite Alpha');
+        $filterPrivate->assertDontSee('Meeting Room Elite');
+        $filterPrivate->assertDontSee('Cowork Room Special');
+
+        // Filter by category virtual_office
+        $filterVO = $this->get('/rooms?category=virtual_office');
+        $filterVO->assertStatus(200);
+        $filterVO->assertSee('VO Test Package');
+        $filterVO->assertDontSee('Private Suite Alpha');
+        $filterVO->assertDontSee('Meeting Room Elite');
+
+        // Filter by category meeting_room: shows as facility without price
+        $filterMeeting = $this->get('/rooms?category=meeting_room');
+        $filterMeeting->assertStatus(200);
+        $filterMeeting->assertSee('Meeting Room Elite');
+        $filterMeeting->assertSee('Fasilitas Tambahan');
+        $filterMeeting->assertDontSee('Private Suite Alpha');
     }
 
     public function test_google_tracking_tags_render_when_configured()

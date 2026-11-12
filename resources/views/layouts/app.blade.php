@@ -95,7 +95,7 @@
                     <img src="{{ asset('images/konsulinspace-logo.png') }}" alt="KonsulinSpace Logo" class="h-[70px] w-auto object-contain group-hover:opacity-90 transition">
                 </a>
 
-                <!-- Desktop Nav Items: Beranda, Virtual Office, Co-working Space, Kontak -->
+                <!-- Desktop Nav Items: Beranda, Virtual Office, Our Space, Kontak -->
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
                     <a href="{{ route('home') }}" class="hover:text-[#0353a4] transition {{ request()->routeIs('home') && !request('category') ? 'text-[#0353a4] font-semibold' : '' }}">
                         Beranda
@@ -103,8 +103,8 @@
                     <a href="{{ route('home') }}#virtual-office" class="hover:text-[#0353a4] transition">
                         Virtual Office
                     </a>
-                    <a href="{{ route('rooms.catalog') }}?category=coworking" class="hover:text-[#0353a4] transition {{ request('category') === 'coworking' ? 'text-[#0353a4] font-semibold' : '' }}">
-                        Co-working Space
+                    <a href="{{ route('rooms.catalog') }}" class="hover:text-[#0353a4] transition {{ request()->routeIs('rooms.catalog') ? 'text-[#0353a4] font-semibold' : '' }}">
+                        Our Space
                     </a>
                     <a href="{{ route('contact') }}" class="hover:text-[#0353a4] transition {{ request()->routeIs('contact') ? 'text-[#0353a4] font-semibold' : '' }}">
                         Kontak
@@ -130,11 +130,11 @@
                 </div>
             </div>
 
-            <!-- Mobile Dropdown: Beranda, Virtual Office, Co-working Space, Kontak -->
+            <!-- Mobile Dropdown: Beranda, Virtual Office, Our Space, Kontak -->
             <div id="mobileMenu" class="hidden md:hidden pb-6 pt-2 border-t border-slate-100 flex flex-col gap-3 text-sm font-medium text-slate-700">
                 <a href="{{ route('home') }}" class="py-2 hover:text-[#0353a4]">Beranda</a>
                 <a href="{{ route('home') }}#virtual-office" class="py-2 hover:text-[#0353a4]">Virtual Office</a>
-                <a href="{{ route('rooms.catalog') }}?category=coworking" class="py-2 hover:text-[#0353a4]">Co-working Space</a>
+                <a href="{{ route('rooms.catalog') }}" class="py-2 hover:text-[#0353a4]">Our Space</a>
                 <a href="{{ route('contact') }}" class="py-2 hover:text-[#0353a4]">Kontak</a>
                 <div class="pt-2">
                     <a href="{{ route('contact') }}" data-track-cta="whatsapp" data-cta-label="mobile_pesan_ruangan" class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#0353a4] text-white font-semibold">

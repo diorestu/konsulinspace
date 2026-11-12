@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Katalog Ruangan - Co-Working & Meeting Room KonsulinSpace BSD')
-@section('meta_description', 'Lihat katalog lengkap pilihan co-working space, private office siap huni, meeting room 4K, dan event hall di Greenwich Business Park, BSD City, Tangerang.')
-@section('meta_keywords', 'katalog ruangan konsulinspace, sewa coworking space BSD, sewa private office Tangerang, ruang rapat BSD, event hall BSD City')
+@section('title', 'Our Space & Virtual Office - KonsulinSpace BSD')
+@section('meta_description', 'Lihat katalog pilihan private office siap huni, fasilitas meeting room, dan paket legalitas domisili virtual office resmi di Greenwich Business Park, BSD City, Tangerang.')
+@section('meta_keywords', 'private office BSD, virtual office BSD, meeting room BSD Tangerang, sewa kantor BSD City, pendirian PT BSD, KonsulinSpace')
 
 @section('content')
 
@@ -11,33 +11,27 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
             <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#0353a4]/60 border border-[#75afee]/40 text-[#75afee] tracking-wide mb-3">
-                Katalog Lengkap Ruangan
+                Our Space &amp; Virtual Office
             </span>
             <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                Pilihan Ruang Kerja & Meeting Room di BSD
+                Pilihan Ruang Kantor &amp; Virtual Office di BSD
             </h1>
             <p class="text-sm sm:text-base text-slate-300 mt-3 leading-relaxed">
-                Temukan ruang kerja yang paling sesuai dengan kebutuhan produktivitas dan pertumbuhan tim Anda di Greenwich Business Park, BSD City.
+                Temukan unit Private Office siap huni, fasilitas Meeting Room representatif, dan paket legalitas domisili Virtual Office resmi di Greenwich Business Park, BSD City.
             </p>
         </div>
     </div>
 </section>
 
 <!-- Filter & Search Toolbar -->
-<section class="py-8 bg-white border-b border-slate-200 sticky top-20 z-30 shadow-xs">
+<section class="py-8 bg-white border-b border-slate-200 sticky top-20 md:top-[88px] z-30 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             
-            <!-- Category Tabs -->
+            <!-- Category Tabs: Hanya Private Office & Virtual Office (+ Meeting Room sebagai fasilitas) -->
             <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none text-xs">
                 <a href="{{ route('rooms.catalog', ['category' => 'all']) }}" class="px-3.5 py-2 rounded-xl font-medium transition shrink-0 {{ ($selectedCategory ?? 'all') === 'all' ? 'bg-[#0353a4] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:text-slate-900' }}">
-                    Semua Ruangan
-                </a>
-                <a href="{{ route('rooms.catalog', ['category' => 'coworking']) }}" class="px-3.5 py-2 rounded-xl font-medium transition shrink-0 {{ ($selectedCategory ?? '') === 'coworking' ? 'bg-[#0353a4] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:text-slate-900' }}">
-                    Co-Working Space
-                </a>
-                <a href="{{ route('rooms.catalog', ['category' => 'meeting_room']) }}" class="px-3.5 py-2 rounded-xl font-medium transition shrink-0 {{ ($selectedCategory ?? '') === 'meeting_room' ? 'bg-[#0353a4] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:text-slate-900' }}">
-                    Meeting Room
+                    Semua Space
                 </a>
                 <a href="{{ route('rooms.catalog', ['category' => 'private_office']) }}" class="px-3.5 py-2 rounded-xl font-medium transition shrink-0 {{ ($selectedCategory ?? '') === 'private_office' ? 'bg-[#0353a4] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:text-slate-900' }}">
                     Private Office
@@ -45,8 +39,8 @@
                 <a href="{{ route('rooms.catalog', ['category' => 'virtual_office']) }}" class="px-3.5 py-2 rounded-xl font-medium transition shrink-0 {{ ($selectedCategory ?? '') === 'virtual_office' ? 'bg-[#0353a4] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:text-slate-900' }}">
                     Virtual Office
                 </a>
-                <a href="{{ route('rooms.catalog', ['category' => 'event_space']) }}" class="px-3.5 py-2 rounded-xl font-medium transition shrink-0 {{ ($selectedCategory ?? '') === 'event_space' ? 'bg-[#0353a4] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:text-slate-900' }}">
-                    Event Hall
+                <a href="{{ route('rooms.catalog', ['category' => 'meeting_room']) }}" class="px-3.5 py-2 rounded-xl font-medium transition shrink-0 {{ ($selectedCategory ?? '') === 'meeting_room' ? 'bg-[#0353a4] text-white shadow-xs' : 'bg-slate-100 text-slate-600 hover:text-slate-900' }}">
+                    Meeting Room (Fasilitas)
                 </a>
             </div>
 
@@ -62,95 +56,159 @@
     </div>
 </section>
 
-<!-- Rooms Grid Catalog -->
+<!-- Content Catalog Section -->
 <section class="py-16 bg-slate-50 min-h-[60vh]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @forelse($rooms as $room)
-            @php
-                $videoMedia = $room->media->firstWhere('file_type', 'video');
-                $waMessage = rawurlencode("Halo Admin K-Space, saya tertarik ingin memesan ruangan '{$room->name}' ({$room->formatted_price}) di KonsulinSpace.");
-            @endphp
-            <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-lg transition-shadow duration-200 flex flex-col group">
-                <!-- Thumbnail -->
-                <div class="relative aspect-[16/10] overflow-hidden bg-slate-900">
-                    <img src="{{ $room->thumbnail_url }}" alt="{{ $room->name }}" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
-                    
-                    @if($videoMedia)
-                    <span class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-rose-600 text-white">
-                        Video
-                    </span>
-                    @endif
+        @if(($selectedCategory ?? 'all') === 'virtual_office')
+            <!-- Virtual Office View Only -->
+            <div class="mb-10 text-center max-w-xl mx-auto">
+                <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#edf4fc] text-[#0353a4] mb-2">Legalitas &amp; Domisili</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Paket Virtual Office &amp; Penerbitan Usaha</h2>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2">Alamat domisili komersial resmi dan pengurusan legalitas pendirian usaha di Greenwich Business Park, BSD City.</p>
+            </div>
 
-                    @if($room->is_featured)
-                    <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#0353a4] text-white shadow-xs">
-                        Terpopuler
-                    </span>
-                    @endif
+            @include('partials.virtual-office-cards', ['packages' => $virtualOfficePackages])
+
+        @else
+            <!-- Rooms Grid (Private Office & Meeting Room) -->
+            @if(($selectedCategory ?? 'all') === 'all')
+            <div class="mb-8 flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Pilihan Ruang Kantor &amp; Fasilitas</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Unit Private Office siap pakai dan fasilitas ruang rapat representatif.</p>
                 </div>
+            </div>
+            @endif
 
-                <!-- Card Body -->
-                <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-                    <div>
-                        <div class="text-[11px] font-medium text-slate-400 mb-1">
-                            {{ $room->category_label }} @if($room->capacity) &bull; {{ $room->capacity }} @endif
-                        </div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-[#0353a4] transition">
-                            <a href="{{ route('rooms.show', $room->slug) }}">
-                                {{ $room->name }}
-                            </a>
-                        </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                @forelse($rooms as $room)
+                @php
+                    $videoMedia = $room->media->firstWhere('file_type', 'video');
+                    $isMeeting = $room->category === 'meeting_room';
+                    $waMessage = rawurlencode($isMeeting
+                        ? "Halo Admin K-Space, saya tertarik ingin menanyakan fasilitas Meeting Room '{$room->name}' di KonsulinSpace."
+                        : "Halo Admin K-Space, saya tertarik ingin memesan ruangan '{$room->name}' ({$room->formatted_price}) di KonsulinSpace.");
+                @endphp
+                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-lg transition-shadow duration-200 flex flex-col group">
+                    <!-- Thumbnail -->
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-900">
+                        <img src="{{ $room->thumbnail_url }}" alt="{{ $room->name }}" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
                         
-                        <!-- Rating Star -->
-                        <div class="flex items-center gap-1.5 mt-2.5">
-                            <div class="flex items-center text-amber-400">
-                                @for($i = 0; $i < 5; $i++)
-                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                @endfor
-                            </div>
-                            <span class="text-xs font-semibold text-slate-700">4.9</span>
-                            <span class="text-[11px] text-slate-400">(48 ulasan)</span>
-                        </div>
+                        @if($videoMedia)
+                        <span class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-rose-600 text-white">
+                            Video
+                        </span>
+                        @endif
+
+                        @if($isMeeting)
+                        <span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#0353a4] text-white shadow-xs">
+                            Fasilitas Tambahan
+                        </span>
+                        @elseif($room->is_featured)
+                        <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#0353a4] text-white shadow-xs">
+                            Terpopuler
+                        </span>
+                        @endif
                     </div>
 
-                    <!-- Pricing & Buttons with Call Icon -->
-                    <div class="pt-3 border-t border-slate-100 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs text-slate-400">Mulai dari</span>
-                            <span class="text-sm font-bold text-slate-900">{{ $room->formatted_price }}</span>
+                    <!-- Card Body -->
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="text-[11px] font-medium text-slate-400 mb-1">
+                                {{ $room->category_label }} @if($room->capacity) &bull; {{ $room->capacity }} @endif
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-[#0353a4] transition">
+                                <a href="{{ route('rooms.show', $room->slug) }}">
+                                    {{ $room->name }}
+                                </a>
+                            </h3>
+                            
+                            <!-- Rating Star -->
+                            <div class="flex items-center gap-1.5 mt-2.5">
+                                <div class="flex items-center text-amber-400">
+                                    @for($i = 0; $i < 5; $i++)
+                                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                    @endfor
+                                </div>
+                                <span class="text-xs font-semibold text-slate-700">4.9</span>
+                                <span class="text-[11px] text-slate-400">(48 ulasan)</span>
+                            </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-2">
-                            <a href="{{ route('rooms.show', $room->slug) }}" class="inline-flex items-center justify-center gap-1 py-2 px-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold transition">
-                                <span>Detail</span>
-                            </a>
-                            <a href="https://wa.me/6281908797799?text={{ $waMessage }}" target="_blank" rel="noopener noreferrer" data-track-cta="whatsapp" data-cta-label="catalog_pesan_ruangan_{{ $room->slug }}" class="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white text-xs font-semibold transition shadow-xs">
-                                <svg class="w-3.5 h-3.5 shrink-0 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                </svg>
-                                <span>Pesan</span>
-                            </a>
+                        <!-- Pricing & Buttons -->
+                        <div class="pt-3 border-t border-slate-100 space-y-3">
+                            @if($isMeeting)
+                            <!-- Meeting Room: Tanpa harga, hanya sebagai fasilitas tambahan -->
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-slate-400">Keterangan</span>
+                                <span class="text-xs font-bold text-[#0353a4] bg-[#edf4fc] px-2.5 py-0.5 rounded-md">Fasilitas Tambahan</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <a href="{{ route('rooms.show', $room->slug) }}" class="inline-flex items-center justify-center gap-1 py-2 px-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold transition">
+                                    <span>Detail</span>
+                                </a>
+                                <a href="https://wa.me/6281908797799?text={{ $waMessage }}" target="_blank" rel="noopener noreferrer" data-track-cta="whatsapp" data-cta-label="catalog_tanya_facility_{{ $room->slug }}" class="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white text-xs font-semibold transition shadow-xs">
+                                    <svg class="w-3.5 h-3.5 shrink-0 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                    <span>Tanya</span>
+                                </a>
+                            </div>
+                            @else
+                            <!-- Private Office: Menampilkan tarif sewa -->
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs text-slate-400">Tarif Sewa</span>
+                                <span class="text-sm font-bold text-slate-900">{{ $room->formatted_price }}</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <a href="{{ route('rooms.show', $room->slug) }}" class="inline-flex items-center justify-center gap-1 py-2 px-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold transition">
+                                    <span>Detail</span>
+                                </a>
+                                <a href="https://wa.me/6281908797799?text={{ $waMessage }}" target="_blank" rel="noopener noreferrer" data-track-cta="whatsapp" data-cta-label="catalog_pesan_ruangan_{{ $room->slug }}" class="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#0353a4] hover:bg-[#023e7d] text-white text-xs font-semibold transition shadow-xs">
+                                    <svg class="w-3.5 h-3.5 shrink-0 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                    <span>Pesan</span>
+                                </a>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
+                @empty
+                <div class="col-span-full py-16 text-center bg-white rounded-3xl border border-slate-200">
+                    <svg class="w-12 h-12 mx-auto text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    <p class="text-base font-bold text-slate-800 mt-3">Tidak ada ruangan yang ditemukan</p>
+                    <p class="text-xs text-slate-500 mt-1">Coba gunakan kata kunci pencarian lain atau pilih kategori berbeda.</p>
+                    <a href="{{ route('rooms.catalog') }}" class="inline-block mt-4 px-4 py-2 rounded-xl bg-[#0353a4] text-white text-xs font-semibold">
+                        Reset Filter
+                    </a>
+                </div>
+                @endforelse
             </div>
-            @empty
-            <div class="col-span-full py-16 text-center bg-white rounded-3xl border border-slate-200">
-                <svg class="w-12 h-12 mx-auto text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                <p class="text-base font-bold text-slate-800 mt-3">Tidak ada ruangan yang ditemukan</p>
-                <p class="text-xs text-slate-500 mt-1">Coba gunakan kata kunci pencarian lain atau pilih kategori berbeda.</p>
-                <a href="{{ route('rooms.catalog') }}" class="inline-block mt-4 px-4 py-2 rounded-xl bg-[#0353a4] text-white text-xs font-semibold">
-                    Reset Filter
-                </a>
-            </div>
-            @endforelse
-        </div>
 
-        @if($rooms->hasPages())
-        <div class="mt-10">
-            {{ $rooms->links() }}
-        </div>
+            @if($rooms->hasPages())
+            <div class="mt-10">
+                {{ $rooms->links() }}
+            </div>
+            @endif
+
+            @if(($selectedCategory ?? 'all') === 'all')
+            <!-- Virtual Office Section (Ambil dari Paket Beranda) -->
+            <div class="mt-20 pt-16 border-t border-slate-200">
+                <div class="mb-10 text-center max-w-xl mx-auto">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#edf4fc] text-[#0353a4] mb-2">Legalitas &amp; Domisili</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Paket Virtual Office &amp; Penerbitan Usaha</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-2">Alamat domisili komersial resmi dan pengurusan legalitas pendirian usaha di Greenwich Business Park, BSD City.</p>
+                </div>
+
+                @include('partials.virtual-office-cards', ['packages' => $virtualOfficePackages])
+            </div>
+            @endif
+
         @endif
 
     </div>

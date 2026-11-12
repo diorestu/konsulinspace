@@ -123,8 +123,22 @@
         <div class="lg:col-span-4">
             <div class="sticky top-28 space-y-6">
 
-                <!-- Pricing Card -->
+                <!-- Pricing / Facility Card -->
                 <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-lg space-y-6">
+                    @if($room->category === 'meeting_room')
+                    <div class="border-b border-slate-100 pb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Skema Fasilitas</span>
+                        <div class="mt-3 p-4 bg-[#edf4fc] rounded-2xl border border-[#b0d0f4]">
+                            <div class="flex items-center gap-2 text-[#0353a4] font-bold text-sm">
+                                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>Fasilitas Tambahan</span>
+                            </div>
+                            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                Ruang rapat ini disediakan sebagai <strong>fasilitas tambahan / complimentary</strong> bagi member kantor Private Office dan pengguna paket Virtual Office di KonsulinSpace.
+                            </p>
+                        </div>
+                    </div>
+                    @else
                     <div class="border-b border-slate-100 pb-4">
                         <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Pilihan Skema Tarif</span>
                         <div class="mt-2 space-y-2">
@@ -154,6 +168,7 @@
                             @endif
                         </div>
                     </div>
+                    @endif
 
                     <!-- Direct Booking / Reservation Form -->
                     <form action="{{ route('inquiry.store') }}" method="POST" class="space-y-4">
@@ -176,13 +191,15 @@
                             <svg class="w-4 h-4 shrink-0 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
-                            <span>Pesan Ruangan Ini</span>
+                            <span>{{ $room->category === 'meeting_room' ? 'Tanya Fasilitas Ini' : 'Pesan Ruangan Ini' }}</span>
                         </x-button>
                     </form>
 
                     <!-- WhatsApp Direct Link -->
                     @php
-                        $msg = rawurlencode("Halo Admin K-Space, saya tertarik ingin menyewa ruangan '{$room->name}' ({$room->formatted_price}). Mohon info ketersediaan.");
+                        $msg = rawurlencode($room->category === 'meeting_room' 
+                            ? "Halo Admin K-Space, saya tertarik ingin menanyakan fasilitas Meeting Room '{$room->name}' di KonsulinSpace."
+                            : "Halo Admin K-Space, saya tertarik ingin menyewa ruangan '{$room->name}' ({$room->formatted_price}). Mohon info ketersediaan.");
                         $waDirect = "https://wa.me/6281908797799?text={$msg}";
                     @endphp
                     <div class="pt-2 text-center border-t border-slate-100">

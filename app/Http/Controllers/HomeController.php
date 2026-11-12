@@ -45,27 +45,44 @@ class HomeController extends Controller
     {
         $selectedCategory = $request->query('category', 'all');
 
+        $allowedCategories = ['private_office', 'meeting_room'];
+
         $query = Room::with('media')
             ->where('status', 'available')
             ->orderBy('is_featured', 'desc')
             ->orderBy('order_position', 'asc');
 
-        if ($selectedCategory !== 'all') {
+        if ($selectedCategory === 'virtual_office') {
+            // Virtual Office packages will be rendered from $virtualOfficePackages
+            $rooms = Room::whereRaw('1 = 0')->paginate(12)->withQueryString();
+        } elseif ($selectedCategory === 'private_office' || $selectedCategory === 'meeting_room') {
             $query->where('category', $selectedCategory);
+            if ($request->filled('search')) {
+                $search = $request->query('search');
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                      ->orWhere('short_description', 'like', "%{$search}%")
+                      ->orWhere('description', 'like', "%{$search}%");
+                });
+            }
+            $rooms = $query->paginate(12)->withQueryString();
+        } else {
+            // 'all': only private_office and meeting_room
+            $query->whereIn('category', $allowedCategories);
+            if ($request->filled('search')) {
+                $search = $request->query('search');
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                      ->orWhere('short_description', 'like', "%{$search}%")
+                      ->orWhere('description', 'like', "%{$search}%");
+                });
+            }
+            $rooms = $query->paginate(12)->withQueryString();
         }
 
-        if ($request->filled('search')) {
-            $search = $request->query('search');
-            $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('short_description', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%");
-            });
-        }
+        $virtualOfficePackages = VirtualOfficePackage::active()->get();
 
-        $rooms = $query->paginate(12)->withQueryString();
-
-        return view('rooms.index', compact('rooms', 'selectedCategory'));
+        return view('rooms.index', compact('rooms', 'selectedCategory', 'virtualOfficePackages'));
     }
 
     public function roomDetail(string $slug)
