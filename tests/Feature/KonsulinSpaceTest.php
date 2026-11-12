@@ -529,6 +529,53 @@ class KonsulinSpaceTest extends TestCase
         $response->assertSee('data-track-cta="whatsapp"', false);
     }
 
+    public function test_virtual_office_section_displays_penerbitan_pt_and_cv_packages()
+    {
+        VirtualOfficePackage::query()->delete();
+        VirtualOfficePackage::create([
+            'name' => 'Virtual Office',
+            'slug' => 'virtual-office',
+            'price_monthly' => 2600000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
+            'features' => ['Meeting Room Facility 4 hours/month', 'PT. Address & Mail'],
+            'status' => 'active',
+            'order_position' => 1,
+        ]);
+        VirtualOfficePackage::create([
+            'name' => 'Penerbitan CV + VO',
+            'slug' => 'penerbitan-cv-vo',
+            'price_monthly' => 4900000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
+            'features' => ['Akta Notaris & SK Kemenkumham Pendirian CV', 'Virtual Office 1 Tahun di BSD City'],
+            'status' => 'active',
+            'order_position' => 2,
+        ]);
+        VirtualOfficePackage::create([
+            'name' => 'Penerbitan PT + VO',
+            'slug' => 'penerbitan-pt-vo',
+            'price_monthly' => 6900000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
+            'features' => ['Akta Notaris & SK Kemenkumham Pendirian PT', 'Virtual Office 1 Tahun di BSD City'],
+            'is_popular' => true,
+            'status' => 'active',
+            'order_position' => 3,
+        ]);
+
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('Virtual Office');
+        $response->assertSee('Penerbitan CV + VO');
+        $response->assertSee('Penerbitan PT + VO');
+        $response->assertSee('Rp 2.600.000');
+        $response->assertSee('Rp 4.900.000');
+        $response->assertSee('Rp 6.900.000');
+        $response->assertSee('Akta Notaris & SK Kemenkumham Pendirian CV');
+        $response->assertSee('Akta Notaris & SK Kemenkumham Pendirian PT');
+    }
+
     public function test_header_menu_contains_only_specified_items_and_no_faq()
     {
         $response = $this->get('/');

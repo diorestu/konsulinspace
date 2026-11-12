@@ -355,7 +355,16 @@
                                     <div class="w-5 h-5 rounded-full bg-[#0353a4]/10 text-[#0353a4] flex items-center justify-center shrink-0 mt-0.5">
                                         <svg class="w-3 h-3 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
                                     </div>
-                                    <span class="{{ in_array($feature, ['Meeting Room Facility 4 hours/month', 'PT. Address & Mail']) ? 'text-slate-900 font-bold' : 'font-medium' }}">{{ $feature }}</span>
+                                    @php
+                                        $isHighlightedFeature = in_array($feature, [
+                                            'Meeting Room Facility 4 hours/month',
+                                            'PT. Address & Mail',
+                                            'Akta Notaris & SK Kemenkumham Pendirian PT',
+                                            'Akta Notaris & SK Kemenkumham Pendirian CV',
+                                            'Virtual Office 1 Tahun di BSD City',
+                                        ]);
+                                    @endphp
+                                    <span class="{{ $isHighlightedFeature ? 'text-slate-900 font-bold' : 'font-medium' }}">{{ $feature }}</span>
                                 </li>
                                 @endforeach
                             @endif

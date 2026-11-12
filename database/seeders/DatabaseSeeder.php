@@ -362,7 +362,7 @@ class DatabaseSeeder extends Seeder
             Inquiry::create($inq);
         }
 
-        // 4. Create Virtual Office Package (1 Paket Saja)
+        // 4. Create Virtual Office Packages
         VirtualOfficePackage::query()->delete();
         VirtualOfficePackage::create([
             'name' => 'Virtual Office',
@@ -378,10 +378,58 @@ class DatabaseSeeder extends Seeder
                 'Layanan Resepsionis & Penerimaan Tamu Profesional',
                 'Zonasi Perkantoran Komersial untuk Pengurusan PKP',
             ],
-            'is_popular' => true,
+            'is_popular' => false,
             'status' => 'active',
             'order_position' => 1,
             'cta_text' => 'Pilih Paket Virtual Office',
+        ]);
+
+        VirtualOfficePackage::create([
+            'name' => 'Penerbitan CV + VO',
+            'slug' => 'penerbitan-cv-vo',
+            'tagline' => 'Paket pendirian legalitas CV resmi Kemenkumham & alamat domisili Virtual Office 1 tahun di BSD.',
+            'price_monthly' => 4900000,
+            'price_yearly' => 4900000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
+            'features' => [
+                'Akta Notaris & SK Kemenkumham Pendirian CV',
+                'NIB (Nomor Induk Berusaha) & OSS RBA',
+                'NPWP Badan Usaha & SKT Pajak',
+                'Virtual Office 1 Tahun di BSD City',
+                'Meeting Room Facility 4 hours/month',
+                'PT. Address & Mail',
+                'Layanan Resepsionis & Tamu Profesional',
+                'Zonasi Perkantoran Komersial untuk Pengurusan PKP',
+            ],
+            'is_popular' => false,
+            'status' => 'active',
+            'order_position' => 2,
+            'cta_text' => 'Pilih Paket CV + VO',
+        ]);
+
+        VirtualOfficePackage::create([
+            'name' => 'Penerbitan PT + VO',
+            'slug' => 'penerbitan-pt-vo',
+            'tagline' => 'Solusi terlengkap pendirian PT resmi Kemenkumham & alamat domisili Virtual Office 1 tahun di BSD.',
+            'price_monthly' => 6900000,
+            'price_yearly' => 6900000,
+            'price_note' => 'exclude PPn',
+            'billing_period' => 'tahun',
+            'features' => [
+                'Akta Notaris & SK Kemenkumham Pendirian PT',
+                'NIB (Nomor Induk Berusaha) & OSS RBA',
+                'NPWP Badan Usaha & SKT Pajak',
+                'Virtual Office 1 Tahun di BSD City',
+                'Meeting Room Facility 4 hours/month',
+                'PT. Address & Mail',
+                'Layanan Resepsionis & Tamu Profesional',
+                'Zonasi Perkantoran Komersial untuk Pengurusan PKP',
+            ],
+            'is_popular' => true,
+            'status' => 'active',
+            'order_position' => 3,
+            'cta_text' => 'Pilih Paket PT + VO',
         ]);
 
         // 5. Create Default Hero Carousel Slides
